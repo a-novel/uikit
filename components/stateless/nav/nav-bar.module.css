@@ -1,0 +1,185 @@
+/* -------------------------------------------------------------------------------- */
+/* NAV */
+/* -------------------------------------------------------------------------------- */
+
+.nav-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: var(--important-index);
+    background-color: var(--background-overlay-color);
+    backdrop-filter: var(--background-overlay-backdrop);
+    display: flex;
+    align-items: center;
+    user-select: none;
+    gap: 1rem;
+    padding: .6rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.nav-bar.horizontal {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav-bar.vertical {
+    flex-direction: column;
+    width: 14rem;
+    overflow: auto;
+    height: calc(100vh - var(--sticky-top));
+}
+
+.nav-bar.main {
+    z-index: var(--main-nav-menu-index);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* NAV ZONE */
+/* -------------------------------------------------------------------------------- */
+
+.nav-zone {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-bar.horizontal .nav-zone {
+    gap: 0.4rem;
+}
+
+.nav-bar.vertical .nav-zone {
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.horizontal > .nav-zone {
+    flex-direction: row;
+}
+
+.vertical > .nav-zone {
+    flex-direction: column;
+    width: calc(100% - 2rem);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* LINK (COMMON) */
+/* -------------------------------------------------------------------------------- */
+
+.home-link, .nav-link {
+    color: var(--text);
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: linear .1s;
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem;
+}
+
+.horizontal .nav-zone > * {
+    margin: auto 0;
+}
+
+.vertical .nav-zone > * {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* NAV LINK */
+/* -------------------------------------------------------------------------------- */
+
+.nav-link > * {
+    padding: .4rem .6rem;
+    flex-grow: 1;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nav-link > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-link > button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+}
+
+.nav-link.disabled {
+    pointer-events: none;
+    color: var(--grey-700);
+    cursor: not-allowed;
+}
+
+
+.nav-link:global(.no-decorator) {
+    color: var(--text);
+}
+
+.nav-link:global(.no-decorator):not(.active):not(:global(.active)):hover,
+.nav-link:global(.no-decorator):global(.hover) {
+    background-color: var(--hover-transparent);
+}
+
+.nav-link:global(.no-decorator).active, .nav-link:global(.no-decorator):global(.active) {
+    background-color: var(--blue-secondary);
+}
+
+.nav-link:global(.decorator) {
+    color: var(--decorator-main);
+}
+
+.nav-link:global(.decorator):not(.active):not(:global(.active)):hover,
+.nav-link:global(.decorator):global(.hover) {
+    background-color: var(--decorator-dark);
+}
+
+.nav-link:global(.decorator).active, .nav-link:global(.decorator.active) {
+    background-color: var(--decorator-secondary);
+    color: var(--text);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* HOME LINK */
+/* -------------------------------------------------------------------------------- */
+
+.home-link a {
+    padding: .8rem .6rem .6rem .6rem;
+    height: 1.8rem;
+    box-sizing: content-box;
+    flex-grow: 1;
+}
+
+.home-link img {
+    height: 1.8rem;
+    width: auto;
+}
+
+.home-link:hover, .home-link:global(.hover) {
+    background-color: var(--hover-transparent);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* LABEL */
+/* -------------------------------------------------------------------------------- */
+
+.nav-label {
+    font-weight: normal;
+    font-size: 0.9rem;
+    color: var(--grey-500);
+    text-align: left;
+    margin: 0;
+    padding: 0.2rem;
+}
+
+.horizontal .nav-label {
+    display: none;
+}

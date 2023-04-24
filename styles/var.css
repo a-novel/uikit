@@ -1,0 +1,66 @@
+:root {
+    --blue: #32ADFF;
+    --blue-secondary: #298BCC;
+    --blue-tertiary: #195780;
+    --blue-dark: #0D2B40;
+    --green: #14FF00;
+    --green-secondary: #11CC00;
+    --green-tertiary: #0B8000;
+    --green-dark: #054000;
+    --orange: #FF9300;
+    --orange-secondary: #CC7700;
+    --orange-tertiary: #804A00;
+    --orange-dark: #402500;
+    --red: #FF3232;
+    --red-secondary: #CC2929;
+    --red-tertiary: #801919;
+    --red-dark: #400D0D;
+    --purple: #D800FF;
+    --purple-secondary: #AD00CC;
+    --purple-tertiary: #6C0080;
+    --purple-dark: #360040;
+    --gold: #FFD600;
+    --gold-secondary: #CCAA00;
+    --gold-tertiary: #806A00;
+    --gold-dark: #403500;
+
+    --background: #000000;
+
+    --grey-900: #212121;
+    --grey-800: #424242;
+    --grey-700: #616161;
+    --grey-600: #757575;
+    --grey-500: #9E9E9E;
+    --grey-400: #BDBDBD;
+    --grey-300: #E0E0E0;
+    --grey-200: #EEEEEE;
+    --grey-100: #F5F5F5;
+
+    --text: #FFFFFF;
+
+    --modal-index: 99999;
+    --main-nav-menu-index: 9999;
+    --notifications-index: 999;
+    --important-index: 99;
+    --less-important-index: 9;
+
+    --background-overlay-color: rgba(0, 0, 0, 0.3);
+    --background-overlay-backdrop: blur(0.7rem);
+
+    --border-radius: .4rem;
+    --button-radius: .2rem;
+
+    --hover-transparent: rgba(255, 255, 255, 0.25);
+    --hover-transparent-discrete: rgba(255, 255, 255, 0.15);
+    --modal-shadow: 0 0 .2rem #757575;
+
+    --icon-button: #9E9E9E;
+    --icon-button-hover: #EEEEEE;
+
+    /* This variable is updated by scripts when some sticky containers are registered */
+    --sticky-top: 0;
+    --sticky-left: 0;
+
+    --text-mode: #FFFFFF;
+    --palette: #FFFFFF;
+}

@@ -1,0 +1,21 @@
+.usage-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0 1rem 0 .3rem;
+}
+
+.usage, .usage-import {
+    flex-grow: 1;
+    border-radius: var(--border-radius);
+    padding: .6rem;
+    max-width: 60rem;
+}
+
+.usage-import {
+    box-shadow: 0 0 .3rem var(--orange);
+}
+
+.usage {
+    box-shadow: 0 0 .3rem var(--blue);
+}

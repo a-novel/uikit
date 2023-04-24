@@ -1,0 +1,34 @@
+.status-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .6rem;
+}
+
+.status-page > * {
+    margin: 0 auto;
+}
+
+.icon svg {
+    height: 3rem!important;
+    width: auto!important;
+}
+
+.title {
+    color: var(--decorator-main);
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 30rem;
+}
+
+.content {
+    color: var(--text);
+    font-size: 1rem;
+    text-align: justify;
+    max-width: 30rem;
+}

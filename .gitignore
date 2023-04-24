@@ -14,10 +14,13 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
 *.pem
+.idea
+.vscode
 
 # debug
 npm-debug.log*

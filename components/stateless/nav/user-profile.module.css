@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: right;
+    white-space: nowrap;
+    width: 10rem;
+    margin: auto 0 auto auto;
+}
+
+.name {
+    font-size: .8rem;
+    font-weight: bold;
+    color: var(--text);
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.email {
+    font-size: .6rem;
+    font-weight: bold;
+    color: var(--grey-400);
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

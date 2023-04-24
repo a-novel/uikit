@@ -1,0 +1,35 @@
+.container input {
+    cursor: pointer;
+}
+
+.container input::selection {
+    color: var(--text);
+    background-color: transparent;
+}
+
+.calendar {
+    position: absolute;
+    top: 0;
+    /* Make menu aligned with the border */
+    right: -1px;
+    transform: translateY(calc(-100% - 1rem));
+    border-color: var(--grey-400);
+    border-style: solid;
+    border-radius: var(--border-radius);
+    border-width: thin;
+    font-size: 1rem;
+    z-index: var(--less-important-index);
+    overflow: hidden;
+    background-color: var(--background-overlay-color);
+    backdrop-filter: var(--background-overlay-backdrop);
+    opacity: 0;
+    transition: linear .1s;
+}
+
+.container:not(:global(.focus-within)):not(.disabled) .calendar {
+    pointer-events: none;
+}
+
+.container:global(.focus-within) .calendar {
+    opacity: 1;
+}

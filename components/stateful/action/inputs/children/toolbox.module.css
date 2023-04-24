@@ -1,0 +1,21 @@
+.toolbox-action {
+    cursor: pointer;
+    color: var(--icon-button);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 0;
+
+    transition: linear .1s;
+}
+
+.toolbox-action:hover, .toolbox-action:global(.hover) {
+    transition: linear 0s;
+    color: var(--icon-button-hover);
+}
+
+.toolbox-action svg {
+    display: block;
+    height: 1.5em;
+    width: auto;
+}

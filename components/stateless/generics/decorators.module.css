@@ -1,0 +1,34 @@
+:global(.decorator).standard {
+    --decorator-main: var(--blue);
+    --decorator-secondary: var(--blue-secondary);
+    --decorator-tertiary: var(--blue-tertiary);
+    --decorator-dark: var(--blue-dark);
+}
+
+:global(.decorator).important {
+    --decorator-main: var(--green);
+    --decorator-secondary: var(--green-secondary);
+    --decorator-tertiary: var(--green-tertiary);
+    --decorator-dark: var(--green-dark);
+}
+
+:global(.decorator).premium {
+    --decorator-main: var(--gold);
+    --decorator-secondary: var(--gold-secondary);
+    --decorator-tertiary: var(--gold-tertiary);
+    --decorator-dark: var(--gold-dark);
+}
+
+:global(.decorator).warning {
+    --decorator-main: var(--orange);
+    --decorator-secondary: var(--orange-secondary);
+    --decorator-tertiary: var(--orange-tertiary);
+    --decorator-dark: var(--orange-dark);
+}
+
+:global(.decorator).danger {
+    --decorator-main: var(--red);
+    --decorator-secondary: var(--red-secondary);
+    --decorator-tertiary: var(--red-tertiary);
+    --decorator-dark: var(--red-dark);
+}

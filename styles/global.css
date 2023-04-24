@@ -1,0 +1,124 @@
+/*
+    WARNING: DO NOT set a custom font-size in the html tag. We base our measurement on the rem unit, and doing
+    so might causes trouble with media queries.
+
+    https://stackoverflow.com/a/51993054/9021186
+
+    "The confusion comes in that media queries declarations do not base themselves on the declared font-size that you
+    apply to html and instead always use the default size - which as I said is 16px in pretty much all browsers."
+
+    html {
+        font-size: 10px;
+    }
+
+    @media screen and (min-width: 50rem){ // 800px (uses base font-size)
+        .some-element {
+            width: 50rem; // 500px (uses the declared html font-size)
+        }
+    }
+*/
+
+body {
+    font-weight: normal;
+
+    background-color: var(--background);
+    color: var(--text);
+
+    /* I found this somewhere on the internet but couldn't find the sauce tbh */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-stroke: thin currentColor;
+    -webkit-text-size-adjust:none;
+
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    font-family: inherit;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Prevents chrome auto-styling */
+*:-webkit-autofill {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: currentColor;
+    caret-color: currentColor;
+}
+
+* {
+    /* Mozilla */
+    scrollbar-width: thin;
+
+    /* https://baymard.com/blog/line-length-readability */
+    line-height: 1.5em;
+    /*word-spacing: 0.16em;*/
+    /*letter-spacing: 0.12em;*/
+
+    text-rendering: optimizeLegibility;
+}
+
+*::selection, .selected-test {
+    background-color: var(--purple-dark);
+    color: var(--purple);
+}
+
+strong {
+    font-weight: normal;
+    border-style: solid;
+    border-color: var(--purple);
+    border-width: 0 0 2px 0;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--blue);
+    font-weight: normal;
+    margin: 1rem 0;
+}
+
+h2 {
+    font-size: 1.6rem;
+    color: var(--text);
+    font-weight: normal;
+    margin: .6rem 0;
+    width: 100%;
+    z-index: var(--important-index);
+    background-color: var(--background-overlay-color);
+    backdrop-filter: var(--background-overlay-backdrop);
+    padding: .4rem 0;
+    position: sticky;
+    top: 0;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: var(--text);
+    font-weight: normal;
+    margin: .6rem 0;
+}
+
+h5 {
+    padding: 0;
+    font-size: .8rem;
+    margin: 0 0 .5rem 0;
+    font-weight: normal;
+    color: var(--grey-500);
+}
+
+a {
+    color: var(--blue);
+}
+
+button, input, form {
+    font-size: 1em;
+}

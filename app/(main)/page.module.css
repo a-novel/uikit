@@ -1,0 +1,54 @@
+.color-palettes-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 1rem 0;
+}
+
+.color-palette {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-palette-colors {
+    display: grid;
+    grid-template-columns: repeat( auto-fill, 10rem );
+    grid-gap: 1rem;
+}
+
+.color-palette-color {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-palette-color-value {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 10rem;
+    font-size: .8rem;
+    color: var(--text-mode);
+    background-color: var(--palette);
+    border-radius: var(--border-radius);
+    padding: .4rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: linear .2s;
+    user-select: none;
+}
+
+.color-palette-color-value:active {
+    opacity: 0.6;
+}
+
+.typography {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+.typography-border-visualizer {
+    border-color: var(--grey-800);
+    border-style: solid;
+    border-width: thin;
+}

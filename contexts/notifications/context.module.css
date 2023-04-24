@@ -1,0 +1,7 @@
+.container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    max-height: calc(100vh - var(--sticky-top));
+    z-index: var(--notifications-index);
+}

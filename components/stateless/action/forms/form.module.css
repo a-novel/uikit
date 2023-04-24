@@ -1,0 +1,76 @@
+.container {
+    gap: 2rem;
+    padding: 1rem;
+    box-sizing: content-box;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.container.standard {
+    width: 29rem;
+}
+
+.container.large {
+    width: 44rem;
+}
+
+.container.dynamic {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.form-info {
+    width: 100%;
+    border-radius: var(--border-radius);
+    border-color: var(--decorator-main);
+    background-color: var(--decorator-tertiary);
+    color: var(--text);
+
+    box-sizing: border-box;
+    font-size: .8rem;
+
+    border-style: solid;
+    border-width: thin;
+    box-shadow: 0 0 0.3rem 0 var(--grey-900) inset;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.form-info-content {
+    padding: .6rem;
+    flex-grow: 1;
+}
+
+.form-info-close {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--icon-button);
+    transition: linear .1s;
+    margin: 0 0 auto 0;
+    padding: .4rem .4rem .4rem 0;
+}
+
+.form-info-close svg {
+    width: 1.2rem;
+    height: auto;
+}
+
+.form-info-close:hover {
+    color: var(--icon-button-hover);
+}

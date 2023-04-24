@@ -1,0 +1,73 @@
+.presenter, .resizable-presenter, .iframe-presenter {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    padding: .4rem 1rem 1rem 1rem;
+    gap: 1rem;
+}
+
+.presenter {
+    pointer-events: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.resizable-presenter:not(.inline), .iframe-presenter {
+    flex-direction: column;
+}
+
+.presenter-box {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.resizable-presenter-box, .iframe-presenter-box {
+    border-radius: var(--border-radius);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--grey-500);
+    margin: .5rem;
+    font-size: 1rem;
+}
+
+.resizable-presenter-box > .foam {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.resizable-presenter-box.horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.resizable-presenter-box.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.foam {
+    display: flex;
+    flex-grow: 1;
+}
+
+.foam.vertical {
+    flex-direction: column;
+}
+
+.foam.horizontal {
+    flex-direction: row;
+}
+
+.foam-box {
+    flex-grow: 1;
+    background-color: var(--grey-900);
+}
+
+.foam.vertical > .foam-box {
+    width: 100%;
+}
+
+.foam.horizontal > .foam-box {
+    height: 100%;
+}

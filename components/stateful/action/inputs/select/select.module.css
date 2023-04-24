@@ -1,0 +1,110 @@
+.container {
+    user-select: none;
+    transition: border linear 0s, linear .1s;
+}
+
+.container:global(.focus-within) {
+    background-color: transparent!important;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-width: thin thin 0 thin;
+}
+
+.container:not(:global(.focus-within)):not(.disabled) .select-options {
+    pointer-events: none;
+}
+
+.container:global(.focus-within) .select-options {
+    opacity: 1;
+}
+
+.container input {
+    cursor: pointer;
+}
+
+.container input::selection {
+    color: var(--text);
+    background-color: transparent;
+}
+
+.expand-icon {
+    transform-origin: center;
+    transition: linear .3s;
+}
+
+.container:not(:global(.focus-within)) .expand-icon {
+    transform: rotate(180deg);
+}
+
+.container:global(.focus-within) .expand-icon {
+    transform: rotate(90deg);
+}
+
+.select-options {
+    position: absolute;
+    top: 100%;
+    /* There is alignment issues with left: 0, as it does not include parent border */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    border-color: inherit;
+    border-style: solid;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-width: 0 thin thin thin;
+    font-size: 1rem;
+    z-index: var(--less-important-index);
+    overflow: hidden;
+    background-color: var(--background-overlay-color);
+    backdrop-filter: var(--background-overlay-backdrop);
+    opacity: 0;
+    padding: 0;
+    transition: linear .1s;
+}
+
+.select-options > ul {
+    padding: .6rem 0;
+    margin: 0 .6rem;
+    gap: .6rem;
+    display: flex;
+    flex-direction: column;
+    border-width: thin 0 0 0;
+    border-style: solid;
+    border-color: var(--grey-800);
+    overflow: auto;
+}
+
+.select-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: var(--button-radius);
+    transition: linear .1s;
+    list-style: none;
+    gap: .6rem;
+}
+
+.select-option:not(.selected):hover, .select-option:not(.selected):global(.hover) {
+    background-color: var(--hover-transparent);
+}
+
+.select-option.selected {
+    background-color: var(--blue-tertiary);
+}
+
+.select-option :global(.select-value) {
+    padding: .4rem .6rem;
+    font-size: 1rem;
+    text-align: left;
+    flex-grow: 1;
+    color: var(--text);
+}
+
+.item-icon {
+    margin: auto .6rem auto 0;
+}
+
+.item-icon svg {
+    display: block;
+    height: 1.8em;
+    width: auto;
+}

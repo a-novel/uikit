@@ -1,0 +1,95 @@
+.button {
+    outline: none;
+    user-select: none;
+    border: none;
+
+    border-radius: var(--button-radius);
+
+    color: var(--text);
+
+    padding: .4rem .6rem;
+    cursor: pointer;
+
+    min-width: 14rem;
+    transition: linear .1s;
+    box-sizing: border-box;
+    font-size: 1rem;
+    height: fit-content;
+}
+
+.button:disabled, .button:global(.disabled) {
+    cursor: not-allowed;
+    pointer-events: none;
+    touch-action: none;
+    background-color: var(--grey-800)!important;
+    color: var(--grey-400);
+}
+
+.button:not(:disabled) {
+    color: var(--text);
+    background-color: var(--decorator-tertiary);
+}
+
+.button:not(:disabled):hover, .button:global(.hover) {
+    background-color: var(--decorator-secondary);
+}
+
+.button-secondary {
+    user-select: none;
+    color: var(--grey-500);
+    border-width: thin;
+    border-style: solid;
+    border-color: var(--grey-500);
+    border-radius: var(--button-radius);
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    outline: none;
+    font-size: .9rem;
+    background-color: transparent;
+    transition: linear .1s;
+    text-decoration: none;
+    height: fit-content;
+}
+
+.button-secondary:not(:disabled):hover, .button-secondary:global(.hover) {
+    background-color: var(--hover-transparent);
+    color: var(--text);
+    border-color: var(--text);
+}
+
+.button-secondary:disabled, .button-secondary:global(.disabled) {
+    cursor: not-allowed;
+    pointer-events: none;
+    touch-action: none;
+    color: var(--grey-700);
+    border-color: var(--grey-800);
+}
+
+.button-zone {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.button-secondary-zone {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.button-secondary-zone.right {
+    justify-content: flex-end;
+}
+
+.button-secondary-zone.left {
+    justify-content: flex-start;
+}
+
+.button-secondary-zone.center {
+    justify-content: center;
+}

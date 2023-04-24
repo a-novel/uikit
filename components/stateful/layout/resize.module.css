@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+}
+
+.resize-handler {
+    position: absolute;
+    background-color: transparent;
+    z-index: var(--important-index);
+}
+
+.resize-handler.right {
+    right: -0.5rem;
+    top: -0.5rem;
+    bottom: 0.5rem;
+    width: 1rem;
+    cursor: ew-resize;
+}
+
+.resize-handler.bottom {
+    bottom: -0.5rem;
+    left: -0.5rem;
+    right: 0.5rem;
+    height: 1rem;
+    cursor: ns-resize;
+}
+
+.resize-handler.bottom-right {
+    bottom: -0.5rem;
+    right: -0.5rem;
+    width: 1rem;
+    height: 1rem;
+    cursor: nwse-resize;
+}

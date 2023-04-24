@@ -1,0 +1,146 @@
+.wrapper {
+    z-index: var(--modal-index);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: rgba(16, 16, 16, 0.7);
+    backdrop-filter: var(--background-overlay-backdrop);
+
+    padding: 1rem;
+    transition: linear .1s;
+    opacity: 0;
+}
+
+.wrapper.visible {
+    opacity: 1;
+}
+
+.wrapper.hidden {
+    pointer-events: none;
+}
+
+.modal {
+    margin: auto;
+    width: 31rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: var(--background-overlay-backdrop);
+    opacity: 0;
+}
+
+.background {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    opacity: 0;
+}
+
+.wrapper.visible .background {
+    opacity: 1;
+    transition: opacity linear .1s, linear 0s;
+}
+
+.wrapper.visible .modal {
+    opacity: 1;
+    transition: opacity linear .1s .1s, linear 0s;
+}
+
+.wrapper.hidden .background {
+    opacity: 0;
+    transition: opacity linear .1s .1s, linear 0s;
+}
+
+.wrapper.hidden .modal {
+    opacity: 0;
+    transition: opacity linear .1s, linear 0s;
+}
+
+.info {
+    color: var(--blue);
+}
+
+.success {
+    color: var(--green);
+}
+
+.warning {
+    color: var(--orange);
+}
+
+.error {
+    color: var(--red);
+}
+
+.background svg {
+    width: 46rem;
+    height: auto;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.title > * {
+    margin: auto 0;
+}
+
+.title-content {
+    flex-grow: 1
+}
+
+.icon svg {
+    height: 2rem;
+    width: auto;
+}
+
+.content {
+    color: var(--text);
+    margin: 1rem;
+    padding: 0;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.info .content strong {
+    border-color: var(--blue);
+}
+
+.success .content strong {
+    border-color: var(--green);
+}
+
+.warning .content strong {
+    border-color: var(--orange);
+}
+
+.error .content strong {
+    border-color: var(--red);
+}
+
+.button-zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+    gap: 1rem;
+    margin: 1rem;
+}

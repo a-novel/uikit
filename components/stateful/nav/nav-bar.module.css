@@ -1,0 +1,101 @@
+/* -------------------------------------------------------------------------------- */
+/* NAV WRAPPER */
+/* -------------------------------------------------------------------------------- */
+
+.nav-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.nav-wrapper.horizontal {
+    flex-direction: column;
+}
+
+.nav-wrapper.vertical {
+    flex-direction: row;
+}
+
+.nav-wrapper-content {
+    flex-grow: 1;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* DROP MENU */
+/* -------------------------------------------------------------------------------- */
+
+.drop-menu {
+    position: relative;
+}
+
+.drop-menu-button {
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    box-sizing: content-box;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: .4rem;
+    border-radius: var(--button-radius);
+    border-style: solid;
+    border-width: thin;
+    border-color: transparent;
+    color: var(--text);
+}
+
+.disabled .drop-menu-button {
+    pointer-events: none;
+    color: var(--grey-700);
+    cursor: not-allowed;
+}
+
+.drop-menu-button svg {
+    max-height: 1.5rem;
+    max-width: 1.5rem;
+}
+
+.drop-menu-button:hover, :global(.hover) > .drop-menu-button {
+    background-color: var(--hover-transparent);
+}
+
+.active > .drop-menu-button {
+    background-color: var(--blue-tertiary);
+}
+
+.drop-menu-content {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--grey-800);
+    border-radius: var(--button-radius);
+    transform-origin: top;
+    transform: translateY(100%);
+    background-color: var(--background-overlay-color);
+    backdrop-filter: var(--background-overlay-backdrop);
+
+    opacity: 0;
+    transition: linear .1s;
+}
+
+.active .drop-menu-content {
+    opacity: 1;
+    transform: translateY(calc(100% + 1rem));
+}
+
+.drop-menu-actions {
+    display: flex;
+    flex-direction: column;
+    padding: .4rem;
+    margin: 0;
+    min-width: 14rem;
+    gap: .4rem;
+}
+
+.drop-menu-actions a, .drop-menu-actions button {
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+}

@@ -1,0 +1,243 @@
+/* -------------------------------------------------------------------------------- */
+/* STATUS BOX */
+/* -------------------------------------------------------------------------------- */
+
+.status-box {
+    opacity: 0;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: var(--button-radius);
+    flex-shrink: 0;
+}
+
+.status-box svg {
+    max-height: 1.5em;
+    max-width: 1.5em;
+    height: 1.5em;
+    width: auto;
+}
+
+.status-box:not(.visible) {
+    display: none;
+}
+
+.status-box {
+    animation: bounceStatusIn .3s forwards;
+}
+
+.status-box.no-decorator {
+    background-color: var(--grey-700);
+}
+
+.status-box.default {
+    background-color: var(--blue);
+}
+
+.status-box.valid {
+    background-color: var(--green);
+}
+
+.status-box.warning {
+    background-color: var(--orange);
+}
+
+.status-box.error {
+    background-color: var(--red);
+}
+
+@keyframes bounceStatusIn {
+    0% {
+        transform: scale(0.4);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceStatusOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+/* -------------------------------------------------------------------------------- */
+/* STATUS MESSAGE */
+/* -------------------------------------------------------------------------------- */
+
+.status-message, .status-message-hidden {
+    position: absolute;
+    top: 50%;
+    left: calc(100% - .4rem);
+    transform: translateY(-50%);
+    transform-origin: center;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: .8rem;
+
+    transition: linear .1s;
+    opacity: 0;
+}
+
+.container:focus-within .status-message, .container:global(.focus-within) .status-message, .status-message:hover {
+    opacity: 1;
+}
+
+.container.no-decorator .status-message-arrow {
+    color: var(--grey-800);
+}
+
+.container.default .status-message-arrow {
+    color: var(--blue-secondary);
+}
+
+.container.valid .status-message-arrow {
+    color: var(--green-secondary);
+}
+
+.container.warning .status-message-arrow {
+    color: var(--orange-secondary);
+}
+
+.container.error .status-message-arrow {
+    color: var(--red-secondary);
+}
+
+.status-message-arrow {
+    width: auto;
+    height: 1em;
+    margin: auto 0;
+
+    transform-origin: center;
+    transform: rotate(90deg) translateY(-.5em) scale(0, 0);
+
+    animation-name: bounceMessageArrowIn;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-duration: 0.3s;
+}
+
+.status-message-arrow svg {
+    height: 1em;
+    width: auto;
+}
+
+.status-message-text {
+    padding: .6em;
+    border-radius: var(--border-radius);
+    width: max-content;
+    max-width: 14rem;
+    color: var(--text);
+
+    transform-origin: left;
+    transform: scale(0, 0);
+
+    animation-name: bounceMessageIn;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-duration: 0.5s;
+}
+
+.status-message-text strong {
+    border-color: var(--text);
+}
+
+.container.no-decorator .status-message-text {
+    background-color: var(--grey-800);
+}
+
+.container.default .status-message-text {
+    background-color: var(--blue-secondary);
+}
+
+.container.valid .status-message-text {
+    background-color: var(--green-secondary);
+}
+
+.container.warning .status-message-text {
+    background-color: var(--orange-secondary);
+}
+
+.container.error .status-message-text {
+    background-color: var(--red-secondary);
+}
+
+@keyframes bounceMessageIn {
+    0% {
+        opacity: 0;
+        transform: scale(0, 0);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.05, 1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes bounceMessageArrowIn {
+    0% {
+        opacity: 0;
+        transform: rotate(90deg) translateY(-.7em) scale(0, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: rotate(90deg) translateY(-.7em) scale(1.1, 1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(90deg) translateY(-.7em) scale(1, 1);
+    }
+}
+
+/* -------------------------------------------------------------------------------- */
+/* MESSAGE WITH ACTION */
+/* -------------------------------------------------------------------------------- */
+
+.message-with-action {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.message-with-action-action {
+    margin: .8em auto 0 0;
+    padding: .2em .4em;
+    color: var(--text);
+    border-color: var(--text);
+    border-style: solid;
+    border-width: thin;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    background-color: transparent;
+
+    transition: linear .1s;
+}
+
+.message-with-action-action:hover, .message-with-action:global(.button-hover) .message-with-action-action {
+    background-color: rgba(255, 255, 255, .3);
+}

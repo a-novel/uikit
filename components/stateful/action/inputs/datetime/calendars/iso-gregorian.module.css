@@ -1,0 +1,117 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: .6rem;
+    gap: .6rem;
+    font-size: .9rem;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: .6rem;
+}
+
+.year-and-month-selector {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    border-style: solid;
+    border-width: 0 thin 0 0;
+    border-color: var( --grey-800);
+    padding: 0 .6rem 0 0;
+}
+
+.month-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .6rem;
+}
+
+.year-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.year-container > input {
+    width: 4em;
+    text-align: center;
+    border-width: thin;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--button-radius);
+    background-color: transparent;
+    cursor: pointer;
+    -moz-appearance: textfield;
+}
+
+.year-container > input::-webkit-outer-spin-button,
+.year-container > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.year-container.valid > input {
+    color: var(--text);
+}
+
+.year-container.invalid > input {
+    color: var(--red);
+    border-color: var(--red);
+}
+
+.year-container > input:hover, .year-container > input:focus {
+    background-color: var(--hover-transparent);
+}
+
+.day-container th {
+    color: var(--orange);
+    font-weight: normal;
+    font-size: .8em;
+    text-align: center;
+}
+
+.day-selector {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: var(--button-radius);
+    outline: none;
+    border-style: solid;
+    border-width: thin;
+    border-color: transparent;
+    padding: .2em .6em;
+    background-color: transparent;
+}
+
+.day-selector:hover {
+    background-color: var(--hover-transparent);
+}
+
+.day-selector.selected {
+    border-color: var(--orange);
+}
+
+.month-selector {
+    outline: none;
+    background-color: transparent;
+    border-radius: var(--button-radius);
+    border-style: solid;
+    border-width: thin;
+    border-color: transparent;
+    cursor: pointer;
+    transition: linear .1s;
+}
+
+.month-selector:not(.opened):hover {
+    background-color: var(--hover-transparent);
+}
+
+.month-selector.opened {
+    background-color: var(--blue-secondary);
+}
+
+.month-selector.selected {
+    border-color: var(--orange);
+}
