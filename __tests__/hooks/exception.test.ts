@@ -1,19 +1,19 @@
 import { act, renderHook } from "@testing-library/react";
 import { useCaptureException } from "@hooks";
 
+jest.mock("@lib/api", () => ({
+  ...jest.requireActual("@lib/api"),
+  isAPIError: jest.fn().mockImplementation(() => false),
+}));
+const highway = require("@lib/api");
+const mockedHighway = highway as jest.Mocked<typeof highway>;
+
 jest.mock("@lib", () => ({
   ...jest.requireActual("@lib"),
   captureException: jest.fn().mockImplementation(() => {}),
 }));
 const lib = require("@lib");
 const mockedLib = lib as jest.Mocked<typeof lib>;
-
-jest.mock("@anovel/highway", () => ({
-  ...jest.requireActual("@anovel/highway"),
-  isAPIError: jest.fn().mockImplementation(() => false),
-}));
-const highway = require("@anovel/highway");
-const mockedHighway = highway as jest.Mocked<typeof highway>;
 
 afterEach(() => {
   jest.restoreAllMocks();
