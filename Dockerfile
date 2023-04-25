@@ -3,7 +3,7 @@ FROM node:lts AS deps
 
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
+# Install dependencies
 COPY package.json package-lock.json ./
 RUN npm ci;
 
@@ -12,7 +12,7 @@ RUN npm ci;
 FROM node:lts AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY .. .
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -41,8 +41,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE $PORT
 
-ENV PORT 3000
+ENV PORT $PORT
 
 CMD ["node", "server.js"]

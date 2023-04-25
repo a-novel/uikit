@@ -1,5 +1,5 @@
 {
-  "name": "@anovel/ui-kit",
+  "name": "@anovel/uikit",
   "version": "0.1.0",
   "homepage": "https://github.com/a-novel/uikit/highway#readme",
   "scripts": {
@@ -56,8 +56,8 @@
     "@anovel/highway": "^0.2.8",
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@types/node": "18.16.0",
-    "@types/react": "18.0.38",
-    "@types/react-dom": "18.0.11",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "highlight.js": "^11.7.0",

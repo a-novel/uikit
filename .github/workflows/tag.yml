@@ -1,0 +1,30 @@
+# Automatically pushes a new tag when the package.json version is updated.
+name: auto tag
+
+on:
+  workflow_run:
+    workflows: [build]
+    branches: [master]
+    types: [completed]
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: get current version
+        id: get_version
+        run: echo "version=v$(node -p "require('./package.json').version")" >> GITHUB_OUTPUT
+      - name: get latest tag
+        id: get_latest_tag
+        run: echo "tag=$(git describe --tags `git rev-list --tags --max-count=1`)" >> GITHUB_OUTPUT
+      - name: compare versions
+        id: compare_versions
+        run: echo "compare=$(node -p "require('semver').gt('${{ steps.get_version.outputs.version }}', '${{ steps.get_latest_tag.outputs.tag }}')")" >> GITHUB_OUTPUT
+      - name: create tag
+        if: steps.compare_versions.outputs.compare == 'true'
+        run: git tag ${{ steps.get_version.outputs.version }}
+      - name: push tag
+        if: steps.compare_versions.outputs.compare == 'true'
+        run: git push origin ${{ steps.get_version.outputs.version }}

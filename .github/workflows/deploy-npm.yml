@@ -1,0 +1,39 @@
+# Deploy node package to common registries.
+name: deploy npm
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm registry:build:publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-github:
+    runs-on: ubuntu-latest
+    environment: 'github packages'
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm ci
+      - run: npm registry:build:publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
