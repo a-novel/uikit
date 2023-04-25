@@ -2,7 +2,7 @@
 
 This is the repository for a-novel uikit.
 
-```
+```bash
 npm i @anovel/uikit
 ```
 

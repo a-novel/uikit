@@ -1,0 +1,21 @@
+# CI
+.github
+__mocks__
+__tests__
+
+# Cache
+.next
+node_modules
+
+# System
+.vscode
+.idea
+.eslintrc.json
+.gitignore
+README.md
+jest.*
+next-env.d.ts
+
+# Build
+build
+dist
