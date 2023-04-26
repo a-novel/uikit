@@ -140,8 +140,10 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
       - name: install dependencies
         run: npm ci
-      - name: publish the package on npm
-        run: npm run registry:publish
+      - name: build package
+        run: npm run registry:compile
+      - name: publish the package on github
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
 
