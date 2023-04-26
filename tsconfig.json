@@ -12,12 +12,16 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "outDir": "dist",
+    "noEmit": false,
     "baseUrl": ".",
     "plugins": [
       {
@@ -37,11 +41,14 @@
       "@hooks": [
         "hooks"
       ],
+      "@lib/backend": [
+        "lib/backend"
+      ],
+      "@lib/api": [
+        "lib/api"
+      ],
       "@lib": [
         "lib"
-      ],
-      "@lib/*": [
-        "lib/*"
       ],
       "@public/*": [
         "public/*"
@@ -49,11 +56,7 @@
       "@styles/*": [
         "styles/*"
       ]
-    },
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "outDir": "lib",
-    "noEmit": false
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -63,8 +66,6 @@
   ],
   "exclude": [
     "node_modules",
-    ".next",
-    "__mocks__",
-    "__tests__"
+    ".next"
   ]
 }

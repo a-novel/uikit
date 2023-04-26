@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { isAPIError } from "@anovel/highway";
 import { captureException } from "@lib";
+import { isAPIError } from "@lib/api";
 
 export interface CaptureExceptionParams {
   /**
@@ -12,7 +12,7 @@ export interface CaptureExceptionParams {
    */
   silent?: boolean;
   /**
-   * If the error is an {@link import('@anovel/highway').APIError|APIError} and it has any of the codes listed here,
+   * If the error is an {@link import('@lib/api').APIError|APIError} and it has any of the codes listed here,
    * it will be ignored.
    */
   ignoreAPICodes?: number[];

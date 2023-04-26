@@ -14,12 +14,6 @@ const nextConfig = {
       use: ["@svgr/webpack"],
     });
 
-    // Load YAML files.
-    config.module.rules.push({
-      test: /\.ya?ml$/i,
-      use: "yaml-loader",
-    });
-
     // Export css modules in camelCase.
     config.module.rules
       .find(({ oneOf }) => !!oneOf)

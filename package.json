@@ -1,63 +1,55 @@
 {
   "name": "@anovel/uikit",
   "version": "0.1.0",
-  "homepage": "https://github.com/a-novel/uikit/highway#readme",
+  "homepage": "https://github.com/a-novel/uikit#readme",
   "scripts": {
     "dev": "BROWSER=none PORT=2060 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "registry:build:compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-    "registry:build:clean": "rm -rf ./dist",
-    "registry:build:publish": "npm run registry:build:clean && npm run registry:build:compile && npm publish --access public"
+    "test": "jest --no-cache",
+    "registry:build": "npx webpack --config webpack.config.js",
+    "registry:clean": "rm -rf ./dist",
+    "registry:compile": "npm run registry:clean && npm run registry:build",
+    "registry:publish": "npm run registry:compile && npm publish --access public"
   },
   "exports": {
     "./components/stateful": {
-      "types": "./dist/types/components/stateful/index.d.ts",
-      "require": "./dist/cjs/components/stateful/index.js",
-      "import": "./dist/esm/components/stateful/index.js",
-      "default": "./dist/esm/components/stateful/index.js"
+      "types": "./dist/components/stateful/index.d.ts",
+      "default": "./dist/components/stateful.js"
     },
     "./components/stateless": {
-      "types": "./dist/types/components/stateless/index.d.ts",
-      "require": "./dist/cjs/components/stateless/index.js",
-      "import": "./dist/esm/components/stateless/index.js",
-      "default": "./dist/esm/components/stateless/index.js"
+      "types": "./dist/components/stateless/index.d.ts",
+      "default": "./dist/components/stateless.js"
     },
     "./contexts": {
-      "types": "./dist/types/contexts/index.d.ts",
-      "require": "./dist/cjs/contexts/index.js",
-      "import": "./dist/esm/contexts/index.js",
-      "default": "./dist/esm/contexts/index.js"
+      "types": "./dist/contexts/index.d.ts",
+      "default": "./dist/contexts.js"
     },
     "./hooks": {
-      "types": "./dist/types/hooks/index.d.ts",
-      "require": "./dist/cjs/hooks/index.js",
-      "import": "./dist/esm/hooks/index.js",
-      "default": "./dist/esm/hooks/index.js"
-    },
-    "./lib": {
-      "types": "./dist/types/lib/index.d.ts",
-      "require": "./dist/cjs/lib/index.js",
-      "import": "./dist/esm/lib/index.js",
-      "default": "./dist/esm/lib/index.js"
+      "types": "./dist/hooks/index.d.ts",
+      "default": "./dist/hooks.js"
     },
     "./lib/backend": {
-      "types": "./dist/types/lib/backend/index.d.ts",
-      "require": "./dist/cjs/lib/backend/index.js",
-      "import": "./dist/esm/lib/backend/index.js",
-      "default": "./dist/esm/lib/backend/index.js"
+      "types": "./dist/lib/backend/index.d.ts",
+      "default": "./dist/lib/backend.js"
+    },
+    "./lib/api": {
+      "types": "./dist/lib/api/index.d.ts",
+      "default": "./dist/lib/api.js"
+    },
+    "./lib": {
+      "types": "./dist/lib/index.d.ts",
+      "default": "./dist/lib.js"
     },
     "./public/*": "./public/*",
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@anovel/highway": "^0.2.8",
     "@lottiefiles/react-lottie-player": "^3.5.3",
-    "@types/node": "18.16.0",
+    "@types/node": "18.16.1",
     "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.0",
+    "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "highlight.js": "^11.7.0",
@@ -73,16 +65,20 @@
     "@svgr/webpack": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@types/highlight.js": "^10.1.0",
     "@types/jest": "^29.5.1",
     "canvas": "^2.11.2",
     "client-only": "^0.0.1",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "server-only": "^0.0.1",
+    "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
-    "whatwg-fetch": "^3.6.2",
-    "yaml-loader": "^0.8.0"
+    "tsconfig-paths-webpack-plugin": "^4.0.1",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2",
+    "whatwg-fetch": "^3.6.2"
   },
   "repository": {
     "type": "git",

@@ -9,22 +9,22 @@ import { dir } from "i18next";
 const NimbusSans = localFont({
   src: [
     {
-      path: "fonts/NimbusSans-Regular.ttf",
+      path: "../../public/fonts/NimbusSans-Regular.ttf",
       weight: "normal",
       style: "normal",
     },
     {
-      path: "fonts/NimbusSans-Italic.ttf",
+      path: "../../public/fonts/NimbusSans-Italic.ttf",
       weight: "normal",
       style: "italic",
     },
     {
-      path: "fonts/NimbusSans-Bold.ttf",
+      path: "../../public/fonts/NimbusSans-Bold.ttf",
       weight: "bold",
       style: "normal",
     },
     {
-      path: "fonts/NimbusSans-BoldItalic.ttf",
+      path: "../../public/fonts/NimbusSans-BoldItalic.ttf",
       weight: "bold",
       style: "italic",
     },
