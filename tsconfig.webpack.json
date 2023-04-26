@@ -1,4 +1,7 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  },
   "exclude": ["node_modules", ".next", "app", "jest.*", "__tests__", "__mocks__"]
 }
