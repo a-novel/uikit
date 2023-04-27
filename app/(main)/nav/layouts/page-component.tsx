@@ -4,7 +4,7 @@ import { AnchorNav, NavLabel, NavLink, NavLinkHome, NavZone, Nav } from "@compon
 import { TitleAnchor, H2 } from "@components/stateful";
 import { IframePresenter, IFramePresenterBox, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal/index";
 
-import logoButton from "@public/logo/logo-button.png";
+import logoButton from "@public/uikit/logo/logo-button.png";
 
 // ================================================================================
 // LINK

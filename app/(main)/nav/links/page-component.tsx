@@ -14,7 +14,7 @@ import {
 import { TitleAnchor, H2 } from "@components/stateful";
 import { Presenter, PresenterBox, Usage } from "@internal/index";
 
-import logoButton from "@public/logo/logo-button.png";
+import logoButton from "@public/uikit/logo/logo-button.png";
 
 // ================================================================================
 // LINK

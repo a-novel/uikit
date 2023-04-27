@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { NavLabel, NavLink, NavLinkHome, NavZone, UserProfileLink } from "@components/stateless";
 import { DropMenu, DropMenuActions, NavWrapper, H2 } from "@components/stateful";
-import logoButton from "@public/logo/logo-button.png";
+import logoButton from "@public/uikit/logo/logo-button.png";
 import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
 
 const Page = () => {

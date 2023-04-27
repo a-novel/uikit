@@ -15,17 +15,17 @@ export const metadata: Metadata = {
   themeColor: "#000000",
   icons: {
     icon: [
-      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
-      { url: "/icon-384x384.png", sizes: "384x384", type: "image/png" },
-      { url: "/icon-256x256.png", sizes: "256x256", type: "image/png" },
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-64x64.png", sizes: "64x64", type: "image/png" },
+      { url: "/uikit/icon-512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "/uikit/icon-384x384.png", sizes: "384x384", type: "image/png" },
+      { url: "/uikit/icon-256x256.png", sizes: "256x256", type: "image/png" },
+      { url: "/uikit/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/uikit/icon-64x64.png", sizes: "64x64", type: "image/png" },
     ],
     apple: [
-      { url: "/icon-apple.png", type: "image/png" },
-      { url: "/icon-apple-1024x1024.png", sizes: "1024x1024", type: "image/png" },
-      { url: "/icon-apple-180x180.png", sizes: "180x180", type: "image/png" },
-      { url: "/icon-apple-120x120.png", sizes: "120x120", type: "image/png" },
+      { url: "/uikit/icon-apple.png", type: "image/png" },
+      { url: "/uikit/icon-apple-1024x1024.png", sizes: "1024x1024", type: "image/png" },
+      { url: "/uikit/icon-apple-180x180.png", sizes: "180x180", type: "image/png" },
+      { url: "/uikit/icon-apple-120x120.png", sizes: "120x120", type: "image/png" },
     ],
   },
   viewport: {

@@ -12,7 +12,7 @@ import {
   ModalContent,
   ModalButtonZone,
 } from "@components/stateful";
-import logoButton from "@public/logo/logo-button.png";
+import logoButton from "@public/uikit/logo/logo-button.png";
 import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
 
 const Page = () => {
