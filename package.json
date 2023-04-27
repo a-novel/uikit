@@ -1,6 +1,7 @@
 {
   "name": "@anovel/uikit",
-  "version": "0.2.3",
+  "version": "0.2.4",
+  "type": "module",
   "homepage": "https://github.com/a-novel/uikit#readme",
   "scripts": {
     "dev": "BROWSER=none PORT=2060 next dev",
@@ -16,49 +17,37 @@
   "exports": {
     "./components/stateful": {
       "types": "./dist/components/stateful/index.d.ts",
-      "default": "./dist/components/stateful.js"
+      "import": "./dist/components/stateful.js"
     },
     "./components/stateless": {
       "types": "./dist/components/stateless/index.d.ts",
-      "default": "./dist/components/stateless.js"
+      "import": "./dist/components/stateless.js"
     },
     "./contexts": {
       "types": "./dist/contexts/index.d.ts",
-      "default": "./dist/contexts.js"
+      "import": "./dist/contexts.js"
     },
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
-      "default": "./dist/hooks.js"
+      "import": "./dist/hooks.js"
     },
     "./lib/backend": {
       "types": "./dist/lib/backend/index.d.ts",
-      "default": "./dist/lib/backend.js"
+      "import": "./dist/lib/backend.js"
     },
     "./lib/api": {
       "types": "./dist/lib/api/index.d.ts",
-      "default": "./dist/lib/api.js"
+      "import": "./dist/lib/api.js"
     },
     "./lib": {
       "types": "./dist/lib/index.d.ts",
-      "default": "./dist/lib.js"
+      "import": "./dist/lib.js"
     },
     "./public/*": "./public/*",
     "./package.json": "./package.json"
   },
-  "typesVersions": {
-    "*": {
-      "components/stateful": ["dist/components/stateful/index.d.ts"],
-      "components/stateless": ["dist/components/stateless/index.d.ts"],
-      "contexts": ["dist/contexts/index.d.ts"],
-      "hooks": ["dist/hooks/index.d.ts"],
-      "lib/backend": ["dist/lib/backend/index.d.ts"],
-      "lib/api": ["dist/lib/api/index.d.ts"],
-      "lib": ["dist/lib/index.d.ts"]
-    }
-  },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
-    "@types/node": "18.16.1",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
@@ -69,8 +58,7 @@
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "^0.32.1",
-    "typescript": "5.0.4"
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
@@ -78,6 +66,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
+    "@types/node": "^18.16.2",
+    "@types/webpack": "^5.28.1",
     "canvas": "^2.11.2",
     "client-only": "^0.0.1",
     "copy-webpack-plugin": "^11.0.0",
@@ -88,6 +78,7 @@
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
+    "typescript": "^5.0.4",
     "webpack": "^5.81.0",
     "webpack-cli": "^5.0.2",
     "whatwg-fetch": "^3.6.2"
@@ -99,13 +90,10 @@
   "bugs": {
     "url": "https://github.com/a-novel/uikit/issues"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "engines": {
     "node": ">=16"
   },
   "files": [
-    "dist"
+    "dist/*"
   ]
 }

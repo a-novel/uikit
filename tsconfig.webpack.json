@@ -3,5 +3,8 @@
   "compilerOptions": {
     "jsx": "react-jsx"
   },
-  "exclude": ["node_modules", "internal-components", ".next", "app", "jest.*", "__tests__", "__mocks__"]
+  "exclude": ["node_modules", "internal-components", ".next", "app", "jest.*", "__tests__", "__mocks__"],
+  "ts-node": {
+    "esm": true
+  }
 }

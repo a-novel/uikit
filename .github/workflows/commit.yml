@@ -145,7 +145,7 @@ jobs:
       - name: publish the package on github
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # --------------------------------------------------------------------------------
   # Deploy stage
