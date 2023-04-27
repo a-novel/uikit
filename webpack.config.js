@@ -65,10 +65,7 @@ const config = {
   },
   plugins: [
     new copyPlugin({
-      patterns: [
-        { from: "styles", to: "styles" },
-        { from: "public", to: "public", filter: (resourcePath) => !resourcePath.includes("uikit") },
-      ],
+      patterns: [{ from: "public", to: "public", filter: (resourcePath) => !resourcePath.includes("public/uikit") }],
     }),
   ],
 };
