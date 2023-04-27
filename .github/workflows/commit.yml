@@ -143,7 +143,7 @@ jobs:
       - name: build package
         run: npm run registry:compile
       - name: publish the package on github
-        run: npm publish
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
 

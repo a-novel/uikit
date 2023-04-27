@@ -3,5 +3,5 @@
   "compilerOptions": {
     "jsx": "react-jsx"
   },
-  "exclude": ["node_modules", ".next", "app", "jest.*", "__tests__", "__mocks__"]
+  "exclude": ["node_modules", "internal-components", ".next", "app", "jest.*", "__tests__", "__mocks__"]
 }
