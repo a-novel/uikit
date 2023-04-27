@@ -1,10 +1,15 @@
-const copyPlugin = require("copy-webpack-plugin");
-const tsConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const path = require("node:path");
+import copyPlugin from "copy-webpack-plugin";
+import tsConfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import path from "node:path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** @type {import("webpack").Configuration} */
 const config = {
-  mode: "development",
+  mode: "production",
+  target: "es2022",
   entry: {
     "components/stateful": path.resolve(__dirname, "components/stateful/index.ts"),
     "components/stateless": path.resolve(__dirname, "components/stateless/index.ts"),
@@ -16,17 +21,6 @@ const config = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-    // alias: {
-    //   "@components/stateful": path.resolve(__dirname, "components/stateful/index.ts"),
-    //   "@components/stateless": path.resolve(__dirname, "components/stateless/index.ts"),
-    //   "@contexts": path.resolve(__dirname, "contexts/index.ts"),
-    //   "@hooks": path.resolve(__dirname, "hooks/index.ts"),
-    //   "@lib/backend": path.resolve(__dirname, "lib/backend/index.tsx"),
-    //   "@lib/api": path.resolve(__dirname, "lib/api/index.ts"),
-    //   "@lib": path.resolve(__dirname, "lib/index.ts"),
-    //   "@public": path.resolve(__dirname, "public"),
-    //   "@styles": path.resolve(__dirname, "styles"),
-    // },
     plugins: [new tsConfigPathsPlugin({ configFile: "tsconfig.webpack.json" })],
     fallback: { path: false, util: false },
   },
@@ -59,9 +53,15 @@ const config = {
       },
     ],
   },
+  experiments: {
+    outputModule: true,
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
+    chunkFormat: "module",
+    libraryTarget: "module",
+    module: true,
   },
   plugins: [
     new copyPlugin({
@@ -70,4 +70,4 @@ const config = {
   ],
 };
 
-module.exports = config;
+export default config;

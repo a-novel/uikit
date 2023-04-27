@@ -147,7 +147,7 @@ export class APIError extends Error {
   private response: Response;
   // Stores the response text once retrieved, because response body can only be read once.
   private responseText: string;
-  private responseBodyParsed: boolean;
+  private readonly responseBodyParsed: boolean;
 
   constructor(response: Response) {
     // Call the standard error constructor, with the status text as the message.
