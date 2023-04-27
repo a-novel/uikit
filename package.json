@@ -1,6 +1,6 @@
 {
   "name": "@anovel/uikit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/a-novel/uikit#readme",
   "scripts": {
     "dev": "BROWSER=none PORT=2060 next dev",
@@ -45,6 +45,17 @@
     "./public/*": "./public/*",
     "./package.json": "./package.json"
   },
+  "typesVersions": {
+    "*": {
+      "components/stateful": ["dist/components/stateful/index.d.ts"],
+      "components/stateless": ["dist/components/stateless/index.d.ts"],
+      "contexts": ["dist/contexts/index.d.ts"],
+      "hooks": ["dist/hooks/index.d.ts"],
+      "lib/backend": ["dist/lib/backend/index.d.ts"],
+      "lib/api": ["dist/lib/api/index.d.ts"],
+      "lib": ["dist/lib/index.d.ts"]
+    }
+  },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@types/node": "18.16.1",
@@ -58,7 +69,7 @@
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "^0.32.0",
+    "sharp": "^0.32.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
