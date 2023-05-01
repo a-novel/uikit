@@ -121,6 +121,7 @@ export interface BackgroundFetchHookResult<Res, Req extends any[]> {
    * Force the {@link response} value.
    */
   setResponse: (res?: Res) => void;
+  error?: unknown;
 }
 
 export interface FetchErrorMessage {
@@ -221,5 +222,6 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
     loading,
     response,
     setResponse,
+    error: error || apiError,
   };
 };
