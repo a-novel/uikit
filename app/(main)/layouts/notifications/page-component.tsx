@@ -1,7 +1,7 @@
 "use client";
 
 import { TitleAnchor, H2 } from "@components/stateful";
-import { Presenter, PresenterBox, ResizablePresenter, ResizablePresenterBox } from "@internal/index";
+import { Presenter, PresenterBox, ResizablePresenter, ResizablePresenterBox } from "@internal";
 import {
   AnchorNav,
   APILoaderNotification,

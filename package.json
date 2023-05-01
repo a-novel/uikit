@@ -1,6 +1,6 @@
 {
   "name": "@anovel/uikit",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "type": "module",
   "homepage": "https://github.com/a-novel/uikit#readme",
   "scripts": {
@@ -17,44 +17,69 @@
   "exports": {
     "./components/stateful": {
       "types": "./dist/components/stateful/index.d.ts",
-      "import": "./dist/components/stateful.js"
+      "import": "./dist/components/stateful/index.js"
     },
     "./components/stateless": {
       "types": "./dist/components/stateless/index.d.ts",
-      "import": "./dist/components/stateless.js"
+      "import": "./dist/components/stateless/index.js"
     },
     "./contexts": {
       "types": "./dist/contexts/index.d.ts",
-      "import": "./dist/contexts.js"
+      "import": "./dist/contexts/index.js"
     },
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
-      "import": "./dist/hooks.js"
+      "import": "./dist/hooks/index.js"
     },
     "./lib/backend": {
       "types": "./dist/lib/backend/index.d.ts",
-      "import": "./dist/lib/backend.js"
+      "import": "./dist/lib/backend/index.js"
     },
     "./lib/api": {
       "types": "./dist/lib/api/index.d.ts",
-      "import": "./dist/lib/api.js"
+      "import": "./dist/lib/api/index.js"
     },
     "./lib": {
       "types": "./dist/lib/index.d.ts",
-      "import": "./dist/lib.js"
+      "import": "./dist/lib/index.js"
     },
-    "./public/*": "./public/*",
+    "./public/*": "./dist/public/*",
     "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "components/stateful": [
+        "dist/components/stateful/index.d.ts"
+      ],
+      "components/stateless": [
+        "dist/components/stateless/index.d.ts"
+      ],
+      "contexts": [
+        "dist/contexts/index.d.ts"
+      ],
+      "hooks": [
+        "dist/hooks/index.d.ts"
+      ],
+      "lib/backend": [
+        "dist/lib/backend/index.d.ts"
+      ],
+      "lib/api": [
+        "dist/lib/api/index.d.ts"
+      ],
+      "lib": [
+        "dist/lib/index.d.ts"
+      ]
+    }
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
-    "eslint-config-next": "13.3.1",
-    "highlight.js": "^11.7.0",
+    "eslint-config-next": "13.3.4",
+    "highlight.js": "^11.8.0",
     "i18next": "^22.4.15",
-    "next": "13.3.1",
+    "next": "13.3.4",
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -66,7 +91,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
-    "@types/node": "^18.16.2",
+    "@types/node": "^18.16.3",
     "@types/webpack": "^5.28.1",
     "canvas": "^2.11.2",
     "client-only": "^0.0.1",

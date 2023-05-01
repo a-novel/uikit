@@ -1,6 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "noEmit": false,
+    "declarationMap": true,
+    "preserveConstEnums": true,
     "jsx": "react-jsx"
   },
   "exclude": ["node_modules", "internal-components", ".next", "app", "jest.*", "__tests__", "__mocks__"],
@@ -8,3 +11,4 @@
     "esm": true
   }
 }
+

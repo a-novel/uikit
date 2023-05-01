@@ -1,7 +1,7 @@
 "use client";
 
 import { H2, TitleAnchor } from "@components/stateful";
-import { ResizablePresenter, ResizablePresenterBox } from "@internal/index";
+import { ResizablePresenter, ResizablePresenterBox } from "@internal";
 import { AnchorNav, StatusPage } from "@components/stateless";
 
 import TacosIcon from "@public/icons/colored/tacos.svg";

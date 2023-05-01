@@ -21,7 +21,7 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "outDir": "dist",
-    "noEmit": false,
+    "noEmit": true,
     "baseUrl": ".",
     "plugins": [
       {
@@ -29,11 +29,14 @@
       }
     ],
     "paths": {
-      "@components/*": [
-        "components/*"
+      "@components/stateless": [
+        "components/stateless"
       ],
-      "@internal/*": [
-        "internal-components/*"
+      "@components/stateful": [
+        "components/stateful"
+      ],
+      "@internal": [
+        "internal-components"
       ],
       "@contexts": [
         "contexts"

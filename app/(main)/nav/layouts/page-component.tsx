@@ -2,7 +2,7 @@
 
 import { AnchorNav, NavLabel, NavLink, NavLinkHome, NavZone, Nav } from "@components/stateless";
 import { TitleAnchor, H2 } from "@components/stateful";
-import { IframePresenter, IFramePresenterBox, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal/index";
+import { IframePresenter, IFramePresenterBox, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal";
 
 import logoButton from "@public/uikit/logo/logo-button.png";
 
