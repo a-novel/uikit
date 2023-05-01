@@ -121,6 +121,7 @@ export interface BackgroundFetchHookResult<Res, Req extends any[]> {
    * Force the {@link response} value.
    */
   setResponse: (res?: Res) => void;
+  error?: unknown;
 }
 
 export interface FetchErrorMessage {
@@ -144,11 +145,12 @@ export interface BackgroundFetchHookParams<Res, Req extends any[]> extends Fetch
    * Triggers a new api call every time they are modified. Must be memoized.
    */
   params: Req;
+  condition?: boolean;
   errors: FetchErrorMessages;
   /**
    * Capture the error to handle it manually. You may call resume() to proceed with the default behavior.
    */
-  onError: (err: unknown, resume: () => void) => void;
+  onError?: (err: unknown, resume: () => void) => void;
 }
 
 /**
@@ -159,6 +161,7 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
   params,
   errors,
   onError,
+  condition,
   ...props
 }: BackgroundFetchHookParams<Res, Req>): BackgroundFetchHookResult<Res, Req> => {
   const id = useMemo(() => crypto.randomUUID(), []);
@@ -206,8 +209,8 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
   }, [apiError, error, errors.codeMessages, errors.default, id, onCloseHandler, set, unset]);
 
   useEffect(() => {
-    trigger(...params);
-  }, [params, trigger]);
+    if (condition !== false) trigger(...params);
+  }, [condition, params, trigger]);
 
   useEffect(() => {
     if ((error != null || apiError) != null && onError != null) {
@@ -221,5 +224,6 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
     loading,
     response,
     setResponse,
+    error: error || apiError,
   };
 };
