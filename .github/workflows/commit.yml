@@ -143,7 +143,7 @@ jobs:
       - name: build package
         run: npm run registry:compile
       - run: |
-          echo "@anovel:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@a-novel:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
       - name: publish the package on github
         run: npm publish --access public
