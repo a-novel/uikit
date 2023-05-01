@@ -2,11 +2,11 @@ import css from "./notification.module.css";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import { Decorator, WithDecorator } from "@components/stateless";
 import { mergeClassNames } from "@lib";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 import loadingLottie from "@public/lottie/status/loading.json";
 
 import CloseIcon from "@public/icons/monochrome/close.svg";
-import { Player } from "@lottiefiles/react-lottie-player";
 
 export interface NotificationProps extends HTMLAttributes<HTMLDivElement> {
   decorator?: Decorator;
