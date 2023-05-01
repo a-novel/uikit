@@ -12,7 +12,7 @@ import {
   Decorator,
 } from "@components/stateless";
 import { TitleAnchor, H2 } from "@components/stateful";
-import { Presenter, PresenterBox, Usage } from "@internal/index";
+import { Presenter, PresenterBox, Usage } from "@internal";
 
 import logoButton from "@public/uikit/logo/logo-button.png";
 

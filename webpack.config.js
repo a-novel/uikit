@@ -9,20 +9,21 @@ const __dirname = path.dirname(__filename);
 /** @type {import("webpack").Configuration} */
 const config = {
   mode: "production",
+  devtool: "inline-source-map",
   target: "es2022",
   entry: {
-    "components/stateful": path.resolve(__dirname, "components/stateful/index.ts"),
-    "components/stateless": path.resolve(__dirname, "components/stateless/index.ts"),
-    contexts: path.resolve(__dirname, "contexts/index.ts"),
-    hooks: path.resolve(__dirname, "hooks/index.ts"),
-    lib: path.resolve(__dirname, "lib/index.ts"),
-    "lib/backend": path.resolve(__dirname, "lib/backend/index.tsx"),
-    "lib/api": path.resolve(__dirname, "lib/api/index.ts"),
+    "components/stateful/index": path.resolve(__dirname, "components/stateful/index.ts"),
+    "components/stateless/index": path.resolve(__dirname, "components/stateless/index.ts"),
+    "contexts/index": path.resolve(__dirname, "contexts/index.ts"),
+    "hooks/index": path.resolve(__dirname, "hooks/index.ts"),
+    "lib/index": path.resolve(__dirname, "lib/index.ts"),
+    "lib/backend/index": path.resolve(__dirname, "lib/backend/index.tsx"),
+    "lib/api/index": path.resolve(__dirname, "lib/api/index.ts"),
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     plugins: [new tsConfigPathsPlugin({ configFile: "tsconfig.webpack.json" })],
-    fallback: { path: false, util: false },
+    fallback: { path: "node:path", util: "util" },
   },
   module: {
     rules: [
@@ -59,9 +60,11 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
+    chunkFilename: "[chunkhash].js",
     chunkFormat: "module",
-    libraryTarget: "module",
-    module: true,
+    library: {
+      type: "module",
+    },
   },
   plugins: [
     new copyPlugin({

@@ -1,7 +1,7 @@
 "use client";
 
 import { TitleAnchor, H2 } from "@components/stateful";
-import { Presenter, PresenterBox, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal/index";
+import { Presenter, PresenterBox, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal";
 import { AnchorNav, Button, ButtonSecondary, ButtonZone, ButtonSecondaryZone, Decorator } from "@components/stateless";
 import { FC } from "react";
 

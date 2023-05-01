@@ -5,7 +5,7 @@ import { CSSProperties, FC, useEffect, useState } from "react";
 import { TitleAnchor, H2 } from "@components/stateful";
 import { captureException } from "@lib";
 import Link from "next/link";
-import { Usage } from "@internal/index";
+import { Usage } from "@internal";
 
 interface ColorPalette {
   title: string;

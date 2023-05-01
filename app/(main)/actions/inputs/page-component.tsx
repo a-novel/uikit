@@ -26,7 +26,7 @@ import {
   SexInputValidated,
 } from "@components/stateful";
 import { AnchorNav } from "@components/stateless";
-import { Presenter, PresenterBox, PresenterBoxProps } from "@internal/presenter";
+import { Presenter, PresenterBox, PresenterBoxProps } from "@internal";
 import { FC, ReactNode } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 

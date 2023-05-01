@@ -2,7 +2,7 @@
 
 import { AnchorNav } from "@components/stateless";
 import { TitleAnchor, H2 } from "@components/stateful";
-import { IframePresenter, IFramePresenterBox } from "@internal/index";
+import { IframePresenter, IFramePresenterBox } from "@internal";
 
 // ================================================================================
 // NAVIGATION

@@ -13,7 +13,7 @@ import {
   DateInput,
 } from "@components/stateful";
 import { AnchorNav, Button, ButtonZone, Form, FormInfoBox, FormRow } from "@components/stateless";
-import { ResizablePresenter, ResizablePresenterBox } from "@internal/presenter";
+import { ResizablePresenter, ResizablePresenterBox } from "@internal";
 import { FC, ReactNode } from "react";
 
 // ================================================================================

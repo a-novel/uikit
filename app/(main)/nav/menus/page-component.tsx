@@ -3,7 +3,7 @@
 import { FC, ReactNode } from "react";
 import { AnchorNav, NavLink, NavZone, Nav } from "@components/stateless";
 import { DropMenu, DropMenuActions, TitleAnchor, H2 } from "@components/stateful";
-import { Presenter, PresenterBox, Usage } from "@internal/index";
+import { Presenter, PresenterBox, Usage } from "@internal";
 
 import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
 
