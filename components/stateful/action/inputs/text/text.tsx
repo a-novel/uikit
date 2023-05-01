@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { InputBasic, InputProps } from "@components/stateful";
+import { useMountEffect } from "@hooks";
 
 export type TextInputStatus = "no-change" | "typing" | "warning" | "error" | "valid";
 
@@ -35,7 +36,6 @@ export const TextInput: FC<TextInputProps> = ({
 }) => {
   const [status, setStatus] = useState<TextInputStatus>("no-change");
   const [statusError, setStatusError] = useState<TextInputError>();
-  const [mounted, setMounted] = useState(false);
 
   const updateStatusStable = useCallback(() => {
     if (value === neutral) {
@@ -64,14 +64,9 @@ export const TextInput: FC<TextInputProps> = ({
   }, [onValidationChange, status, statusError]);
 
   // Run validation once on render.
-  useEffect(() => {
-    if (mounted) {
-      return;
-    }
-
-    setMounted(true);
+  useMountEffect(() => {
     updateStatusStable();
-  }, [mounted, updateStatusStable]);
+  });
 
   return (
     <InputBasic

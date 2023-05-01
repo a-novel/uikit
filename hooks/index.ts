@@ -6,3 +6,4 @@ export * from "./exception";
 export * from "./stable-input";
 export * from "./floating-menu";
 export * from "./api";
+export * from "./mount";
