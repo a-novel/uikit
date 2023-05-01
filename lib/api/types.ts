@@ -156,12 +156,13 @@ export class APIError extends Error {
     super(response.statusText);
 
     // To be able to detect the error type.
-    this.name = "APIError";
     this.status = response.status;
     this.response = response;
     this.responseBodyParsed = false;
     this.responseText = "";
   }
+
+  name = "APIError";
 
   /**
    * Returns the HTTP status of the response.

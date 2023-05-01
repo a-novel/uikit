@@ -138,12 +138,12 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
-      - name: registry configuration
-        run: npm config set registry https://npm.pkg.github.com
       - name: install dependencies
         run: npm ci
       - name: build package
         run: npm run registry:compile
+      - name: registry configuration
+        run: npm config set registry https://npm.pkg.github.com
       - name: publish the package on github
         run: npm publish --access public
         env:
