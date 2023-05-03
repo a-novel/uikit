@@ -1,6 +1,6 @@
 "use client";
 
-import logoButton from "@public/uikit/logo/logo-button.png";
+import logoButton from "../../../../public/uikit/logo/logo-button.png";
 
 import { FC, ReactNode } from "react";
 

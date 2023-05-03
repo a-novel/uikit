@@ -1,8 +1,8 @@
 "use client";
 
+import logoButton from "../../../../../public/uikit/logo/logo-button.png";
 import TacosIcon from "@public/icons/colored/tacos.svg";
 import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
-import logoButton from "@public/uikit/logo/logo-button.png";
 
 import { useState } from "react";
 

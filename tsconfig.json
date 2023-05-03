@@ -17,7 +17,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "outDir": "dist",
@@ -30,34 +29,34 @@
     ],
     "paths": {
       "@components/stateless": [
-        "components/stateless"
+        "package/components/stateless"
       ],
       "@components/stateful": [
-        "components/stateful"
+        "package/components/stateful"
       ],
       "@internal": [
         "internal-components"
       ],
       "@contexts": [
-        "contexts"
+        "package/contexts"
       ],
       "@hooks": [
-        "hooks"
+        "package/hooks"
       ],
       "@lib/backend": [
-        "lib/backend"
+        "package/lib/backend"
       ],
       "@lib/api": [
-        "lib/api"
+        "package/lib/api"
       ],
       "@lib": [
-        "lib"
+        "package/lib"
       ],
       "@public/*": [
-        "public/*"
+        "package/public/*"
       ],
       "@styles/*": [
-        "styles/*"
+        "package/styles/*"
       ]
     }
   },

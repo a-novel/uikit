@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "exclude": [
+    "node_modules",
+    "internal-components",
+    ".next",
+    "app",
+    "jest.*",
+    "__tests__",
+    "__mocks__",
+    "__mocks_manual__"
+  ]
+}
+
