@@ -77,13 +77,13 @@ const expectAuthContext = async ({
   expectLoginButton,
   expectStorageToken,
 }: ExpectAuthContextParams) => {
-  expect(apiCall).toHaveBeenCalledTimes(expectAPICalls.length);
-  for (const i in expectAPICalls) {
-    expect(apiCall).toHaveBeenNthCalledWith(parseInt(i) + 1, expectAPICalls[i]);
-  }
-
   await waitFor(
     () => {
+      expect(apiCall).toHaveBeenCalledTimes(expectAPICalls.length);
+      for (const i in expectAPICalls) {
+        expect(apiCall).toHaveBeenNthCalledWith(parseInt(i) + 1, expectAPICalls[i]);
+      }
+
       expect(wrapper.queryByTestId("error")).not.toBeInTheDocument();
 
       if (expectAPIError) {

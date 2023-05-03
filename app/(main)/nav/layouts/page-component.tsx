@@ -1,6 +1,6 @@
 "use client";
 
-import logoButton from "@public/uikit/logo/logo-button.png";
+import logoButton from "../../../../public/uikit/logo/logo-button.png";
 
 import { H2, TitleAnchor } from "@components/stateful";
 import { AnchorNav, Nav, NavLabel, NavLink, NavLinkHome, NavZone } from "@components/stateless";

@@ -1,0 +1,62 @@
+{
+  "jsc": {
+  	"transform": {
+  		"react": {
+  			"runtime": "automatic",
+  			"importSource": "react"
+  		}
+  	},
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true
+    },
+    "target": "es2022",
+    "loose": false,
+    "minify": {
+      "compress": false,
+      "mangle": false
+    },
+    "baseUrl": ".",
+    "paths": {
+			"@components/stateless": [
+				"package/components/stateless"
+			],
+			"@components/stateful": [
+				"package/components/stateful"
+			],
+			"@internal": [
+				"internal-components"
+			],
+			"@contexts": [
+				"package/contexts"
+			],
+			"@hooks": [
+				"package/hooks"
+			],
+			"@lib/backend": [
+				"package/lib/backend"
+			],
+			"@lib/api": [
+				"package/lib/api"
+			],
+			"@lib": [
+				"package/lib"
+			],
+			"@public/*": [
+				"package/public/*"
+			],
+			"@styles/*": [
+				"package/styles/*"
+			]
+		}
+  },
+  "module": {
+    "type": "es6",
+    "strict": false,
+    "strictMode": true,
+    "lazy": true,
+    "noInterop": false
+  },
+  "sourceMaps": true,
+  "minify": true
+}
