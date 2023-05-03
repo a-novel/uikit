@@ -1,6 +1,8 @@
-import { FC, HTMLAttributes, MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
-import { mergeClassNames } from "@lib";
 import css from "./resize.module.css";
+
+import { FC, HTMLAttributes, MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
+
+import { mergeClassNames } from "@lib";
 
 export type ResizableBlockHandle = "right" | "bottom" | "bottom-right";
 

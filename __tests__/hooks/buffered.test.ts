@@ -1,6 +1,8 @@
-import { renderHook, act, waitFor } from "@testing-library/react";
-import { DataList, DataListWithStatus, useBufferedState } from "@hooks";
 import { useState } from "react";
+
+import { act, renderHook, waitFor } from "@testing-library/react";
+
+import { DataList, DataListWithStatus, useBufferedState } from "@hooks";
 
 interface bufferedTestMatcher {
   setState?: DataList<number>;

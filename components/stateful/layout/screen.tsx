@@ -1,5 +1,7 @@
 import css from "./screen.module.css";
+
 import { FC, HTMLAttributes, useContext } from "react";
+
 import { StickyContext } from "@contexts";
 import { mergeClassNames } from "@lib";
 

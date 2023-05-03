@@ -1,9 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { NavBar } from "./nav-bar";
 import { FC, ReactNode } from "react";
+
+import { usePathname } from "next/navigation";
+
 import { NavWrapper } from "@components/stateful";
+
+import { NavBar } from "./nav-bar";
 
 export const NavBarProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const pathname = usePathname();

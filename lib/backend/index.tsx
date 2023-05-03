@@ -1,8 +1,12 @@
+import "server-only";
+
 import "@styles/global.css";
 import "@styles/var.css";
-import "server-only";
-import localFont from "next/font/local";
+
 import { FC, ReactNode } from "react";
+
+import localFont from "next/font/local";
+
 import { dir } from "i18next";
 
 // We are using the open source fonts available here: http://git.ghostscript.com/?p=urw-core35-fonts.git;a=tree

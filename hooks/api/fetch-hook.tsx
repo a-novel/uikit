@@ -1,7 +1,9 @@
-import { APIError, isAPIError } from "@lib/api";
 import React, { ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { NotificationsContext } from "@contexts";
+
 import { NotificationContentClosable, NotificationContentWithTitle } from "@components/stateless";
+import { APIError, isAPIError } from "@lib/api";
+
+import { NotificationsContext } from "@contexts";
 
 export interface FetchHookParams<Res, Req extends any[]> {
   /**

@@ -1,6 +1,8 @@
 import css from "./user-profile.module.css";
-import { NavLink, NavLinkProps } from "@components/stateless";
+
 import { FC } from "react";
+
+import { NavLink, NavLinkProps } from "@components/stateless";
 
 export type UserProfileLinkProps = NavLinkProps & {
   /**

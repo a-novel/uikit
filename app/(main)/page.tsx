@@ -1,11 +1,16 @@
 "use client";
 
 import css from "./page.module.css";
+
 import { CSSProperties, FC, useEffect, useState } from "react";
-import { TitleAnchor, H2 } from "@components/stateful";
-import { captureException } from "@lib";
+
 import Link from "next/link";
+
+import { H2, TitleAnchor } from "@components/stateful";
+
 import { Usage } from "@internal";
+
+import { captureException } from "@lib";
 
 interface ColorPalette {
   title: string;

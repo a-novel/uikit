@@ -1,14 +1,18 @@
-import { FC, ReactNode, useRef, useState } from "react";
-import { CustomInputProps, InputBasic, InputToolbox } from "@components/stateful";
 import css from "./date.module.css";
-import { mergeClassNames } from "@lib";
-import { InputDate } from "./date-handlers";
-import { DateTimeFormatter } from "./format/utils";
-import { CalendarProps } from "./calendars/utils";
-import { useFloatingMenu } from "@hooks";
 
 import CalendarIcon from "@public/icons/monochrome/calendar-edit.svg";
 import CloseIcon from "@public/icons/monochrome/close.svg";
+
+import { FC, ReactNode, useRef, useState } from "react";
+
+import { CustomInputProps, InputBasic, InputToolbox } from "@components/stateful";
+
+import { useFloatingMenu } from "@hooks";
+import { mergeClassNames } from "@lib";
+
+import { CalendarProps } from "./calendars/utils";
+import { InputDate } from "./date-handlers";
+import { DateTimeFormatter } from "./format/utils";
 
 export interface DateInputProps extends CustomInputProps {
   value?: InputDate;

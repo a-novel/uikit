@@ -1,5 +1,6 @@
-import { TextInputValidated, TextInputValidatedProps, TextInputValidationStatus } from "@components/stateful";
 import { FC, ReactNode, useCallback, useState } from "react";
+
+import { TextInputValidated, TextInputValidatedProps, TextInputValidationStatus } from "@components/stateful";
 
 export interface TextWithUniqValidationProps extends TextInputValidatedProps {
   validator: (value: string) => Promise<boolean>;

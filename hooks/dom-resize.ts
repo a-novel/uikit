@@ -1,5 +1,6 @@
 import "client-only";
-import { useCallback, useEffect, useRef, MutableRefObject } from "react";
+
+import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 
 export type Callback =
   | ((width: number, height: number, target: Element) => void)

@@ -1,3 +1,17 @@
 {
-  "printWidth": 120
+  "printWidth": 120,
+  "tabWidth": 2,
+  "importOrder": [
+    "^(server-only|client-only)$",
+    "^(.*).css$",
+    "^(.*).(yml|yaml|json|png|svg|jpg|jpeg)$",
+    "^react(.*)$",
+    "^next(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@internal$",
+    "^@(components|contexts|hooks|lib)$",
+    "^\\./(.*)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

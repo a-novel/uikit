@@ -1,3 +1,8 @@
+import MaleIcon from "@public/icons/colored/man.svg";
+import FemaleIcon from "@public/icons/colored/woman.svg";
+
+import { FC } from "react";
+
 import {
   SelectInput,
   SelectInputProps,
@@ -5,10 +10,6 @@ import {
   SelectInputValidatedProps,
   SelectItemWithIcon,
 } from "@components/stateful";
-import { FC } from "react";
-
-import MaleIcon from "@public/icons/colored/man.svg";
-import FemaleIcon from "@public/icons/colored/woman.svg";
 
 export type Sex = "male" | "female";
 

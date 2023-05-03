@@ -1,43 +1,43 @@
 "use client";
 
+import BurgerIcon from "@public/icons/colored/burger.svg";
+import PizzaIcon from "@public/icons/colored/pizza.svg";
+import TacosIcon from "@public/icons/colored/tacos.svg";
+import SearchIcon from "@public/icons/monochrome/search.svg";
+import SendIcon from "@public/icons/monochrome/send.svg";
+import checkLottie from "@public/lottie/text-input/check.json";
+
+import { FC, ReactNode } from "react";
+
 import {
-  TitleAnchor,
-  H2,
-  InputBasic,
-  InputToolbox,
-  PasswordInput,
-  TextInput,
-  SearchInput,
-  TextArea,
-  WithInputValidation,
-  InputValidationMessageWithAction,
-  TextInputValidated,
-  TextInputValidationStandardErrorMessages,
-  PasswordValidatedInput,
   DateInput,
+  DateInputValidated,
+  H2,
+  ISOGregorianCalendarWeekStart,
   ISO_FR,
   ISO_GREGORIAN_CALENDAR,
-  ISOGregorianCalendarWeekStart,
-  DateInputValidated,
+  InputBasic,
+  InputToolbox,
+  InputValidationMessageWithAction,
+  PasswordInput,
+  PasswordValidatedInput,
+  SearchInput,
   SelectInput,
-  SelectItemWithIcon,
   SelectInputValidated,
+  SelectItemWithIcon,
   SexInput,
   SexInputValidated,
+  TextArea,
+  TextInput,
+  TextInputValidated,
+  TextInputValidationStandardErrorMessages,
+  TitleAnchor,
+  WithInputValidation,
 } from "@components/stateful";
 import { AnchorNav } from "@components/stateless";
-import { Presenter, PresenterBox, PresenterBoxProps } from "@internal";
-import { FC, ReactNode } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-import SendIcon from "@public/icons/monochrome/send.svg";
-import SearchIcon from "@public/icons/monochrome/search.svg";
-
-import TacosIcon from "@public/icons/colored/tacos.svg";
-import PizzaIcon from "@public/icons/colored/pizza.svg";
-import BurgerIcon from "@public/icons/colored/burger.svg";
-
-import checkLottie from "@public/lottie/text-input/check.json";
+import { Presenter, PresenterBox, PresenterBoxProps } from "@internal";
 
 // ================================================================================
 // NAVIGATION
@@ -302,8 +302,16 @@ export const PageComponent = () => (
           <InputBasic label="foo" value="Bar">
             <InputToolbox
               actions={[
-                { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                { id: "send", icon: <SendIcon />, onClick: () => {} },
+                {
+                  id: "search",
+                  icon: <SearchIcon />,
+                  onClick: () => {},
+                },
+                {
+                  id: "send",
+                  icon: <SendIcon />,
+                  onClick: () => {},
+                },
               ]}
             />
           </InputBasic>
@@ -312,8 +320,17 @@ export const PageComponent = () => (
           <InputBasic label="foo" value="Bar">
             <InputToolbox
               actions={[
-                { id: "search", icon: <SearchIcon />, onClick: () => {}, className: "hover" },
-                { id: "send", icon: <SendIcon />, onClick: () => {} },
+                {
+                  id: "search",
+                  icon: <SearchIcon />,
+                  onClick: () => {},
+                  className: "hover",
+                },
+                {
+                  id: "send",
+                  icon: <SendIcon />,
+                  onClick: () => {},
+                },
               ]}
             />
           </InputBasic>
@@ -325,8 +342,16 @@ export const PageComponent = () => (
           >
             <InputToolbox
               actions={[
-                { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                { id: "send", icon: <SendIcon />, onClick: () => {} },
+                {
+                  id: "search",
+                  icon: <SearchIcon />,
+                  onClick: () => {},
+                },
+                {
+                  id: "send",
+                  icon: <SendIcon />,
+                  onClick: () => {},
+                },
               ]}
             />
           </InputBasic>
@@ -335,8 +360,16 @@ export const PageComponent = () => (
           <TextArea label="foo" value="Bar">
             <InputToolbox
               actions={[
-                { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                { id: "send", icon: <SendIcon />, onClick: () => {} },
+                {
+                  id: "search",
+                  icon: <SearchIcon />,
+                  onClick: () => {},
+                },
+                {
+                  id: "send",
+                  icon: <SendIcon />,
+                  onClick: () => {},
+                },
               ]}
             />
           </TextArea>
@@ -349,8 +382,16 @@ export const PageComponent = () => (
           >
             <InputToolbox
               actions={[
-                { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                { id: "send", icon: <SendIcon />, onClick: () => {} },
+                {
+                  id: "search",
+                  icon: <SearchIcon />,
+                  onClick: () => {},
+                },
+                {
+                  id: "send",
+                  icon: <SendIcon />,
+                  onClick: () => {},
+                },
               ]}
             />
           </TextArea>
@@ -429,8 +470,16 @@ export const PageComponent = () => (
               <TextInput value="Bar" className={className} decorator={decorator}>
                 <InputToolbox
                   actions={[
-                    { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                    { id: "send", icon: <SendIcon />, onClick: () => {} },
+                    {
+                      id: "search",
+                      icon: <SearchIcon />,
+                      onClick: () => {},
+                    },
+                    {
+                      id: "send",
+                      icon: <SendIcon />,
+                      onClick: () => {},
+                    },
                   ]}
                 />
                 {children}
@@ -447,8 +496,16 @@ export const PageComponent = () => (
               <TextInput value="Bar" className={className} decorator={decorator}>
                 <InputToolbox
                   actions={[
-                    { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                    { id: "send", icon: <SendIcon />, onClick: () => {} },
+                    {
+                      id: "search",
+                      icon: <SearchIcon />,
+                      onClick: () => {},
+                    },
+                    {
+                      id: "send",
+                      icon: <SendIcon />,
+                      onClick: () => {},
+                    },
                   ]}
                 />
                 {children}
@@ -538,8 +595,16 @@ export const PageComponent = () => (
               <TextInput value="Bar" className={className} decorator={decorator}>
                 <InputToolbox
                   actions={[
-                    { id: "search", icon: <SearchIcon />, onClick: () => {} },
-                    { id: "send", icon: <SendIcon />, onClick: () => {} },
+                    {
+                      id: "search",
+                      icon: <SearchIcon />,
+                      onClick: () => {},
+                    },
+                    {
+                      id: "send",
+                      icon: <SendIcon />,
+                      onClick: () => {},
+                    },
                   ]}
                 />
                 {children}

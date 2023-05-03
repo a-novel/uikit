@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import { captureException } from "@lib";
+
 import { isAPIError } from "@lib/api";
+
+import { captureException } from "@lib";
 
 export interface CaptureExceptionParams {
   /**

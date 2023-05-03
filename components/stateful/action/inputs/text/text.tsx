@@ -1,5 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react";
+
 import { InputBasic, InputProps } from "@components/stateful";
+
 import { useMountEffect } from "@hooks";
 
 export type TextInputStatus = "no-change" | "typing" | "warning" | "error" | "valid";

@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { createInstance, isAPIError, Resolver } from "@lib/api";
+import { Resolver, createInstance, isAPIError } from "@lib/api";
 
 interface useFetchMockParams {
   response?: Response;

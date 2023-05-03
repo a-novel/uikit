@@ -1,10 +1,14 @@
 import "client-only";
+
 import css from "./nav-bar.module.css";
+
 import { FC, HTMLAttributes, ReactNode, useMemo, useRef, useState } from "react";
-import { mergeClassNames } from "@lib";
-import { WithSticky } from "@contexts";
+
 import { Nav } from "@components/stateless";
+
+import { WithSticky } from "@contexts";
 import { useFloatingMenu } from "@hooks";
+import { mergeClassNames } from "@lib";
 
 export interface NavWrapperProps extends HTMLAttributes<HTMLDivElement> {
   /**

@@ -10,7 +10,7 @@
     opacity: 0;
     transition: linear .1s;
     color: var(--icon-button);
-    height: 1em!important;
+    height: 1em !important;
     margin: auto 0;
 }
 

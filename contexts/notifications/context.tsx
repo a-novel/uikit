@@ -1,6 +1,9 @@
 import css from "./context.module.css";
-import { NotificationProps, NotificationsZone, Notification } from "@components/stateless";
-import { createContext, FC, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+
+import { FC, ReactNode, createContext, useCallback, useEffect, useRef, useState } from "react";
+
+import { Notification, NotificationProps, NotificationsZone } from "@components/stateless";
+
 import { useBufferedState } from "@hooks";
 
 export interface SetNotificationParamsOptions {

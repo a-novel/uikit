@@ -1,7 +1,9 @@
-import { act, render } from "@testing-library/react";
 import { FC, ReactNode, useEffect, useRef } from "react";
-import { StickyProviderProps, WithSticky } from "@contexts";
+
 import { NewSizableElement } from "../../__mocks__/generics";
+import { act, render } from "@testing-library/react";
+
+import { StickyProviderProps, WithSticky } from "@contexts";
 
 interface RenderDummyStickyProps extends Omit<StickyProviderProps<HTMLDivElement>, "render"> {
   height: number;

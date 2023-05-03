@@ -1,6 +1,9 @@
-import { Metadata } from "next";
-import { InitUI } from "@lib/backend";
 import { FC, ReactNode } from "react";
+
+import { Metadata } from "next";
+
+import { InitUI } from "@lib/backend";
+
 import { NavBarProvider } from "./nav-bar-provider";
 
 export const metadata: Metadata = {

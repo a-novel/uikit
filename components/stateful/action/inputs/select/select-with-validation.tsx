@@ -1,13 +1,15 @@
+import { ReactElement } from "react";
+
 import {
+  GenericInputValidationProps,
   genericInputValidationProcessDecorator,
   genericInputValidationProcessStatus,
   genericInputValidationProcessStatusIcon,
   genericInputValidationProcessStatusMessage,
-  GenericInputValidationProps,
 } from "../children/validator-generic";
-import { ReactElement } from "react";
-import { mergeClassNames } from "@lib";
 import { SelectInput, SelectInputProps, WithInputValidation } from "@components/stateful";
+
+import { mergeClassNames } from "@lib";
 
 export interface SelectInputValidatedProps<V extends number | string>
   extends GenericInputValidationProps,

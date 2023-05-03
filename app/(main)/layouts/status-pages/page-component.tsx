@@ -1,12 +1,13 @@
 "use client";
 
-import { H2, TitleAnchor } from "@components/stateful";
-import { ResizablePresenter, ResizablePresenterBox } from "@internal";
-import { AnchorNav, StatusPage } from "@components/stateless";
-
 import TacosIcon from "@public/icons/colored/tacos.svg";
 import checkLottie from "@public/lottie/text-input/check.json";
+
+import { H2, TitleAnchor } from "@components/stateful";
+import { AnchorNav, StatusPage } from "@components/stateless";
 import { Player } from "@lottiefiles/react-lottie-player";
+
+import { ResizablePresenter, ResizablePresenterBox } from "@internal";
 
 // ================================================================================
 // NAVIGATION

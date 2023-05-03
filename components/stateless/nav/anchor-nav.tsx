@@ -1,5 +1,6 @@
-import { FC } from "react";
 import css from "./anchor-nav.module.css";
+
+import { FC } from "react";
 
 export interface AnchorNavProps {
   params: Record<string, any>;

@@ -1,7 +1,9 @@
 import css from "./example.module.css";
-import { FC } from "react";
-import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
+
+import { FC } from "react";
+
+import hljs from "highlight.js";
 
 export const Usage: FC<{ code: string; import?: string }> = ({ code, import: importCode }) => (
   <div className={css.usageWrapper}>

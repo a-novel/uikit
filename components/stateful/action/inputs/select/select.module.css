@@ -4,7 +4,7 @@
 }
 
 .container:global(.focus-within) {
-    background-color: transparent!important;
+    background-color: transparent !important;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-width: thin thin 0 thin;
 }

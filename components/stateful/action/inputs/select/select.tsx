@@ -1,11 +1,14 @@
 import css from "./select.module.css";
+
+import CloseIcon from "@public/icons/monochrome/close.svg";
+import ExpandIcon from "@public/icons/monochrome/expand.svg";
+
 import { ReactElement, ReactNode, useRef, useState } from "react";
+
 import { CustomInputProps, InputBasic, InputToolbox } from "@components/stateful";
+
 import { useFloatingMenu } from "@hooks";
 import { mergeClassNames } from "@lib";
-
-import ExpandIcon from "@public/icons/monochrome/expand.svg";
-import CloseIcon from "@public/icons/monochrome/close.svg";
 
 export interface SelectValue<V extends string | number> {
   value: V;

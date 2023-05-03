@@ -19,7 +19,7 @@
     gap: .6rem;
     border-style: solid;
     border-width: 0 thin 0 0;
-    border-color: var( --grey-800);
+    border-color: var(--grey-800);
     padding: 0 .6rem 0 0;
 }
 

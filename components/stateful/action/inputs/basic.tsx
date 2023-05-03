@@ -1,4 +1,5 @@
 import css from "./basic.module.css";
+
 import {
   FC,
   HTMLAttributes,
@@ -9,6 +10,7 @@ import {
   useEffect,
   useRef,
 } from "react";
+
 import { mergeClassNames } from "@lib";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

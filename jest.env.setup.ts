@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { TextEncoder, TextDecoder } from "util";
+import { TextDecoder, TextEncoder } from "util";
 
 Object.defineProperty(globalThis, "crypto", {
   value: {
@@ -15,28 +15,6 @@ globalThis.TextDecoder = TextDecoder;
 global.ResizeObserver = class {
   private targets: Element[] = [];
   private readonly callback: ResizeObserverCallback;
-
-  private _trigger = () => {
-    this.callback(
-      this.targets.map((target) => {
-        // JSDOM uses dummy values for an element DomRect (basically all 0s).
-        // For the callback to receive more relevant values, the getBoundingClientRect
-        // method must be mocked on the element. This is doable with the NewSizableElement
-        // generator (see __mocks__/generics).
-        const rect = target.getBoundingClientRect();
-        return {
-          target,
-          contentRect: rect,
-          // This approximation is correct, unless a non-western-like writing mode is used (e.g. japanese from
-          // top-bottom and right-left - the bastards).
-          borderBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
-          contentBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
-          devicePixelContentBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
-        };
-      }),
-      this
-    );
-  };
 
   constructor(callback: ResizeObserverCallback) {
     this.callback = callback;
@@ -64,4 +42,26 @@ global.ResizeObserver = class {
     this.targets = [];
     window.removeEventListener("resize", this._trigger);
   }
+
+  private _trigger = () => {
+    this.callback(
+      this.targets.map((target) => {
+        // JSDOM uses dummy values for an element DomRect (basically all 0s).
+        // For the callback to receive more relevant values, the getBoundingClientRect
+        // method must be mocked on the element. This is doable with the NewSizableElement
+        // generator (see __mocks__/generics).
+        const rect = target.getBoundingClientRect();
+        return {
+          target,
+          contentRect: rect,
+          // This approximation is correct, unless a non-western-like writing mode is used (e.g. japanese from
+          // top-bottom and right-left - the bastards).
+          borderBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
+          contentBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
+          devicePixelContentBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
+        };
+      }),
+      this
+    );
+  };
 };

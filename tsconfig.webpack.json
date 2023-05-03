@@ -14,7 +14,7 @@
     "jest.*",
     "__tests__",
     "__mocks__",
-    "__mocks_manual__",
+    "__mocks_manual__"
   ],
   "ts-node": {
     "esm": true

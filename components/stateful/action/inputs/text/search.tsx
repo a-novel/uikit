@@ -1,14 +1,15 @@
-import {
-  TextInput,
-  TextInputProps,
-  InputToolbox,
-  TextAreaProps,
-  TextArea,
-  InputToolboxAction,
-} from "@components/stateful";
+import SearchIcon from "@public/icons/monochrome/search.svg";
+
 import { FC } from "react";
 
-import SearchIcon from "@public/icons/monochrome/search.svg";
+import {
+  InputToolbox,
+  InputToolboxAction,
+  TextArea,
+  TextAreaProps,
+  TextInput,
+  TextInputProps,
+} from "@components/stateful";
 
 export type SearchInputProps = {
   onSearch?: (value: string) => void;

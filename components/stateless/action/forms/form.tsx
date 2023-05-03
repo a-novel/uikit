@@ -1,8 +1,12 @@
 import css from "./form.module.css";
-import { FC, HTMLAttributes } from "react";
-import { mergeClassNames } from "@lib";
+
 import CloseIcon from "@public/icons/monochrome/close.svg";
+
+import { FC, HTMLAttributes } from "react";
+
 import { Decorator, WithDecorator } from "@components/stateless";
+
+import { mergeClassNames } from "@lib";
 
 export interface FormAttributes extends HTMLAttributes<HTMLFormElement> {
   mode?: "standard" | "large" | "dynamic";
