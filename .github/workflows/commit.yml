@@ -137,6 +137,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+          scope: "@a-novel"
           registry-url: 'https://npm.pkg.github.com'
       - name: install dependencies
         run: npm ci

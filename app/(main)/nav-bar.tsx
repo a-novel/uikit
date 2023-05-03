@@ -49,6 +49,9 @@ export const NavBar: FC<NavBarProps> = ({ pathname }) => (
       <NavLink href="/layouts/status-pages" pathname={pathname}>
         Status Pages
       </NavLink>
+      <NavLink href="/layouts/skeletons" pathname={pathname}>
+        Skeletons
+      </NavLink>
     </NavZone>
   </>
 );
