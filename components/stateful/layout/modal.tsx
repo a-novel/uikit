@@ -1,12 +1,15 @@
 import "client-only";
-import { mergeClassNames } from "@lib";
-import { FC, HTMLAttributes, ReactNode, useEffect } from "react";
+
 import css from "./modal.module.css";
 
-import Flares from "@public/icons/monochrome/flares/flares.svg";
+import FlaresError from "@public/icons/monochrome/flares/flares-error.svg";
 import FlaresSuccess from "@public/icons/monochrome/flares/flares-success.svg";
 import FlaresWarning from "@public/icons/monochrome/flares/flares-warning.svg";
-import FlaresError from "@public/icons/monochrome/flares/flares-error.svg";
+import Flares from "@public/icons/monochrome/flares/flares.svg";
+
+import { FC, HTMLAttributes, ReactNode, useEffect } from "react";
+
+import { mergeClassNames } from "@lib";
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   visible: boolean;

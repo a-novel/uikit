@@ -143,6 +143,11 @@ export type FetchResponse<Req extends FetchRequestResponseResolver & { must?: bo
  * Wraps an HTTP response into a convenient error.
  */
 export class APIError extends Error {
+  name = "APIError";
+  /**
+   * Returns the HTTP status of the response.
+   */
+  status: number;
   // The raw response object.
   private response: Response;
   // Stores the response text once retrieved, because response body can only be read once.
@@ -161,13 +166,6 @@ export class APIError extends Error {
     this.responseBodyParsed = false;
     this.responseText = "";
   }
-
-  name = "APIError";
-
-  /**
-   * Returns the HTTP status of the response.
-   */
-  status: number;
 
   /**
    * Returns the text body of the response.

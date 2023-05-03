@@ -1,8 +1,10 @@
 "use client";
 
+import { H2, TitleAnchor } from "@components/stateful";
 import { AnchorNav } from "@components/stateless";
-import { TitleAnchor, H2 } from "@components/stateful";
-import { IframePresenter, IFramePresenterBox } from "@internal";
+
+import { IFramePresenterBox, IframePresenter } from "@internal";
+
 import { useWindow } from "@hooks";
 
 // ================================================================================

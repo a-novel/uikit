@@ -1,5 +1,6 @@
-import { InputDate } from "../date-handlers";
 import { FC } from "react";
+
+import { InputDate } from "../date-handlers";
 
 export interface CalendarProps {
   selectedDate?: InputDate;

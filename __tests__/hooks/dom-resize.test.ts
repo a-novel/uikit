@@ -1,6 +1,7 @@
-import { useResize } from "@hooks";
-import { renderHook, waitFor } from "@testing-library/react";
 import { NewSizableElement } from "../../__mocks__/generics";
+import { renderHook, waitFor } from "@testing-library/react";
+
+import { useResize } from "@hooks";
 
 describe("useResize", () => {
   describe("trigger", () => {

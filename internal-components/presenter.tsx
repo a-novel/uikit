@@ -1,6 +1,9 @@
 import css from "./presenter.module.css";
+
 import { FC, HTMLAttributes, ReactNode } from "react";
+
 import { ResizableBlock } from "@components/stateful";
+
 import { mergeClassNames } from "@lib";
 
 export const Presenter: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (

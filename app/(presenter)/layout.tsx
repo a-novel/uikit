@@ -1,6 +1,8 @@
-import { Metadata } from "next";
-import { InitUI } from "@lib/backend";
 import { FC, ReactNode } from "react";
+
+import { Metadata } from "next";
+
+import { InitUI } from "@lib/backend";
 
 export const metadata: Metadata = {
   title: {

@@ -1,4 +1,11 @@
-import { Player } from "@lottiefiles/react-lottie-player";
+import checkLottie from "@public/lottie/text-input/check.json";
+import crossLottie from "@public/lottie/text-input/cross.json";
+import loadingLottie from "@public/lottie/text-input/loading.json";
+import typingLottie from "@public/lottie/text-input/typing.json";
+import warningLottie from "@public/lottie/text-input/warning.json";
+
+import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+
 import {
   TextInput,
   TextInputError,
@@ -7,14 +14,9 @@ import {
   WithInputValidation,
   WithInputValidationProps,
 } from "@components/stateful";
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
-import { mergeClassNames } from "@lib";
+import { Player } from "@lottiefiles/react-lottie-player";
 
-import checkLottie from "@public/lottie/text-input/check.json";
-import crossLottie from "@public/lottie/text-input/cross.json";
-import warningLottie from "@public/lottie/text-input/warning.json";
-import typingLottie from "@public/lottie/text-input/typing.json";
-import loadingLottie from "@public/lottie/text-input/loading.json";
+import { mergeClassNames } from "@lib";
 
 export type TextInputValidationStatus = TextInputStatus | "loading";
 

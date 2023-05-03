@@ -67,8 +67,8 @@
 }
 
 .notification-content.with-icon > .icon svg {
-    height: 2rem!important;
-    width: auto!important;
+    height: 2rem !important;
+    width: auto !important;
 }
 
 .notification-content.with-icon > .body {

@@ -1,6 +1,7 @@
-import { act, fireEvent, renderHook } from "@testing-library/react";
-import { useFloatingMenu } from "@hooks";
 import { NewElement } from "../../__mocks__/generics";
+import { act, fireEvent, renderHook } from "@testing-library/react";
+
+import { useFloatingMenu } from "@hooks";
 
 describe("useFloatingMenu", () => {
   it("should close the menu if the window is clicked", async () => {

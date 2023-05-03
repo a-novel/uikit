@@ -1,9 +1,13 @@
 import css from "./iso-gregorian.module.css";
-import { Calendar, CalendarProps } from "./utils";
+
 import { FC, useCallback, useMemo, useState } from "react";
-import { currentDate, InputDate, inputDateMax, daysInMonth } from "../date-handlers";
+
+import { InputDate, currentDate, daysInMonth, inputDateMax } from "../date-handlers";
+
 import { useStableInput } from "@hooks";
 import { mergeClassNames } from "@lib";
+
+import { Calendar, CalendarProps } from "./utils";
 
 type WeekStart = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 

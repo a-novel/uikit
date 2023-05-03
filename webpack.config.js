@@ -1,6 +1,6 @@
 import copyPlugin from "copy-webpack-plugin";
-import tsConfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import path from "node:path";
+import tsConfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);

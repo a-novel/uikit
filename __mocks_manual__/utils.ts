@@ -1,6 +1,6 @@
+import { APIError } from "@lib/api";
 import "jest-environment-jsdom";
 import "whatwg-fetch";
-import { APIError } from "@lib/api";
 
 interface useFetchMockParams {
   response?: Response;

@@ -1,7 +1,9 @@
-import { WithAuth, AuthContext, LOCAL_STORAGE_KEY } from "@contexts";
-import { newAPIError, newFetchResponse } from "../../__mocks_manual__/utils";
-import { act, render, RenderResult, waitFor } from "@testing-library/react";
 import { useContext } from "react";
+
+import { newAPIError } from "../../__mocks_manual__/utils";
+import { RenderResult, act, render, waitFor } from "@testing-library/react";
+
+import { AuthContext, LOCAL_STORAGE_KEY, WithAuth } from "@contexts";
 
 afterEach(() => {
   localStorage.clear();

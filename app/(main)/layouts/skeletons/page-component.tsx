@@ -1,8 +1,9 @@
 "use client";
 
-import { TitleAnchor, H2 } from "@components/stateful";
-import { Presenter, PresenterBox } from "@internal";
+import { H2, TitleAnchor } from "@components/stateful";
 import { AnchorNav, Skeleton } from "@components/stateless";
+
+import { Presenter, PresenterBox } from "@internal";
 
 // ================================================================================
 // NAVIGATION

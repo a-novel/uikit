@@ -1,6 +1,8 @@
-import { FC } from "react";
-import { NavLabel, NavLink, NavLinkHome, NavZone } from "@components/stateless";
 import logoButton from "@public/uikit/logo/logo-button.png";
+
+import { FC } from "react";
+
+import { NavLabel, NavLink, NavLinkHome, NavZone } from "@components/stateless";
 
 export interface NavBarProps {
   pathname: string;

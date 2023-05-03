@@ -1,9 +1,12 @@
 import css from "./local-nav.module.css";
-import { FC, HTMLAttributes } from "react";
-import { captureException, mergeClassNames } from "@lib";
-import { H2 } from "@components/stateful";
 
 import LinkIcon from "@public/icons/monochrome/link.svg";
+
+import { FC, HTMLAttributes } from "react";
+
+import { H2 } from "@components/stateful";
+
+import { captureException, mergeClassNames } from "@lib";
 
 export interface TitleAnchorProps extends Omit<HTMLAttributes<HTMLHeadingElement>, "id"> {
   renderer?: "h1" | typeof H2 | "h3" | "h4" | "h5" | "h6";

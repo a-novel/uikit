@@ -1,4 +1,5 @@
 import "client-only";
+
 import { useEffect, useRef, useState } from "react";
 
 export type DataList<T> = Record<string, T>;

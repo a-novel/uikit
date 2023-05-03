@@ -1,14 +1,15 @@
-import {
-  TextInput,
-  TextInputProps,
-  InputToolbox,
-  TextInputValidatedProps,
-  TextInputValidated,
-} from "@components/stateful";
-import { FC, useState } from "react";
-
 import VisibilityOff from "@public/icons/monochrome/visibility_off.svg";
 import VisibilityOn from "@public/icons/monochrome/visibility_on.svg";
+
+import { FC, useState } from "react";
+
+import {
+  InputToolbox,
+  TextInput,
+  TextInputProps,
+  TextInputValidated,
+  TextInputValidatedProps,
+} from "@components/stateful";
 
 export interface PasswordInputProps extends Omit<TextInputProps, "type"> {
   initialVisibility?: boolean;

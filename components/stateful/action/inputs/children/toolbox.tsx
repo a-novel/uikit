@@ -1,5 +1,7 @@
-import { FC, MouseEventHandler, ReactNode } from "react";
 import css from "./toolbox.module.css";
+
+import { FC, MouseEventHandler, ReactNode } from "react";
+
 import { mergeClassNames } from "@lib";
 
 export interface InputToolboxAction {

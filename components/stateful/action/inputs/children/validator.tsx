@@ -1,9 +1,12 @@
 import css from "./validator.module.css";
-import { FC, ReactNode, useRef, useEffect, MouseEventHandler } from "react";
-import { mergeClassNames } from "@lib";
-import { InputProps } from "@components/stateful";
 
 import ArrowIcon from "@public/icons/monochrome/arrow.svg";
+
+import { FC, MouseEventHandler, ReactNode, useEffect, useRef } from "react";
+
+import { InputProps } from "@components/stateful";
+
+import { mergeClassNames } from "@lib";
 
 type InputDecorator = InputProps["decorator"];
 

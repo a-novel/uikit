@@ -1,13 +1,15 @@
 import { FC } from "react";
-import { DateInput, DateInputProps, inputDateLess, WithInputValidation } from "@components/stateful";
-import { mergeClassNames } from "@lib";
+
 import {
+  GenericInputValidationProps,
   genericInputValidationProcessDecorator,
   genericInputValidationProcessStatus,
   genericInputValidationProcessStatusIcon,
   genericInputValidationProcessStatusMessage,
-  GenericInputValidationProps,
 } from "../children/validator-generic";
+import { DateInput, DateInputProps, WithInputValidation, inputDateLess } from "@components/stateful";
+
+import { mergeClassNames } from "@lib";
 
 export interface DateInputValidatedProps extends GenericInputValidationProps, Omit<DateInputProps, "decorator"> {}
 

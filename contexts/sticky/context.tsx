@@ -1,17 +1,18 @@
 import "client-only";
 
 import {
-  createContext,
   CSSProperties,
   ForwardedRef,
   ReactElement,
   ReactNode,
+  createContext,
   useCallback,
   useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
+
 import { useResize } from "@hooks";
 
 export interface StickyContextType {

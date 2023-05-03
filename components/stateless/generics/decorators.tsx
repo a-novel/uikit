@@ -1,6 +1,8 @@
-import { FC, ReactNode } from "react";
-import { mergeClassNames } from "@lib";
 import css from "./decorators.module.css";
+
+import { FC, ReactNode } from "react";
+
+import { mergeClassNames } from "@lib";
 
 /**
  * Decorator specify some styling rules depending on its value.

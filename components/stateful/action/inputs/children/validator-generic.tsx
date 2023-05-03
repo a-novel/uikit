@@ -1,11 +1,12 @@
-import { ReactNode } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
-
-import crossLottie from "@public/lottie/text-input/cross.json";
-import warningLottie from "@public/lottie/text-input/warning.json";
-import loadingLottie from "@public/lottie/text-input/loading.json";
 import checkLottie from "@public/lottie/text-input/check.json";
+import crossLottie from "@public/lottie/text-input/cross.json";
+import loadingLottie from "@public/lottie/text-input/loading.json";
+import warningLottie from "@public/lottie/text-input/warning.json";
+
+import { ReactNode } from "react";
+
 import { WithInputValidationProps } from "@components/stateful";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 export type GenericInputValidationStatus = "no-change" | "warning" | "error" | "valid" | "loading";
 

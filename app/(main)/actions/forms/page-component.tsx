@@ -1,20 +1,22 @@
 "use client";
 
+import { FC, ReactNode } from "react";
+
 import {
-  TitleAnchor,
+  DateInput,
   H2,
-  TextInput,
-  TextInputValidationStandardErrorMessages,
-  TextInputValidated,
-  SexInput,
+  ISOGregorianCalendarWeekStart,
   ISO_FR,
   ISO_GREGORIAN_CALENDAR,
-  ISOGregorianCalendarWeekStart,
-  DateInput,
+  SexInput,
+  TextInput,
+  TextInputValidated,
+  TextInputValidationStandardErrorMessages,
+  TitleAnchor,
 } from "@components/stateful";
 import { AnchorNav, Button, ButtonZone, Form, FormInfoBox, FormRow } from "@components/stateless";
+
 import { ResizablePresenter, ResizablePresenterBox } from "@internal";
-import { FC, ReactNode } from "react";
 
 // ================================================================================
 // NAVIGATION

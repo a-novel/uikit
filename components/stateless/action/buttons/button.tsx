@@ -1,8 +1,12 @@
-import { FC, ButtonHTMLAttributes, HTMLAttributes, ComponentProps } from "react";
 import css from "./button.module.css";
-import { mergeClassNames } from "@lib";
+
+import { ButtonHTMLAttributes, ComponentProps, FC, HTMLAttributes } from "react";
+
 import Link from "next/link";
+
 import { Decorator, WithDecorator } from "@components/stateless";
+
+import { mergeClassNames } from "@lib";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   decorator?: Decorator;
