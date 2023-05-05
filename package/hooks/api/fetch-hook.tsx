@@ -123,7 +123,7 @@ export interface BackgroundFetchHookResult<Res, Req extends any[]> {
    * Force the {@link response} value.
    */
   setResponse: (res?: Res) => void;
-  error?: unknown;
+  success?: boolean;
 }
 
 export interface FetchErrorMessage {
@@ -167,18 +167,21 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
   ...props
 }: BackgroundFetchHookParams<Res, Req>): BackgroundFetchHookResult<Res, Req> => {
   const id = useMemo(() => crypto.randomUUID(), []);
-
+  const [success, setSuccess] = useState<boolean>();
   const { set, unset } = useContext(NotificationsContext);
 
   const { trigger, loading, response, error, apiError, setResponse, setAPIError, setError } = useFetch(props);
 
   const onCloseHandler = useCallback(() => {
-    unset(id);
     setAPIError(undefined);
     setError(undefined);
-  }, [id, setAPIError, setError, unset]);
+  }, [setAPIError, setError]);
 
   const handleError = useCallback(() => {
+    if (error || apiError) {
+      setSuccess(false);
+    }
+
     if (apiError) {
       const errorMessage = errors.codeMessages?.[apiError.status] || errors.default;
 
@@ -192,6 +195,8 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
           </NotificationContentClosable>
         ),
       });
+
+      return;
     }
 
     if (error) {
@@ -205,13 +210,18 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
           </NotificationContentClosable>
         ),
       });
+
+      return;
     }
 
     unset(id);
   }, [apiError, error, errors, id, onCloseHandler, set, unset]);
 
   useEffect(() => {
-    if (condition !== false) trigger(...params);
+    if (condition !== false) {
+      trigger(...params);
+      setSuccess(true);
+    }
   }, [condition, params, trigger]);
 
   useEffect(() => {
@@ -226,6 +236,6 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
     loading,
     response,
     setResponse,
-    error: error || apiError,
+    success: success && !loading,
   };
 };

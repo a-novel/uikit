@@ -4,7 +4,7 @@ import loadingLottie from "@public/lottie/text-input/loading.json";
 import typingLottie from "@public/lottie/text-input/typing.json";
 import warningLottie from "@public/lottie/text-input/warning.json";
 
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useState } from "react";
 
 import {
   TextInput,
@@ -18,57 +18,73 @@ import { Player } from "@lottiefiles/react-lottie-player";
 
 import { mergeClassNames } from "@lib";
 
-export type TextInputValidationStatus = TextInputStatus | "loading";
-
-export interface TextInputValidationStandardErrorMessages {
+export interface TextInputValidationMessages {
   required: string;
   tooShort: string;
-  lengthLimit: string;
+  tooLong: string;
   regexp: string;
+  valid?: ReactNode;
+  loading?: ReactNode;
+  customError?: ReactNode;
+  customErrorCritical?: ReactNode;
+  customWarning?: ReactNode;
 }
 
-export interface TextInputValidatedProps extends Omit<TextInputProps, "onValidationChange" | "decorator"> {
-  onValidationChange?:
-    | ((status: TextInputValidationStatus) => void)
-    | ((status: TextInputValidationStatus, error?: TextInputError) => void);
-  validMessage?: ReactNode;
-  loadingMessage?: ReactNode;
-  warningMessage?: ReactNode;
-  errorMessage?: ReactNode;
-  messages: TextInputValidationStandardErrorMessages;
-  forceStatus?: TextInputValidationStatus;
+export interface TextInputValidatedProps extends Omit<TextInputProps, "decorator"> {
+  messages: TextInputValidationMessages;
+  forceStatus?: TextInputStatus;
 }
 
-const processStatus = (textInputStatus: TextInputStatus, loading?: boolean): TextInputValidationStatus => {
-  if (loading) {
-    return "loading";
+const processErrorMessage = (
+  cause: TextInputError | undefined,
+  standardMessages: TextInputValidationMessages
+): ReactNode => {
+  switch (cause) {
+    case "regexp":
+      return standardMessages.regexp;
+    case "min-length":
+      return standardMessages.tooShort;
+    case "required":
+      return standardMessages.required;
+    case "custom-critical":
+      return standardMessages.customErrorCritical;
+    default:
+      return standardMessages.customError;
   }
+};
 
-  return textInputStatus;
+const processWarningMessage = (
+  cause: TextInputError | undefined,
+  standardMessages: TextInputValidationMessages
+): ReactNode => {
+  switch (cause) {
+    case "max-length":
+      return standardMessages.tooLong;
+    default:
+      return standardMessages.customWarning;
+  }
 };
 
 const processStatusMessage = (
-  status: TextInputValidationStatus,
-  valid: ReactNode | null,
-  loading: ReactNode | null,
-  warning: ReactNode | null,
-  error: ReactNode | null
+  status: TextInputStatus,
+  messages: TextInputValidationMessages,
+  errorStatus?: TextInputError
 ): ReactNode | null => {
   switch (status) {
     case "error":
-      return error;
+      return processErrorMessage(errorStatus, messages);
     case "warning":
-      return warning;
+      return processWarningMessage(errorStatus, messages);
     case "loading":
-      return loading;
+      return messages.loading;
     case "valid":
-      return valid;
+      return messages.valid;
     default:
       return null;
   }
 };
 
-const processStatusIcon = (status: TextInputValidationStatus): ReactNode => {
+const processStatusIcon = (status: TextInputStatus): ReactNode => {
   switch (status) {
     case "typing":
       return <Player autoplay loop src={typingLottie} />;
@@ -85,37 +101,7 @@ const processStatusIcon = (status: TextInputValidationStatus): ReactNode => {
   }
 };
 
-const processErrorMessage = (
-  cause: TextInputError | undefined,
-  standardMessages: TextInputValidationStandardErrorMessages,
-  otherError?: ReactNode
-): ReactNode => {
-  switch (cause) {
-    case "regexp":
-      return standardMessages.regexp;
-    case "min-length":
-      return standardMessages.tooShort;
-    case "required":
-      return standardMessages.required;
-    default:
-      return otherError;
-  }
-};
-
-const processWarningMessage = (
-  cause: TextInputError | undefined,
-  standardMessages: TextInputValidationStandardErrorMessages,
-  otherWarning?: ReactNode
-): ReactNode => {
-  switch (cause) {
-    case "max-length":
-      return standardMessages.lengthLimit;
-    default:
-      return otherWarning;
-  }
-};
-
-const processDecorator = (status: TextInputValidationStatus): WithInputValidationProps["decorator"] => {
+const processDecorator = (status: TextInputStatus): WithInputValidationProps["decorator"] => {
   switch (status) {
     case "valid":
       return "valid";
@@ -131,15 +117,11 @@ const processDecorator = (status: TextInputValidationStatus): WithInputValidatio
 };
 
 export const TextInputValidated: FC<TextInputValidatedProps> = ({
-  onValidationChange,
-  validMessage,
-  loadingMessage,
-  warningMessage,
-  errorMessage,
   messages,
   children,
   className,
   forceStatus,
+  onValidationChange,
   ...props
 }) => {
   const [status, setStatus] = useState<TextInputStatus>("no-change");
@@ -150,21 +132,17 @@ export const TextInputValidated: FC<TextInputValidatedProps> = ({
     setStatusError(error);
   }, []);
 
-  const actualErrorMessage = processErrorMessage(statusError, messages, errorMessage);
-  const actualWarningMessage = processWarningMessage(statusError, messages, warningMessage);
-  const actualStatus = forceStatus || processStatus(status, loadingMessage != null);
-  const statusMessage = processStatusMessage(
-    actualStatus,
-    validMessage,
-    loadingMessage,
-    actualWarningMessage,
-    actualErrorMessage
+  const validationChange = useCallback(
+    (status: TextInputStatus, error?: TextInputError, errorValue?: unknown) => {
+      captureStatus(status, error);
+      onValidationChange?.(status, error, errorValue);
+    },
+    [captureStatus, onValidationChange]
   );
-  const statusIcon = processStatusIcon(actualStatus);
 
-  useEffect(() => {
-    onValidationChange?.(actualStatus, statusError);
-  }, [onValidationChange, actualStatus, statusError]);
+  const actualStatus = forceStatus || status;
+  const statusMessage = processStatusMessage(actualStatus, messages, statusError);
+  const statusIcon = processStatusIcon(actualStatus);
 
   return (
     <WithInputValidation
@@ -174,7 +152,7 @@ export const TextInputValidated: FC<TextInputValidatedProps> = ({
       decorator={processDecorator(actualStatus)}
       renderer={(validatorClassName, decorator, validatorChildren) => (
         <TextInput
-          onValidationChange={captureStatus}
+          onValidationChange={validationChange}
           className={mergeClassNames(validatorClassName, className)}
           decorator={decorator}
           {...props}

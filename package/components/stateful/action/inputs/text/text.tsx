@@ -4,9 +4,13 @@ import { InputBasic, InputProps } from "../basic";
 
 import { useMountEffect } from "@hooks";
 
-export type TextInputStatus = "no-change" | "typing" | "warning" | "error" | "valid";
+export type TextInputStatus = "no-change" | "typing" | "warning" | "error" | "valid" | "loading";
 
-export type TextInputError = "regexp" | "min-length" | "max-length" | "required";
+export type TextInputError = "regexp" | "min-length" | "max-length" | "required" | "custom" | "custom-critical";
+
+export type TextInputValidatorResponse = { status: TextInputStatus; error?: unknown };
+
+export type TextInputValidator = (value: string) => TextInputValidatorResponse | Promise<TextInputValidatorResponse>;
 
 export interface TextInputProps extends Omit<InputProps, "type" | "value" | "onStableChange"> {
   value: string;
@@ -20,7 +24,14 @@ export interface TextInputProps extends Omit<InputProps, "type" | "value" | "onS
    */
   regexp?: RegExp;
   type?: "text" | "password" | "email" | "search";
-  onValidationChange?: (status: TextInputStatus, error?: TextInputError) => void;
+  onValidationChange?:
+    | ((status: TextInputStatus) => void)
+    | ((status: TextInputStatus, error?: TextInputError) => void)
+    | ((status: TextInputStatus, error?: TextInputError, errorValue?: unknown) => void);
+  /**
+   * Custom validators to run on stable change.
+   */
+  customValidator?: TextInputValidator;
 }
 
 export const TextInput: FC<TextInputProps> = ({
@@ -30,6 +41,7 @@ export const TextInput: FC<TextInputProps> = ({
   value,
   regexp,
   type = "text",
+  customValidator,
   onValidationChange,
   required,
   minLength,
@@ -38,6 +50,7 @@ export const TextInput: FC<TextInputProps> = ({
 }) => {
   const [status, setStatus] = useState<TextInputStatus>("no-change");
   const [statusError, setStatusError] = useState<TextInputError>();
+  const [errorValue, setErrorValue] = useState<unknown>();
 
   const updateStatusStable = useCallback(() => {
     if (value === neutral) {
@@ -55,15 +68,44 @@ export const TextInput: FC<TextInputProps> = ({
     } else if (maxLength && value.length >= maxLength) {
       setStatus("warning");
       setStatusError("max-length");
+    } else if (customValidator) {
+      const response = customValidator(value);
+
+      if (response instanceof Promise) {
+        setStatus("loading");
+        response
+          .then(({ status, error }) => {
+            setStatus(status);
+            setErrorValue(error);
+            setStatusError(error ? "custom" : undefined);
+          })
+          .catch((e) => {
+            setStatus("error");
+            setErrorValue(e);
+            setStatusError("custom-critical");
+          });
+      } else {
+        setStatus(response.status);
+        setErrorValue(response.error);
+        setStatusError(response.error ? "custom" : undefined);
+      }
     } else {
       setStatus("valid");
       setStatusError(undefined);
     }
-  }, [maxLength, minLength, neutral, regexp, required, value]);
+  }, [customValidator, maxLength, minLength, neutral, regexp, required, value]);
+
+  const stableChange = useCallback(
+    (value: string) => {
+      updateStatusStable();
+      onStableChange?.(value);
+    },
+    [onStableChange, updateStatusStable]
+  );
 
   useEffect(() => {
-    onValidationChange?.(status, statusError);
-  }, [onValidationChange, status, statusError]);
+    onValidationChange?.(status, statusError, errorValue);
+  }, [errorValue, onValidationChange, status, statusError]);
 
   // Run validation once on render.
   useMountEffect(() => {
@@ -75,12 +117,10 @@ export const TextInput: FC<TextInputProps> = ({
       onChange={(e) => {
         setStatus("typing");
         setStatusError(undefined);
+        setErrorValue(undefined);
         onChange?.(e);
       }}
-      onStableChange={(value) => {
-        updateStatusStable();
-        onStableChange?.(value);
-      }}
+      onStableChange={stableChange}
       value={value}
       type={type}
       minLength={minLength}

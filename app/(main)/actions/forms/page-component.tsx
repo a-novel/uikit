@@ -11,7 +11,7 @@ import {
   SexInput,
   TextInput,
   TextInputValidated,
-  TextInputValidationStandardErrorMessages,
+  TextInputValidationMessages,
   TitleAnchor,
 } from "@components/stateful";
 import { AnchorNav, Button, ButtonZone, Form, FormInfoBox, FormRow } from "@components/stateless";
@@ -39,10 +39,10 @@ const NAV_PARAMS = {
 // COMPONENT
 // ================================================================================
 
-const defaultMessages: TextInputValidationStandardErrorMessages = {
+const defaultMessages: TextInputValidationMessages = {
   required: "required",
   tooShort: "too short",
-  lengthLimit: "length limit",
+  tooLong: "length limit",
   regexp: "regexp",
 };
 
@@ -106,10 +106,9 @@ export const PageComponent = () => (
         <ResizablePresenterBox width="40rem" withFoam="horizontal" fillFoam="end" title="standard">
           <Form>
             <TextInputValidated
-              messages={defaultMessages}
+              messages={{ ...defaultMessages, customError: "This value is not valid." }}
               value="X"
               forceStatus="error"
-              errorMessage="This value is not valid."
               placeholder="Foooo"
               label="foo"
             />
@@ -125,10 +124,9 @@ export const PageComponent = () => (
         <ResizablePresenterBox width="60rem" withFoam="horizontal" fillFoam="end" title="large">
           <Form mode="large">
             <TextInputValidated
-              messages={defaultMessages}
+              messages={{ ...defaultMessages, customError: "This value is not valid." }}
               value="X"
               forceStatus="error"
-              errorMessage="This value is not valid."
               placeholder="Foooo"
               label="foo"
             />

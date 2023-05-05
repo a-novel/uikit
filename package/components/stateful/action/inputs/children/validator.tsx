@@ -45,6 +45,7 @@ export const WithInputValidation: FC<WithInputValidationProps> = ({
   const statusBoxRef = useRef<HTMLDivElement>(null);
   const statusMessageRef = useRef<HTMLDivElement>(null);
   const statusMessageArrowRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     for (const el of [statusBoxRef.current, statusMessageRef.current, statusMessageArrowRef.current]) {
       if (el != null) {
