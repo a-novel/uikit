@@ -42,7 +42,7 @@ export const WithNotifications: FC<{ children?: ReactNode }> = ({ children }) =>
 
   // FadeOut animation takes 200ms, so we have a little buffer. Check the css of the notification component to make
   // sure this value always matches.
-  const { data } = useBufferedState({ source: notifications, bufferedDuration: 300 });
+  const { data } = useBufferedState({ source: notifications, bufferedDuration: 800 });
 
   const unset = useCallback((key: string) => {
     setNotifications((notifications) => {

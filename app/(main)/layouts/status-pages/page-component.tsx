@@ -40,10 +40,11 @@ export const PageComponent = () => (
       </TitleAnchor>
       <ResizablePresenter>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="standard">
-          <StatusPage title="I am a status page" content="I am a status description" decorator="standard" />
+          <StatusPage relative title="I am a status page" content="I am a status description" decorator="standard" />
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="long text">
           <StatusPage
+            relative
             title="I am a longer status page title with way to much or too long information"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             decorator="standard"
@@ -51,6 +52,7 @@ export const PageComponent = () => (
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="with icon">
           <StatusPage
+            relative
             icon={<TacosIcon />}
             title="I am a status page"
             content="I am a status description"
@@ -59,6 +61,7 @@ export const PageComponent = () => (
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="with lottie icon">
           <StatusPage
+            relative
             icon={<Player autoplay keepLastFrame src={checkLottie} />}
             title="I am a status page"
             content="I am a status description"
@@ -73,6 +76,7 @@ export const PageComponent = () => (
       <ResizablePresenter>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="standard">
           <StatusPage
+            relative
             title="I am a longer status page title with way to much or too long information"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             decorator="standard"
@@ -80,6 +84,7 @@ export const PageComponent = () => (
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="important">
           <StatusPage
+            relative
             title="I am a longer status page title with way to much or too long information"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             decorator="important"
@@ -87,6 +92,7 @@ export const PageComponent = () => (
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="premium">
           <StatusPage
+            relative
             title="I am a longer status page title with way to much or too long information"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             decorator="premium"
@@ -94,6 +100,7 @@ export const PageComponent = () => (
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="warning">
           <StatusPage
+            relative
             title="I am a longer status page title with way to much or too long information"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             decorator="warning"
@@ -101,6 +108,7 @@ export const PageComponent = () => (
         </ResizablePresenterBox>
         <ResizablePresenterBox style={{ position: "relative" }} height="20rem" width="40rem" title="danger">
           <StatusPage
+            relative
             title="I am a longer status page title with way to much or too long information"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             decorator="danger"

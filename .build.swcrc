@@ -57,6 +57,5 @@
     "lazy": true,
     "noInterop": false
   },
-  "sourceMaps": true,
   "minify": true
 }

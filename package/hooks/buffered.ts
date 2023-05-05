@@ -151,7 +151,9 @@ export const useBufferedState = <T>({ source, bufferedDuration }: BufferedHookPa
         }
       });
 
-      return prevData;
+      // React compare objects by reference to perform updates. We need to force a new copy of the object
+      // to be created, otherwise updates will not trigger properly.
+      return { ...prevData };
     });
   }, [buffer, source]);
 

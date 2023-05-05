@@ -9,6 +9,7 @@ import {
   useCallback,
   useEffect,
   useRef,
+  useState,
 } from "react";
 
 import { mergeClassNames } from "@lib";
@@ -57,17 +58,12 @@ export const InputBasic: FC<InputProps> = ({
   ...props
 }) => {
   const timer = useRef<NodeJS.Timeout | null>(null);
+  const [typing, setTyping] = useState(false);
 
-  const callStableChange = useCallback(() => {
-    // Reset the timer on each call, until the input is not modified for a certain amount of time.
-    if (timer.current != null) {
-      clearTimeout(timer.current);
-    }
-
-    timer.current = setTimeout(() => {
-      onStableChange?.(value);
-    }, 500);
-  }, [onStableChange, value]);
+  // Run the onStableChange callback if user is not typing anymore.
+  useEffect(() => {
+    if (!typing) onStableChange?.(value);
+  }, [onStableChange, value, typing]);
 
   return (
     <div className={css.wrapper}>
@@ -87,8 +83,18 @@ export const InputBasic: FC<InputProps> = ({
           value={value}
           disabled={disabled}
           onChange={(e) => {
+            // Update the typing status.
+            if (timer.current != null) {
+              clearTimeout(timer.current);
+            }
+            setTyping(true);
+
+            // Typing is automatically set to false, once user has not typed anything for a certain amount of time.
+            timer.current = setTimeout(() => {
+              setTyping(false);
+            }, 500);
+
             onChange?.(e);
-            callStableChange();
           }}
           {...props}
         />

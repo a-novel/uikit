@@ -30,7 +30,7 @@ import {
   TextArea,
   TextInput,
   TextInputValidated,
-  TextInputValidationStandardErrorMessages,
+  TextInputValidationMessages,
   TitleAnchor,
   WithInputValidation,
 } from "@components/stateful";
@@ -106,10 +106,10 @@ const InputSelectOpenedPresenterBox: FC<{ children: ReactNode; title: string; he
   </InputPresenterBox>
 );
 
-const defaultMessages: TextInputValidationStandardErrorMessages = {
+const defaultMessages: TextInputValidationMessages = {
   required: "required",
   tooShort: "too short",
-  lengthLimit: "length limit",
+  tooLong: "length limit",
   regexp: "regexp",
 };
 
