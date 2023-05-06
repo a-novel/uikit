@@ -31,7 +31,7 @@ describe("useCaptureException", () => {
       rerender({ error: new Error("test") });
     });
     expect(mockedLib.captureException).toHaveBeenCalledTimes(1);
-    expect(mockedLib.captureException).toHaveBeenNthCalledWith(1, new Error("test"));
+    expect(mockedLib.captureException).toHaveBeenNthCalledWith(1, new Error("test"), {});
   });
 
   it("should not call captureException when error is updated and silent is true", async () => {
@@ -43,7 +43,7 @@ describe("useCaptureException", () => {
     await act(() => {
       rerender({ error: new Error("test") });
     });
-    expect(mockedLib.captureException).not.toHaveBeenCalled();
+    expect(mockedLib.captureException).toHaveBeenNthCalledWith(1, new Error("test"), { silent: true });
   });
 
   it("should not call captureException when error is updated and it is an APIError with an ignored code", async () => {
@@ -72,6 +72,6 @@ describe("useCaptureException", () => {
       rerender({ error: { status: 500 } });
     });
     expect(mockedLib.captureException).toHaveBeenCalledTimes(1);
-    expect(mockedLib.captureException).toHaveBeenNthCalledWith(1, { status: 500 });
+    expect(mockedLib.captureException).toHaveBeenNthCalledWith(1, { status: 500 }, {});
   });
 });

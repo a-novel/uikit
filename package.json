@@ -1,6 +1,6 @@
 {
   "name": "@anovel/uikit",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "homepage": "https://github.com/a-novel/uikit#readme",
   "scripts": {
@@ -9,12 +9,13 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --no-cache",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build:types": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "build:swc": "npx swc package --config-file .build.swcrc --copy-files -d dist",
     "build:clean": "rm -rf ./dist",
     "registry:compile": "npm run build:clean && npm run build:swc && npm run build:types",
     "registry:publish": "npm run registry:compile && npm publish --access public"
   },
+  "types": "./dist/index.d.ts",
   "exports": {
     "./components/stateful": {
       "types": "./dist/components/stateful/index.d.ts",
@@ -74,13 +75,13 @@
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
-    "@types/react": "18.2.5",
-    "@types/react-dom": "18.2.3",
-    "eslint": "8.39.0",
-    "eslint-config-next": "13.4.0",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.1",
     "highlight.js": "^11.8.0",
     "i18next": "^22.4.15",
-    "next": "13.4.0",
+    "next": "13.4.1",
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -95,7 +96,7 @@
     "@testing-library/react": "^14.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/jest": "^29.5.1",
-    "@types/node": "^18.16.3",
+    "@types/node": "^20.1.0",
     "@types/webpack": "^5.28.1",
     "canvas": "^2.11.2",
     "client-only": "^0.0.1",
@@ -105,6 +106,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "server-only": "^0.0.1",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.6",
     "typescript": "^5.0.4",
     "undici": "^5.22.0",
     "webpack": "^5.82.0",

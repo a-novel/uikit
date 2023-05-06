@@ -65,19 +65,23 @@
     transition: opacity linear .1s, linear 0s;
 }
 
-.info {
+.modal strong {
+    border: none;
+}
+
+.info, .info strong {
     color: var(--blue);
 }
 
-.success {
+.success, .success strong {
     color: var(--green);
 }
 
-.warning {
+.warning, .warning strong {
     color: var(--orange);
 }
 
-.error {
+.error, .error strong {
     color: var(--red);
 }
 

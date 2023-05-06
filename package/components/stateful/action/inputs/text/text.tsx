@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 
 import { InputBasic, InputProps } from "../basic";
 
@@ -32,6 +32,11 @@ export interface TextInputProps extends Omit<InputProps, "type" | "value" | "onS
    * Custom validators to run on stable change.
    */
   customValidator?: TextInputValidator;
+  /**
+   * The maximum number of consecutive spaces allowed. Defaults to 1.
+   * Set to Infinity to disable. 0 disable spaces entirely.
+   */
+  maxConsecutiveSpaces?: number;
 }
 
 export const TextInput: FC<TextInputProps> = ({
@@ -46,11 +51,17 @@ export const TextInput: FC<TextInputProps> = ({
   required,
   minLength,
   maxLength,
+  maxConsecutiveSpaces,
   ...props
 }) => {
   const [status, setStatus] = useState<TextInputStatus>("no-change");
   const [statusError, setStatusError] = useState<TextInputError>();
   const [errorValue, setErrorValue] = useState<unknown>();
+
+  const replaceSpacesRegexp = useMemo(
+    () => (maxConsecutiveSpaces === Infinity ? null : new RegExp(` {${(maxConsecutiveSpaces ?? 1) + 1},}`, "g")),
+    [maxConsecutiveSpaces]
+  );
 
   const updateStatusStable = useCallback(() => {
     if (value === neutral) {
@@ -118,6 +129,12 @@ export const TextInput: FC<TextInputProps> = ({
         setStatus("typing");
         setStatusError(undefined);
         setErrorValue(undefined);
+
+        e.target.value = e.target.value.trimStart();
+        if (replaceSpacesRegexp) {
+          e.target.value = e.target.value.replace(replaceSpacesRegexp, " ".repeat(maxConsecutiveSpaces ?? 1));
+        }
+
         onChange?.(e);
       }}
       onStableChange={stableChange}

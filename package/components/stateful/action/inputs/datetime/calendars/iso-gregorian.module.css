@@ -40,6 +40,7 @@
     border-width: thin;
     border-style: solid;
     border-color: transparent;
+    outline: none;
     border-radius: var(--button-radius);
     background-color: transparent;
     cursor: pointer;
@@ -58,11 +59,18 @@
 
 .year-container.invalid > input {
     color: var(--red);
-    border-color: var(--red);
 }
 
-.year-container > input:hover, .year-container > input:focus {
+.year-container > input:hover:not(:focus) {
     background-color: var(--hover-transparent);
+}
+
+.year-container:not(.invalid) > input:focus {
+    border-color: var(--blue);
+}
+
+.year-container.invalid > input:focus {
+    border-color: var(--red);
 }
 
 .day-container th {

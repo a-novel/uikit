@@ -5,7 +5,7 @@ import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
 
 import { useState } from "react";
 
-import { DropMenu, DropMenuActions, NavWrapper, Screen, ScreenFooter } from "@components/stateful";
+import { DropMenu, DropMenuActions, NavWrapper, Screen } from "@components/stateful";
 import { NavLink, NavLinkHome, NavZone, UserProfileLink } from "@components/stateless";
 
 const Page = () => {
@@ -81,11 +81,10 @@ const Page = () => {
 
   return (
     <NavWrapper main navComponent={NavComponent} mode="horizontal">
-      <Screen>
+      <Screen footer="This is the footer part of the screen.">
         <div style={{ width: "100%", height: "200vh", flexGrow: "1", backgroundColor: "var(--blue-dark)" }}>
           The blue block is the screen area.
         </div>
-        <ScreenFooter>This is the footer part of the screen.</ScreenFooter>
       </Screen>
     </NavWrapper>
   );

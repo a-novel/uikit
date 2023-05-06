@@ -55,5 +55,11 @@ export const NavBar: FC<NavBarProps> = ({ pathname }) => (
         Skeletons
       </NavLink>
     </NavZone>
+    <NavZone>
+      <NavLabel>Feedback Components</NavLabel>
+      <NavLink href="/feedback/steppers" pathname={pathname}>
+        Steppers
+      </NavLink>
+    </NavZone>
   </>
 );

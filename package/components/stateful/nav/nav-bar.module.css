@@ -6,8 +6,6 @@
     display: flex;
     flex-wrap: nowrap;
     flex-shrink: 0;
-    min-width: calc(100vw - var(--sticky-left));
-    min-height: calc(100vh - var(--sticky-top));
 }
 
 .nav-wrapper.horizontal {
@@ -20,6 +18,10 @@
 
 .nav-wrapper-content {
     flex-grow: 1;
+}
+
+.nav-wrapper.vertical > .nav-bar {
+    height: calc(100vh - var(--sticky-top));
 }
 
 /* -------------------------------------------------------------------------------- */

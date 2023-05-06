@@ -11,7 +11,7 @@ import { Calendar, CalendarProps } from "./utils";
 
 type WeekStart = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
-export const ISOGregorianCalendarWeekStart = {
+export const ISO_GREGORIAN_WEEK_START = {
   SUNDAY: 0 as WeekStart,
   MONDAY: 1 as WeekStart,
   TUESDAY: 2 as WeekStart,
@@ -136,8 +136,13 @@ const YearSelector: FC<YearSelectorProps> = ({
       type="number"
       min={actualMinDate?.year}
       max={actualMaxDate?.year}
-      value={displayYearBuffer}
+      value={displayYearBuffer || ""}
       onChange={(e) => {
+        if (e.target.value === "") {
+          setDisplayedYear(undefined);
+          return;
+        }
+
         const value = parseInt(e.target.value, 10);
         if (!isNaN(value)) {
           setDisplayedYear(Math.min(value, actualMaxDate?.year ?? Number.MAX_SAFE_INTEGER));
@@ -356,7 +361,7 @@ export const ISO_GREGORIAN_CALENDAR: Calendar<ISOGregorianCalendarProps> = ({
   );
 
   const maxDaysForCurrentMonth = useMemo(
-    () => daysInMonth(displayedYear, displayedMonth),
+    () => daysInMonth(displayedMonth, displayedYear),
     [displayedMonth, displayedYear]
   );
 
@@ -394,7 +399,7 @@ export const ISO_GREGORIAN_CALENDAR: Calendar<ISOGregorianCalendarProps> = ({
       setDay(day);
       onSelectDate?.(
         displayedYear != null && month != null && day != null
-          ? { year: displayedYear, month: displayedMonth, day }
+          ? new InputDate({ year: displayedYear, month: displayedMonth, day })
           : undefined
       );
     },
