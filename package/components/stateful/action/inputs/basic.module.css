@@ -116,6 +116,10 @@
     border-radius: var(--border-radius);
 }
 
+.label > i {
+    color: var(--grey-300);
+}
+
 .container:not(.disabled).default > .label,
 .container:not(.disabled):not(.unfocusable):focus-within > .label,
 .container:not(.disabled):global(.focus-within) > .label {

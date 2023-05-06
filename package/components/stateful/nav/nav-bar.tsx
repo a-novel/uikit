@@ -2,11 +2,11 @@ import "client-only";
 
 import css from "./nav-bar.module.css";
 
-import { FC, HTMLAttributes, ReactNode, useMemo, useRef, useState } from "react";
+import { FC, HTMLAttributes, ReactNode, useContext, useMemo, useRef, useState } from "react";
 
 import { Nav } from "../../stateless";
 
-import { WithSticky } from "@contexts";
+import { StickyContext, WithSticky } from "@contexts";
 import { useFloatingMenu } from "@hooks";
 import { mergeClassNames } from "@lib";
 
@@ -27,6 +27,20 @@ export interface NavWrapperProps extends HTMLAttributes<HTMLDivElement> {
   main?: boolean;
 }
 
+const NavWrapperContent: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, style, ...props }) => {
+  const { vertical, horizontal } = useContext(StickyContext);
+
+  return (
+    <div
+      style={{ minWidth: `calc(100vw - ${horizontal}px)`, minHeight: `calc(100vh - ${vertical}px)`, ...style }}
+      className={mergeClassNames(css.navWrapperContent, className)}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
 /**
  * Wraps together a navigation bar and its content, with proper alignment.
  */
@@ -43,10 +57,10 @@ export const NavWrapper: FC<NavWrapperProps> = ({ children, navComponent, classN
           className={mergeClassNames(css.navWrapper, main ? css.main : undefined, css[mode || "horizontal"], className)}
           {...props}
         >
-          <Nav main={main} mode={mode} ref={ref} style={style}>
+          <Nav className={css.navBar} main={main} mode={mode} ref={ref}>
             {navComponent}
           </Nav>
-          <div className={css.navWrapperContent}>{children}</div>
+          <NavWrapperContent>{children}</NavWrapperContent>
         </div>
       )}
     />

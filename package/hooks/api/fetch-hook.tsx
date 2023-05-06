@@ -63,6 +63,7 @@ export interface FetchHookResult<Res, Req extends any[]> {
    * Force the {@link error} value.
    */
   setError: (err?: unknown) => void;
+  clearErrors: () => void;
 }
 
 export const useFetch = <Res, Req extends any[]>({
@@ -98,6 +99,11 @@ export const useFetch = <Res, Req extends any[]>({
     [call, onLoading]
   );
 
+  const clearErrors = useCallback(() => {
+    setAPIError(undefined);
+    setError(undefined);
+  }, []);
+
   return {
     trigger,
     loading,
@@ -107,6 +113,7 @@ export const useFetch = <Res, Req extends any[]>({
     setResponse,
     setAPIError,
     setError,
+    clearErrors,
   };
 };
 
@@ -124,6 +131,16 @@ export interface BackgroundFetchHookResult<Res, Req extends any[]> {
    */
   setResponse: (res?: Res) => void;
   success?: boolean;
+  /**
+   * If an error is returned by the API, it is stored here. If any other error occurs, it is stored in the
+   * {@link error} property.
+   */
+  apiError?: APIError;
+  /**
+   * If an error is returned by the API, it is stored in the {@link apiError} property. If any other error occurs, it
+   * is stored here.
+   */
+  error?: unknown;
 }
 
 export interface FetchErrorMessage {
@@ -170,12 +187,7 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
   const [success, setSuccess] = useState<boolean>();
   const { set, unset } = useContext(NotificationsContext);
 
-  const { trigger, loading, response, error, apiError, setResponse, setAPIError, setError } = useFetch(props);
-
-  const onCloseHandler = useCallback(() => {
-    setAPIError(undefined);
-    setError(undefined);
-  }, [setAPIError, setError]);
+  const { trigger, loading, response, error, apiError, setResponse, clearErrors } = useFetch(props);
 
   const handleError = useCallback(() => {
     if (error || apiError) {
@@ -188,7 +200,7 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
       set(id, {
         decorator: "danger",
         children: (
-          <NotificationContentClosable onClose={onCloseHandler}>
+          <NotificationContentClosable onClose={clearErrors}>
             <NotificationContentWithTitle title={errorMessage.title}>
               {errorMessage.content}
             </NotificationContentWithTitle>
@@ -203,7 +215,7 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
       set(id, {
         decorator: "danger",
         children: (
-          <NotificationContentClosable onClose={onCloseHandler}>
+          <NotificationContentClosable onClose={clearErrors}>
             <NotificationContentWithTitle title={errors.default.title}>
               {errors.default.content}
             </NotificationContentWithTitle>
@@ -215,7 +227,7 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
     }
 
     unset(id);
-  }, [apiError, error, errors, id, onCloseHandler, set, unset]);
+  }, [apiError, error, errors, id, clearErrors, set, unset]);
 
   useEffect(() => {
     if (condition !== false) {
@@ -227,9 +239,9 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
   useEffect(() => {
     if ((error != null || apiError) != null && onError != null) {
       onError(error || apiError, handleError);
+    } else {
+      handleError();
     }
-
-    handleError();
   }, [apiError, error, handleError, onError]);
 
   return {
@@ -237,5 +249,7 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
     response,
     setResponse,
     success: success && !loading,
+    error,
+    apiError,
   };
 };

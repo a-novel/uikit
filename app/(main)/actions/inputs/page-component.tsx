@@ -13,10 +13,11 @@ import {
   DateInput,
   DateInputValidated,
   H2,
-  ISOGregorianCalendarWeekStart,
   ISO_FR,
   ISO_GREGORIAN_CALENDAR,
+  ISO_GREGORIAN_WEEK_START,
   InputBasic,
+  InputDate,
   InputToolbox,
   InputValidationMessageWithAction,
   PasswordInput,
@@ -145,9 +146,9 @@ const SexInputTranslations = {
 };
 
 const minMaxDates = {
-  minDate: { year: 2011, month: 7, day: 11 },
-  maxDate: { year: 2030, month: 7, day: 11 },
-  neutral: { year: 2020, month: 6, day: 15 },
+  minDate: new InputDate({ year: 2011, month: 7, day: 11 }),
+  maxDate: new InputDate({ year: 2030, month: 7, day: 11 }),
+  defaultDate: new InputDate({ year: 2020, month: 6, day: 15 }),
 };
 
 export const PageComponent = () => (
@@ -691,13 +692,13 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -709,13 +710,13 @@ export const PageComponent = () => (
             uikit
             label="date"
             placeholder="jj-mm-aaaa"
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -727,14 +728,14 @@ export const PageComponent = () => (
             uikit
             label="date"
             placeholder="jj-mm-aaaa"
-            value={{ year: 2020, month: 1, day: 1 }}
-            neutral={minMaxDates.neutral}
+            value={new InputDate({ year: 2020, month: 1, day: 1 })}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -747,13 +748,13 @@ export const PageComponent = () => (
             label="date"
             placeholder="jj-mm-aaaa"
             className="hover"
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -765,13 +766,13 @@ export const PageComponent = () => (
             uikit
             label="date"
             disabled
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -784,14 +785,14 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -802,19 +803,15 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            value={{
-              year: 2020,
-              month: 6,
-              day: 11,
-            }}
-            neutral={minMaxDates.neutral}
+            value={new InputDate({ year: 2020, month: 6, day: 11 })}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -825,19 +822,15 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            value={{
-              year: 2020,
-              month: 2,
-              day: 11,
-            }}
-            neutral={minMaxDates.neutral}
+            value={new InputDate({ year: 2020, month: 2, day: 11 })}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 forceDisplayMonth={6}
                 {...props}
@@ -849,19 +842,15 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            value={{
-              year: 2019,
-              month: 2,
-              day: 11,
-            }}
-            neutral={minMaxDates.neutral}
+            value={new InputDate({ year: 2019, month: 2, day: 11 })}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 forceDisplayMonth={6}
                 forceDisplayYear={2020}
@@ -874,19 +863,15 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            value={{
-              year: 2020,
-              month: 2,
-              day: 11,
-            }}
-            neutral={minMaxDates.neutral}
+            value={new InputDate({ year: 2020, month: 2, day: 11 })}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 forceDisplayMonth={6}
                 forceDisplayYearInput={199}
@@ -899,14 +884,14 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            neutral={minMaxDates.minDate}
+            defaultDate={minMaxDates.minDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -917,14 +902,14 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            neutral={minMaxDates.maxDate}
+            defaultDate={minMaxDates.maxDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -936,14 +921,14 @@ export const PageComponent = () => (
             uikit
             required
             label="date"
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -955,19 +940,15 @@ export const PageComponent = () => (
             uikit
             required
             label="date"
-            value={{
-              year: 2020,
-              month: 5,
-              day: 11,
-            }}
-            neutral={minMaxDates.neutral}
+            value={new InputDate({ year: 2020, month: 5, day: 11 })}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -978,14 +959,14 @@ export const PageComponent = () => (
           <DateInput
             uikit
             label="date"
-            neutral={minMaxDates.neutral}
+            defaultDate={minMaxDates.defaultDate}
             minDate={minMaxDates.minDate}
             maxDate={minMaxDates.maxDate}
             startOpen
             formatter={ISO_FR}
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.WEDNESDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.WEDNESDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -1000,12 +981,12 @@ export const PageComponent = () => (
       <Presenter>
         <InputPresenterBox title="default">
           <DateInputValidated
-            value={{ year: 2020, month: 1, day: 1 }}
+            value={new InputDate({ year: 2020, month: 1, day: 1 })}
             formatter={ISO_FR}
             forceStatus="no-change"
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -1014,12 +995,12 @@ export const PageComponent = () => (
         </InputPresenterBox>
         <InputPresenterBox title="valid">
           <DateInputValidated
-            value={{ year: 2020, month: 1, day: 1 }}
+            value={new InputDate({ year: 2020, month: 1, day: 1 })}
             formatter={ISO_FR}
             forceStatus="valid"
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -1028,12 +1009,12 @@ export const PageComponent = () => (
         </InputPresenterBox>
         <InputPresenterBox title="warning">
           <DateInputValidated
-            value={{ year: 2020, month: 1, day: 1 }}
+            value={new InputDate({ year: 2020, month: 1, day: 1 })}
             formatter={ISO_FR}
             forceStatus="warning"
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -1042,12 +1023,12 @@ export const PageComponent = () => (
         </InputPresenterBox>
         <InputPresenterBox title="error">
           <DateInputValidated
-            value={{ year: 2020, month: 1, day: 1 }}
+            value={new InputDate({ year: 2020, month: 1, day: 1 })}
             formatter={ISO_FR}
             forceStatus="error"
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />
@@ -1056,12 +1037,12 @@ export const PageComponent = () => (
         </InputPresenterBox>
         <InputPresenterBox title="loading">
           <DateInputValidated
-            value={{ year: 2020, month: 1, day: 1 }}
+            value={new InputDate({ year: 2020, month: 1, day: 1 })}
             formatter={ISO_FR}
             forceStatus="loading"
             calendar={(props) => (
               <ISO_GREGORIAN_CALENDAR
-                weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                 translations={GregorianCalendarTranslations}
                 {...props}
               />

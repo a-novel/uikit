@@ -5,9 +5,10 @@ import { FC, ReactNode } from "react";
 import {
   DateInput,
   H2,
-  ISOGregorianCalendarWeekStart,
   ISO_FR,
   ISO_GREGORIAN_CALENDAR,
+  ISO_GREGORIAN_WEEK_START,
+  InputDate,
   SexInput,
   TextInput,
   TextInputValidated,
@@ -78,9 +79,9 @@ const SexInputTranslations = {
 };
 
 const minMaxDates = {
-  minDate: { year: 2011, month: 7, day: 11 },
-  maxDate: { year: 2030, month: 7, day: 11 },
-  neutral: { year: 2020, month: 6, day: 15 },
+  minDate: new InputDate({ year: 2011, month: 7, day: 11 }),
+  maxDate: new InputDate({ year: 2030, month: 7, day: 11 }),
+  defaultDate: new InputDate({ year: 2020, month: 6, day: 15 }),
 };
 
 const InfoBoxPresenter: FC<{ children: ReactNode; title: string }> = ({ children, title }) => (
@@ -160,14 +161,14 @@ export const PageComponent = () => (
               <DateInput
                 label="date"
                 placeholder="jj-mm-aaaa"
-                value={{ year: 2020, month: 1, day: 1 }}
-                neutral={minMaxDates.neutral}
+                value={new InputDate({ year: 2020, month: 1, day: 1 })}
+                defaultDate={minMaxDates.defaultDate}
                 minDate={minMaxDates.minDate}
                 maxDate={minMaxDates.maxDate}
                 formatter={ISO_FR}
                 calendar={(props) => (
                   <ISO_GREGORIAN_CALENDAR
-                    weekStart={ISOGregorianCalendarWeekStart.MONDAY}
+                    weekStart={ISO_GREGORIAN_WEEK_START.MONDAY}
                     translations={GregorianCalendarTranslations}
                     {...props}
                   />

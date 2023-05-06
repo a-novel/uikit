@@ -15,9 +15,7 @@ const mapParams = (params: Record<string, any>, source?: string) =>
         <a href={`#${anchor}`}>{value}</a>
       </li>
     ) : (
-      <ul key={anchor} className={css.subWrapper}>
-        {mapParams(value, anchor)}
-      </ul>
+      <ul key={anchor}>{mapParams(value, anchor)}</ul>
     );
   });
 

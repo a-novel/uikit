@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { DateInput, DateInputProps, WithInputValidation, inputDateLess } from "../../../index";
+import { DateInput, DateInputProps, InputDate, WithInputValidation, inputDateLess } from "../../../index";
 import {
   GenericInputValidationProps,
   genericInputValidationProcessDecorator,
@@ -11,7 +11,9 @@ import {
 
 import { mergeClassNames } from "@lib";
 
-export interface DateInputValidatedProps extends GenericInputValidationProps, Omit<DateInputProps, "decorator"> {}
+export interface DateInputValidatedProps extends GenericInputValidationProps, Omit<DateInputProps, "decorator"> {
+  neutral?: InputDate;
+}
 
 export const DateInputValidated: FC<DateInputValidatedProps> = ({
   validMessage,
@@ -21,6 +23,7 @@ export const DateInputValidated: FC<DateInputValidatedProps> = ({
   children,
   className,
   forceStatus,
+  neutral,
   ...props
 }) => {
   const actualStatus =
@@ -29,7 +32,7 @@ export const DateInputValidated: FC<DateInputValidatedProps> = ({
       loadingMessage,
       warningMessage,
       errorMessage,
-      isDefaultGeneric: inputDateLess(props.value, props.neutral) === 0,
+      isDefaultGeneric: inputDateLess(props.value, neutral) === 0,
     });
   const statusMessage = genericInputValidationProcessStatusMessage(
     actualStatus,

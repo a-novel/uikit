@@ -16,10 +16,10 @@ import { DateTimeFormatter } from "./format/utils";
 
 export interface DateInputProps extends CustomInputProps {
   value?: InputDate;
-  neutral?: InputDate;
   onChange?: (date?: InputDate) => void;
   minDate?: InputDate;
   maxDate?: InputDate;
+  defaultDate?: InputDate;
   formatter: DateTimeFormatter;
   calendar: (props: CalendarProps) => ReactNode;
   /**
@@ -34,7 +34,7 @@ export interface DateInputProps extends CustomInputProps {
 
 export const DateInput: FC<DateInputProps> = ({
   value,
-  neutral,
+  defaultDate,
   onChange,
   minDate,
   maxDate,
@@ -74,7 +74,7 @@ export const DateInput: FC<DateInputProps> = ({
       <div ref={modalRef} className={css.calendar}>
         {calendar({
           selectedDate: value,
-          defaultDate: neutral,
+          defaultDate,
           minDate,
           maxDate,
           onSelectDate: onChange,

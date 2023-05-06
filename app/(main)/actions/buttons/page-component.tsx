@@ -36,7 +36,7 @@ import { ButtonSecondary } from "@anovel/uikit/components/stateless";
 const BUTTON_SECONDARY_USAGE = `
 const Default = () => <ButtonSecondary onclick={doSomething}>Click me !</ButtonSecondary>;
 
-const TypeLink = () => <ButtonSecondary type="link" href="/app">Click me !</ButtonSecondary>;
+const TypeLink = () => <ButtonSecondary mode="link" href="/app">Click me !</ButtonSecondary>;
 
 const Disabled = () => <ButtonSecondary disabled>Cannot click :(</ButtonSecondary>;`;
 
@@ -193,17 +193,17 @@ export const PageComponent = () => (
       </TitleAnchor>
       <Presenter>
         <PresenterBox title="link">
-          <ButtonSecondary href="/" type="link">
+          <ButtonSecondary href="/" mode="link">
             Click me !
           </ButtonSecondary>
         </PresenterBox>
         <PresenterBox title="link hover">
-          <ButtonSecondary href="/" className="hover" type="link">
+          <ButtonSecondary href="/" className="hover" mode="link">
             Click me !
           </ButtonSecondary>
         </PresenterBox>
         <PresenterBox title="link disabled">
-          <ButtonSecondary href="/" className="disabled" type="link">
+          <ButtonSecondary href="/" className="disabled" mode="link">
             Click me !
           </ButtonSecondary>
         </PresenterBox>

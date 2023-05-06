@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { newAPIError } from "../../__mocks_manual__/utils";
 import { RenderResult, act, render, waitFor } from "@testing-library/react";
 
-import { AuthContext, LOCAL_STORAGE_KEY, WithAuth } from "@contexts";
+import { AUTH_LOCAL_STORAGE_KEY, AuthContext, WithAuth } from "@contexts";
 
 afterEach(() => {
   localStorage.clear();
@@ -117,9 +117,9 @@ const expectAuthContext = async ({
       }
 
       if (expectStorageToken) {
-        expect(localStorage.getItem(LOCAL_STORAGE_KEY)).toBe(expectStorageToken);
+        expect(localStorage.getItem(AUTH_LOCAL_STORAGE_KEY)).toBe(expectStorageToken);
       } else {
-        expect(localStorage.getItem(LOCAL_STORAGE_KEY)).toBeNull();
+        expect(localStorage.getItem(AUTH_LOCAL_STORAGE_KEY)).toBeNull();
       }
     },
     { timeout: 10000 }
@@ -129,7 +129,7 @@ const expectAuthContext = async ({
 describe("WithAuth", () => {
   describe("initialization", () => {
     it("should wait for the api response before setting status to authenticated, and use the token from the api", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ token: "new.api.token", delay: 1000 });
 
       const wrapper = render(
@@ -176,7 +176,7 @@ describe("WithAuth", () => {
     });
 
     it("should logout if the api call returns a 403 status", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ error: newAPIError(403), delay: 1000 });
 
       const wrapper = render(
@@ -208,7 +208,7 @@ describe("WithAuth", () => {
 
     // This should be treated as a critical error if it happens in production.
     it("should keep local token, but throw an error if the api fails with a non-403 status", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ error: newAPIError(500), delay: 1000 });
 
       const wrapper = render(
@@ -291,7 +291,7 @@ describe("WithAuth", () => {
     });
 
     it("should remove the token and call the api when calling logout method", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ token: "new.api.token", delay: 50 });
 
       const wrapper = render(
@@ -336,7 +336,7 @@ describe("WithAuth", () => {
 
   describe("auto refresh", () => {
     it("should automatically refresh the token, when the user is logged in and the interval is set", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ token: "new.api.token", delay: 100 });
 
       const wrapper = render(
@@ -377,7 +377,7 @@ describe("WithAuth", () => {
     });
 
     it("should not automatically refresh the token, when the user is logged in and the interval is set to 0", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ token: "new.api.token", delay: 100 });
 
       const wrapper = render(
@@ -401,7 +401,7 @@ describe("WithAuth", () => {
     });
 
     it("should not automatically refresh the token, when the user is logged out", async () => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, "old.storage.token");
+      localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ token: "new.api.token", delay: 100 });
 
       const wrapper = render(

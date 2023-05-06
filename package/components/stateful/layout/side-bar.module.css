@@ -1,0 +1,7 @@
+.container {
+    overflow: auto;
+    z-index: var(--important-index);
+    position: sticky;
+    background-color: var(--background-overlay-color);
+    backdrop-filter: var(--background-overlay-backdrop);
+}

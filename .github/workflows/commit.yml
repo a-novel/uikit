@@ -137,14 +137,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-          scope: "@a-novel"
+          scope: "@anovel"
           registry-url: 'https://npm.pkg.github.com'
       - name: install dependencies
         run: npm ci
       - name: build package
         run: npm run registry:compile
       - run: |
-          echo "@a-novel:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@anovel:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
       - name: publish the package on github
         run: npm publish --access public

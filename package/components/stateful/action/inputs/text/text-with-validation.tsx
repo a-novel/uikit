@@ -19,10 +19,10 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { mergeClassNames } from "@lib";
 
 export interface TextInputValidationMessages {
-  required: string;
-  tooShort: string;
-  tooLong: string;
-  regexp: string;
+  required: ReactNode;
+  tooShort: ReactNode;
+  tooLong: ReactNode;
+  regexp: ReactNode;
   valid?: ReactNode;
   loading?: ReactNode;
   customError?: ReactNode;

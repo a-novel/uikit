@@ -8,7 +8,7 @@ import { APIError } from "@lib/api";
 
 import { useFetch, useMountEffect, usePing } from "@hooks";
 
-export const LOCAL_STORAGE_KEY = "agora_token";
+export const AUTH_LOCAL_STORAGE_KEY = "agora_token";
 
 /**
  * Indicate the current status of authentication.
@@ -64,7 +64,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 const WithAuthComponent: FC<AuthProviderProps> = ({ children, checkInterval, api }) => {
   // Only compute initial token when component is loaded.
-  const initialToken = useMemo(() => window.localStorage.getItem(LOCAL_STORAGE_KEY), []);
+  const initialToken = useMemo(() => window.localStorage.getItem(AUTH_LOCAL_STORAGE_KEY), []);
 
   const {
     trigger,
@@ -125,7 +125,9 @@ const WithAuthComponent: FC<AuthProviderProps> = ({ children, checkInterval, api
 
   // Update localStorage values on token change.
   useEffect(() => {
-    token ? window.localStorage.setItem(LOCAL_STORAGE_KEY, token) : window.localStorage.removeItem(LOCAL_STORAGE_KEY);
+    token
+      ? window.localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, token)
+      : window.localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
   }, [token]);
 
   return (

@@ -8,3 +8,4 @@ export * from "./floating-menu";
 export * from "./api";
 export * from "./mount";
 export * from "./window";
+export * from "./redirect";

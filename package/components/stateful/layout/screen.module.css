@@ -1,13 +1,21 @@
 .container {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
-.container.center {
+.child-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.container.center > .child-wrapper {
     justify-content: center;
 }
 
-.container.center > * {
+.container.center > .child-wrapper > * {
     margin: 0 auto;
 }
 
@@ -18,4 +26,5 @@
     z-index: var(--important-index);
     background-color: var(--background-overlay-color);
     backdrop-filter: var(--background-overlay-backdrop);
+    align-self: flex-end;
 }
