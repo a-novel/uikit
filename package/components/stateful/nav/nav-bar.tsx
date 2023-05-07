@@ -52,12 +52,12 @@ export const NavWrapper: FC<NavWrapperProps> = ({ children, navComponent, classN
   return (
     <WithSticky
       mode={stickyMode}
-      render={(ref, style) => (
+      render={(ref, stickyStyle) => (
         <div
           className={mergeClassNames(css.navWrapper, main ? css.main : undefined, css[mode || "horizontal"], className)}
           {...props}
         >
-          <Nav className={css.navBar} main={main} mode={mode} ref={ref}>
+          <Nav style={stickyStyle} className={css.navBar} main={main} mode={mode} ref={ref}>
             {navComponent}
           </Nav>
           <NavWrapperContent>{children}</NavWrapperContent>

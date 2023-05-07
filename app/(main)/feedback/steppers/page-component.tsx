@@ -28,12 +28,12 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="basic">
+      <TitleAnchor renderer={H2} id="vertical">
         {NAV_PARAMS.vertical}
       </TitleAnchor>
 
       <ResizablePresenter>
-        <ResizablePresenterBox width="30rem" height="40rem" withFoam="vertical" fillFoam="end" title="initial">
+        <ResizablePresenterBox width="20rem" height="30rem" withFoam="vertical" fillFoam="end" title="initial">
           <Stepper
             steps={[
               {
@@ -65,8 +65,8 @@ export const PageComponent = () => (
           />
         </ResizablePresenterBox>
         <ResizablePresenterBox
-          width="30rem"
-          height="40rem"
+          width="20rem"
+          height="30rem"
           withFoam="vertical"
           fillFoam="end"
           title="partially completed"
@@ -101,7 +101,7 @@ export const PageComponent = () => (
             statusName={(value) => value}
           />
         </ResizablePresenterBox>
-        <ResizablePresenterBox width="30rem" height="40rem" withFoam="vertical" fillFoam="end" title="steps hovered">
+        <ResizablePresenterBox width="20rem" height="30rem" withFoam="vertical" fillFoam="end" title="steps hovered">
           <Stepper
             steps={[
               {
@@ -135,7 +135,7 @@ export const PageComponent = () => (
             statusName={(value) => value}
           />
         </ResizablePresenterBox>
-        <ResizablePresenterBox width="30rem" height="40rem" withFoam="vertical" fillFoam="end" title="terminated">
+        <ResizablePresenterBox width="20rem" height="30rem" withFoam="vertical" fillFoam="end" title="terminated">
           <Stepper
             steps={[
               {

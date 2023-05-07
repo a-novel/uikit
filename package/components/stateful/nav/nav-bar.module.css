@@ -81,9 +81,11 @@
 
     opacity: 0;
     transition: linear .1s;
+    pointer-events: none;
 }
 
 .active .drop-menu-content {
+    pointer-events: all;
     opacity: 1;
     transform: translateY(calc(100% + 1rem));
 }

@@ -60,6 +60,9 @@ export const NavBar: FC<NavBarProps> = ({ pathname }) => (
       <NavLink href="/feedback/steppers" pathname={pathname}>
         Steppers
       </NavLink>
+      <NavLink href="/feedback/banners" pathname={pathname}>
+        Banners
+      </NavLink>
     </NavZone>
   </>
 );
