@@ -5,7 +5,7 @@ import { DefaultNavZone } from "../../default-nav-zone";
 import { Banner } from "@components/stateful";
 
 const Page = () => (
-  <Banner decorator="warning" content="I am a banner with a lot of information.">
+  <Banner content={[{ decorator: "warning", content: "I am a banner with a lot of information." }]}>
     <DefaultNavZone>
       <DefaultContent />
     </DefaultNavZone>
