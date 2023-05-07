@@ -1,11 +1,18 @@
-.container {
+.wrapper {
     position: sticky;
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - var(--sticky-left));
+}
+
+.container {
     padding: .4rem;
     font-size: .8rem;
+    white-space: pre;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: var(--decorator-tertiary);
+    background-color: var(--decorator-dark);
     color: var(--text);
-    width: calc(100vw - var(--sticky-left));
+    width: 100%;
 }
