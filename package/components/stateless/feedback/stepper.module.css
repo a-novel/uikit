@@ -4,14 +4,15 @@
     margin: 0;
     height: 100%;
     box-sizing: border-box;
+    font-size: .9rem;
 }
 
 .step {
     display: flex;
     flex-direction: row;
-    padding: .6rem;
+    padding: .4em;
     border-radius: var(--border-radius);
-    gap: .6rem;
+    gap: .6em;
 }
 
 .step.completed {
@@ -51,12 +52,16 @@
     background-color: var(--color-dark);
 }
 
+.step.locked {
+    pointer-events: none;
+}
+
 .separator {
     flex-shrink: 1;
-    height: 4rem;
-    min-height: 1rem;
-    margin: 0 0 0 2.5rem;
-    width: .2rem;
+    height: 3em;
+    min-height: 1em;
+    margin: 0 0 0 1.9em;
+    width: .2em;
 }
 
 .separator.completed {
@@ -87,19 +92,19 @@
 }
 
 .icon {
-    height: 2.8rem;
-    width: 2.8rem;
+    height: 2.8em;
+    width: 2.8em;
     color: var(--color);
     border-color: var(--color);
     border-radius: 50%;
     border-style: solid;
     border-width: medium;
     background-color: var(--color-tertiary);
-    padding: .4rem;
     transform-origin: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .completed .icon {
@@ -114,20 +119,20 @@
 .icon svg {
     display: block;
     margin: auto;
-    height: 2rem;
-    width: 2rem;
+    height: 1.8em!important;
+    width: 1.8em!important;
 }
 
 .content {
     margin: auto 0;
     display: flex;
     flex-direction: column;
-    gap: .6rem;
+    gap: .4em;
 }
 
 .name {
     color: var(--text);
-    font-size: 1rem;
+    font-size: .9em;
 }
 
 .locked .name {
@@ -135,7 +140,7 @@
 }
 
 .status {
-    font-size: .78rem;
+    font-size: .76em;
     color: var(--color-secondary);
     padding: .2em .4em;
     border-radius: .6em;

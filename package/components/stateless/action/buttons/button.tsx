@@ -13,6 +13,7 @@ type ButtonDefaultType = ComponentProps<"button"> & {
 };
 
 type ButtonLinkType = ComponentProps<typeof Link> & {
+  disabled?: boolean;
   mode: "link";
 };
 
@@ -20,18 +21,19 @@ export type ButtonType = (ButtonDefaultType | ButtonLinkType) & {
   decorator?: Decorator;
 };
 
-export const Button: FC<ButtonType> = ({ mode = "button", className, decorator, ...props }) => (
+export const Button: FC<ButtonType> = ({ mode = "button", className, disabled, decorator, ...props }) => (
   <WithDecorator
     decorator={decorator || "standard"}
     render={(decoratorClassName) =>
       mode === "link" ? (
         <Link
-          className={mergeClassNames(css.button, decoratorClassName, className)}
+          className={mergeClassNames(css.button, disabled ? "disabled" : undefined, decoratorClassName, className)}
           {...(props as ComponentProps<typeof Link>)}
         />
       ) : (
         <button
           className={mergeClassNames(css.button, decoratorClassName, className)}
+          disabled={disabled}
           {...(props as ComponentProps<"button">)}
         />
       )
