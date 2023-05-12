@@ -4,9 +4,8 @@ import TacosIcon from "@public/icons/colored/tacos.svg";
 
 import { FC, ReactNode } from "react";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 import {
-  APILoaderNotification,
   AnchorNav,
   Notification,
   NotificationContentBasic,
@@ -28,7 +27,6 @@ const NAV_PARAMS = {
     contents: "Contents",
     decorators: "Decorators",
     combos: "Combos",
-    special: "Special",
   },
   zone: "Zone",
   zone_nav: {
@@ -52,7 +50,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="item">
+      <TitleAnchor renderer={"h2"} id="item">
         {NAV_PARAMS.item}
       </TitleAnchor>
 
@@ -213,19 +211,10 @@ export const PageComponent = () => (
           </Notification>
         </NotificationPresenterBox>
       </Presenter>
-
-      <TitleAnchor renderer="h3" id="item_nav_special">
-        {NAV_PARAMS.item_nav.special}
-      </TitleAnchor>
-      <Presenter>
-        <NotificationPresenterBox title="api loader">
-          <APILoaderNotification>Loading something...</APILoaderNotification>
-        </NotificationPresenterBox>
-      </Presenter>
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="zone">
+      <TitleAnchor renderer={"h2"} id="zone">
         {NAV_PARAMS.zone}
       </TitleAnchor>
 
@@ -235,9 +224,11 @@ export const PageComponent = () => (
       <ResizablePresenter>
         <ResizablePresenterBox withFoam="horizontal" width="25rem" height="30rem" title="default">
           <NotificationsZone>
-            <APILoaderNotification>Loading something...</APILoaderNotification>
             <Notification>
               <NotificationContentBasic>I am a notification</NotificationContentBasic>
+            </Notification>
+            <Notification>
+              <NotificationContentBasic>I am another notification</NotificationContentBasic>
             </Notification>
             <Notification>
               <NotificationContentWithIcon icon={<TacosIcon />}>I am a notification</NotificationContentWithIcon>

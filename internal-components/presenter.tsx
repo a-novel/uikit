@@ -1,6 +1,6 @@
 import css from "./presenter.module.css";
 
-import { FC, HTMLAttributes, ReactNode } from "react";
+import { FC, HTMLAttributes, ReactNode, RefObject } from "react";
 
 import { ResizableBlock } from "@components/stateful";
 
@@ -68,6 +68,7 @@ export interface ResizablePresenterBoxProps extends PresenterBoxProps {
   height?: string;
   withFoam?: "vertical" | "horizontal";
   fillFoam?: "begin" | "end" | "both";
+  scrollBoxRef?: RefObject<HTMLDivElement>;
 }
 
 export const ResizablePresenterBox: FC<ResizablePresenterBoxProps> = ({
@@ -81,10 +82,12 @@ export const ResizablePresenterBox: FC<ResizablePresenterBoxProps> = ({
   width,
   withFoam,
   fillFoam,
+  scrollBoxRef,
 }) => (
   <div className={css.presenterBox}>
     <h5>{title}</h5>
     <ResizableBlock
+      ref={scrollBoxRef}
       className={mergeClassNames(css.resizablePresenterBox, withFoam && css[withFoam])}
       style={{ minHeight, minWidth, maxHeight, maxWidth, height, width }}
     >

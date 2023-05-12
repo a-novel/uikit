@@ -6,7 +6,7 @@ import { CSSProperties, FC, useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 
 import { Usage } from "@internal";
 
@@ -85,7 +85,7 @@ const Page = () => {
       <h1>General styles</h1>
       <Usage code={UI_USAGE} />
       <section>
-        <TitleAnchor renderer={H2} id="colorPalettes">
+        <TitleAnchor renderer={"h2"} id="colorPalettes">
           Color palettes
         </TitleAnchor>
         <div className={css.colorPalettesWrapper}>
@@ -169,7 +169,7 @@ const Page = () => {
         </div>
       </section>
       <section>
-        <TitleAnchor renderer={H2} id="typography">
+        <TitleAnchor renderer={"h2"} id="typography">
           Typography
         </TitleAnchor>
         <div className={css.typography}>

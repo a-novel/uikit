@@ -64,5 +64,11 @@ export const NavBar: FC<NavBarProps> = ({ pathname }) => (
         Banners
       </NavLink>
     </NavZone>
+    <NavZone>
+      <NavLabel>Feed Components</NavLabel>
+      <NavLink href="/feed/infinite" pathname={pathname}>
+        Infinite Feed
+      </NavLink>
+    </NavZone>
   </>
 );

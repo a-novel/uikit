@@ -1,5 +1,3 @@
-import "client-only";
-
 import css from "./nav-bar.module.css";
 
 import { FC, HTMLAttributes, ReactNode, useContext, useMemo, useRef, useState } from "react";
@@ -25,6 +23,7 @@ export interface NavWrapperProps extends HTMLAttributes<HTMLDivElement> {
    * Sets the {@link NavProps.main} property.
    */
   main?: boolean;
+  bordered?: boolean;
 }
 
 const NavWrapperContent: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, style, ...props }) => {
@@ -44,7 +43,16 @@ const NavWrapperContent: FC<HTMLAttributes<HTMLDivElement>> = ({ children, class
 /**
  * Wraps together a navigation bar and its content, with proper alignment.
  */
-export const NavWrapper: FC<NavWrapperProps> = ({ children, navComponent, className, mode, main, ...props }) => {
+export const NavWrapper: FC<NavWrapperProps> = ({
+  children,
+  navComponent,
+  bordered,
+  className,
+  mode,
+  main,
+  style,
+  ...props
+}) => {
   // Sticky mode is based on alignment, not orientation. If the nav bar is, for example, horizontal, then elements
   // will stick under it, so it will be a vertical alignment.
   const stickyMode = useMemo(() => (mode === "vertical" ? "horizontal" : "vertical"), [mode]);
@@ -52,12 +60,13 @@ export const NavWrapper: FC<NavWrapperProps> = ({ children, navComponent, classN
   return (
     <WithSticky
       mode={stickyMode}
-      render={(ref, stickyStyle) => (
+      render={(ref, stickyStyle, propagateStyle) => (
         <div
           className={mergeClassNames(css.navWrapper, main ? css.main : undefined, css[mode || "horizontal"], className)}
+          style={{ ...propagateStyle, ...style }}
           {...props}
         >
-          <Nav style={stickyStyle} className={css.navBar} main={main} mode={mode} ref={ref}>
+          <Nav style={stickyStyle} className={css.navBar} main={main} bordered={bordered} mode={mode} ref={ref}>
             {navComponent}
           </Nav>
           <NavWrapperContent>{children}</NavWrapperContent>

@@ -1,9 +1,7 @@
-import { H2 } from "@components/stateful";
-
 export const DefaultContent = () => (
   <section>
     <h1>Page 1</h1>
-    <H2>Section 1</H2>
+    <h2>Section 1</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus massa libero. Mauris vulputate sapien a
       elit tempor congue. Vivamus lobortis mauris sit amet ipsum tempor convallis. Nunc non augue cursus, maximus nulla

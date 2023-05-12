@@ -46,7 +46,7 @@ global.ResizeObserver = class {
   private _trigger = () => {
     this.callback(
       this.targets.map((target) => {
-        // JSDOM uses dummy values for an element DomRect (basically all 0s).
+        // JSDOM uses dummy values for an element DomRect (basically all 0).
         // For the callback to receive more relevant values, the getBoundingClientRect
         // method must be mocked on the element. This is doable with the NewSizableElement
         // generator (see __mocks__/generics).
@@ -54,7 +54,7 @@ global.ResizeObserver = class {
         return {
           target,
           contentRect: rect,
-          // This approximation is correct, unless a non-western-like writing mode is used (e.g. japanese from
+          // This is approximation correct, unless a non-western-like writing mode is used (e.g. japanese from
           // top-bottom and right-left - the bastards).
           borderBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],
           contentBoxSize: [{ blockSize: rect.height, inlineSize: rect.width }],

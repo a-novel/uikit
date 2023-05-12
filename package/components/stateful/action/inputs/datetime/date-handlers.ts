@@ -140,3 +140,5 @@ export const currentDate = (): InputDate => {
   const now = new Date();
   return new InputDate(now);
 };
+
+export const backendToInputDate = (date: string | Date): InputDate => new InputDate(new Date(date));

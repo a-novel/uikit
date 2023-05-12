@@ -4,7 +4,7 @@ import logoButton from "../../../../public/uikit/logo/logo-button.png";
 
 import { FC, ReactNode } from "react";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 import {
   AnchorNav,
   Decorator,
@@ -221,7 +221,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="link">
+      <TitleAnchor renderer={"h2"} id="link">
         {NAV_PARAMS.link}
       </TitleAnchor>
 
@@ -323,7 +323,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="label">
+      <TitleAnchor renderer={"h2"} id="label">
         {NAV_PARAMS.label}
       </TitleAnchor>
 
@@ -353,7 +353,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="home_link">
+      <TitleAnchor renderer={"h2"} id="home_link">
         {NAV_PARAMS.home_link}
       </TitleAnchor>
 
@@ -401,7 +401,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="user_link">
+      <TitleAnchor renderer={"h2"} id="user_link">
         {NAV_PARAMS.user_link}
       </TitleAnchor>
 

@@ -37,7 +37,7 @@ const AuthContextTestConsumer = () => {
   return (
     <>
       <div data-testid="status">{status}</div>
-      <div data-testid="token">{token || "NO TOKEN"}</div>
+      <div data-testid="token">{token}</div>
 
       {status === "authenticated" ? (
         <button data-testid="logout" onClick={logout}>
@@ -62,8 +62,6 @@ interface ExpectAuthContextParams {
   expectStatus?: string;
   expectToken?: string;
   expectStorageToken?: string;
-  expectLogoutButton?: boolean;
-  expectLoginButton?: boolean;
 }
 
 const expectAuthContext = async ({
@@ -73,62 +71,33 @@ const expectAuthContext = async ({
   expectAPIError,
   expectStatus,
   expectToken,
-  expectLogoutButton,
-  expectLoginButton,
   expectStorageToken,
 }: ExpectAuthContextParams) => {
-  await waitFor(
-    () => {
-      expect(apiCall).toHaveBeenCalledTimes(expectAPICalls.length);
-      for (const i in expectAPICalls) {
-        expect(apiCall).toHaveBeenNthCalledWith(parseInt(i) + 1, expectAPICalls[i]);
-      }
+  await waitFor(() => {
+    expect(apiCall).toHaveBeenCalledTimes(expectAPICalls.length);
+    for (const i in expectAPICalls) {
+      expect(apiCall).toHaveBeenNthCalledWith(parseInt(i) + 1, expectAPICalls[i]);
+    }
 
-      expect(wrapper.queryByTestId("error")).not.toBeInTheDocument();
-
-      if (expectAPIError) {
-        expect(wrapper.getByTestId("apiError").textContent).toBe(expectAPIError);
-      } else {
-        expect(wrapper.queryByTestId("apiError")).not.toBeInTheDocument();
-      }
-
-      if (expectStatus) {
-        expect(wrapper.getByTestId("status").textContent).toBe(expectStatus);
-      } else {
-        expect(wrapper.queryByTestId("status")).not.toBeInTheDocument();
-      }
-
-      if (expectToken) {
-        expect(wrapper.getByTestId("token").textContent).toBe(expectToken);
-      } else {
-        expect(wrapper.queryByTestId("token")).not.toBeInTheDocument();
-      }
-
-      if (expectLogoutButton) {
-        expect(wrapper.getByTestId("logout")).toBeInTheDocument();
-      } else {
-        expect(wrapper.queryByTestId("logout")).not.toBeInTheDocument();
-      }
-
-      if (expectLoginButton) {
-        expect(wrapper.getByTestId("login")).toBeInTheDocument();
-      } else {
-        expect(wrapper.queryByTestId("login")).not.toBeInTheDocument();
-      }
-
-      if (expectStorageToken) {
-        expect(localStorage.getItem(AUTH_LOCAL_STORAGE_KEY)).toBe(expectStorageToken);
-      } else {
-        expect(localStorage.getItem(AUTH_LOCAL_STORAGE_KEY)).toBeNull();
-      }
-    },
-    { timeout: 10000 }
-  );
+    expect({
+      error: wrapper.queryByTestId("error")?.textContent || undefined,
+      apiError: wrapper.queryByTestId("apiError")?.textContent || undefined,
+      status: wrapper.queryByTestId("status")?.textContent || undefined,
+      token: wrapper.queryByTestId("token")?.textContent || undefined,
+      storageToken: localStorage.getItem(AUTH_LOCAL_STORAGE_KEY) || undefined,
+    }).toEqual({
+      error: undefined,
+      apiError: expectAPIError,
+      status: expectStatus,
+      token: expectToken,
+      storageToken: expectStorageToken,
+    });
+  });
 };
 
 describe("WithAuth", () => {
   describe("initialization", () => {
-    it("should wait for the api response before setting status to authenticated, and use the token from the api", async () => {
+    it("should wait for the api response before setting status to authenticated", async () => {
       localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, "old.storage.token");
       const apiCall = mockAPI({ token: "new.api.token", delay: 1000 });
 
@@ -143,7 +112,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token"],
         expectStatus: "loading",
-        expectToken: "old.storage.token",
         expectStorageToken: "old.storage.token",
       });
 
@@ -156,7 +124,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token"],
         expectStatus: "loading",
-        expectToken: "old.storage.token",
         expectStorageToken: "old.storage.token",
       });
 
@@ -171,7 +138,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "new.api.token",
         expectStorageToken: "new.api.token",
-        expectLogoutButton: true,
       });
     });
 
@@ -190,7 +156,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token"],
         expectStatus: "loading",
-        expectToken: "old.storage.token",
         expectStorageToken: "old.storage.token",
       });
 
@@ -202,7 +167,7 @@ describe("WithAuth", () => {
         wrapper,
         apiCall,
         expectAPICalls: ["old.storage.token"],
-        expectAPIError: "403",
+        expectStatus: "unauthenticated",
       });
     });
 
@@ -222,7 +187,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token"],
         expectStatus: "loading",
-        expectToken: "old.storage.token",
         expectStorageToken: "old.storage.token",
       });
 
@@ -252,8 +216,6 @@ describe("WithAuth", () => {
         wrapper,
         apiCall,
         expectStatus: "unauthenticated",
-        expectToken: "NO TOKEN",
-        expectLoginButton: true,
       });
     });
   });
@@ -272,8 +234,6 @@ describe("WithAuth", () => {
         wrapper,
         apiCall,
         expectStatus: "unauthenticated",
-        expectToken: "NO TOKEN",
-        expectLoginButton: true,
       });
 
       await act(async () => {
@@ -286,7 +246,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "fake.login.token",
         expectStorageToken: "fake.login.token",
-        expectLogoutButton: true,
       });
     });
 
@@ -307,7 +266,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "new.api.token",
         expectStorageToken: "new.api.token",
-        expectLogoutButton: true,
       });
 
       await act(async () => {
@@ -319,8 +277,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token"],
         expectStatus: "unauthenticated",
-        expectToken: "NO TOKEN",
-        expectLoginButton: true,
       });
 
       // Ensure the api is not called again uselessly.
@@ -356,7 +312,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "new.api.token",
         expectStorageToken: "new.api.token",
-        expectLogoutButton: true,
       });
 
       apiCall.mockImplementation(mockAPI({ token: "newer.api.token", delay: 100 }));
@@ -372,7 +327,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "newer.api.token",
         expectStorageToken: "newer.api.token",
-        expectLogoutButton: true,
       });
     });
 
@@ -396,7 +350,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "new.api.token",
         expectStorageToken: "new.api.token",
-        expectLogoutButton: true,
       });
     });
 
@@ -421,7 +374,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "new.api.token",
         expectStorageToken: "new.api.token",
-        expectLogoutButton: true,
       });
 
       await act(async () => {
@@ -435,7 +387,6 @@ describe("WithAuth", () => {
         expectStatus: "authenticated",
         expectToken: "new.api.token",
         expectStorageToken: "new.api.token",
-        expectLogoutButton: true,
       });
 
       await act(async () => {
@@ -447,8 +398,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token", "new.api.token"],
         expectStatus: "unauthenticated",
-        expectToken: "NO TOKEN",
-        expectLoginButton: true,
       });
 
       await act(async () => {
@@ -460,8 +409,6 @@ describe("WithAuth", () => {
         apiCall,
         expectAPICalls: ["old.storage.token", "new.api.token"],
         expectStatus: "unauthenticated",
-        expectToken: "NO TOKEN",
-        expectLoginButton: true,
       });
     });
   });

@@ -29,7 +29,7 @@ export interface StickyContextType {
 export const StickyContext = createContext<StickyContextType>({ vertical: 0, horizontal: 0 });
 
 export interface StickyProviderProps<T extends HTMLElement> {
-  render: (ref: ForwardedRef<T>, style: CSSProperties) => ReactNode;
+  render: (ref: ForwardedRef<T>, style: CSSProperties, propagateStyle: CSSProperties) => ReactNode;
   stickyRef?: ForwardedRef<T>;
   /**
    * If true, ignore parent sticky elements offsets, and set this element offset as 0. Every child will inherit
@@ -61,12 +61,12 @@ export interface StickyProviderProps<T extends HTMLElement> {
  *   <WithSticky
  *     mode="vertical"
  *     render={(ref, style) => (
- *       (ref, style) => (
+ *       (ref, style, propagateStyle) => (
  *         <NavBarHorizontal ref={ref}/>
  *         { ... }
  *         <WithSticky
  *           mode="horizontal"
- *           render={(ref, style) => (
+ *           render={(ref, style, propagateStyle) => (
  *             <NavBarVertical ref={ref}/>
  *             { ... }
  *           )}
@@ -131,6 +131,10 @@ export function WithSticky<T extends HTMLElement>({
         {
           top: `${reset ? 0 : parentVertical}px`,
           left: `${reset ? 0 : parentHorizontal}px`,
+          "--sticky-top": `${reset ? 0 : parentVertical}px`,
+          "--sticky-left": `${reset ? 0 : parentHorizontal}px`,
+        } as CSSProperties,
+        {
           "--sticky-top": `${reset ? 0 : parentVertical}px`,
           "--sticky-left": `${reset ? 0 : parentHorizontal}px`,
         } as CSSProperties

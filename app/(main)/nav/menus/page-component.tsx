@@ -4,7 +4,7 @@ import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
 
 import { FC, ReactNode } from "react";
 
-import { DropMenu, DropMenuActions, H2, TitleAnchor } from "@components/stateful";
+import { DropMenu, DropMenuActions, TitleAnchor } from "@components/stateful";
 import { AnchorNav, Nav, NavLink, NavZone } from "@components/stateless";
 
 import { Presenter, PresenterBox, Usage } from "@internal";
@@ -130,7 +130,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="drop_menu">
+      <TitleAnchor renderer={"h2"} id="drop_menu">
         {NAV_PARAMS.drop_menu}
       </TitleAnchor>
 

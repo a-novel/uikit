@@ -4,12 +4,10 @@ import LinkIcon from "@public/icons/monochrome/link.svg";
 
 import { FC, HTMLAttributes } from "react";
 
-import { H2 } from "../index";
-
 import { captureException, mergeClassNames } from "@lib";
 
 export interface TitleAnchorProps extends Omit<HTMLAttributes<HTMLHeadingElement>, "id"> {
-  renderer?: "h1" | typeof H2 | "h3" | "h4" | "h5" | "h6";
+  renderer?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   id: string;
 }
 

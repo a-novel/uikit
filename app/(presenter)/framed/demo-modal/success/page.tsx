@@ -2,7 +2,7 @@
 
 import { DefaultContent } from "../../default-content";
 import { DefaultNavZone } from "../../default-nav-zone";
-import { H2, Modal, ModalButtonZone, ModalContent, ModalTitle } from "@components/stateful";
+import { Modal, ModalButtonZone, ModalContent, ModalTitle } from "@components/stateful";
 import { Button } from "@components/stateless";
 
 const Page = () => (

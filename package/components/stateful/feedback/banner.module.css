@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     width: calc(100vw - var(--sticky-left));
+    z-index: var(--important-index);
 }
 
 .container {
@@ -14,5 +15,6 @@
     justify-content: center;
     background-color: var(--decorator-dark);
     color: var(--text);
+    box-sizing: border-box;
     width: 100%;
 }

@@ -9,8 +9,7 @@
 }
 
 .name {
-    font-size: .8rem;
-    font-weight: bold;
+    font-size: .9rem;
     color: var(--text);
     max-width: 100%;
     text-overflow: ellipsis;
@@ -18,9 +17,8 @@
 }
 
 .email {
-    font-size: .6rem;
-    font-weight: bold;
-    color: var(--grey-400);
+    font-size: .7rem;
+    color: var(--grey-300);
     max-width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;

@@ -12,9 +12,18 @@ const ScreenFooter: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props 
 export interface ScreenProps extends HTMLAttributes<HTMLDivElement> {
   center?: boolean;
   footer?: ReactNode;
+  contentProps?: HTMLAttributes<HTMLDivElement>;
 }
 
-export const Screen: FC<ScreenProps> = ({ className, center, style, children, footer, ...props }) => {
+export const Screen: FC<ScreenProps> = ({
+  className,
+  center,
+  style,
+  children,
+  footer,
+  contentProps: { className: contentClassName, ...contentProps } = {},
+  ...props
+}) => {
   const { vertical, horizontal } = useContext(StickyContext);
 
   return (
@@ -23,7 +32,9 @@ export const Screen: FC<ScreenProps> = ({ className, center, style, children, fo
       style={{ minWidth: `calc(100vw - ${horizontal}px)`, minHeight: `calc(100vh - ${vertical}px)`, ...style }}
       {...props}
     >
-      <div className={css.childWrapper}>{children}</div>
+      <div className={mergeClassNames(css.childWrapper, contentClassName)} {...contentProps}>
+        {children}
+      </div>
       {footer && <ScreenFooter>{footer}</ScreenFooter>}
     </div>
   );

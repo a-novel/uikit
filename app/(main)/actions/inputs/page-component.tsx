@@ -12,7 +12,6 @@ import { FC, ReactNode } from "react";
 import {
   DateInput,
   DateInputValidated,
-  H2,
   ISO_FR,
   ISO_GREGORIAN_CALENDAR,
   ISO_GREGORIAN_WEEK_START,
@@ -157,7 +156,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="basic">
+      <TitleAnchor renderer={"h2"} id="basic">
         {NAV_PARAMS.basic}
       </TitleAnchor>
 
@@ -233,7 +232,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="text_area">
+      <TitleAnchor renderer={"h2"} id="text_area">
         {NAV_PARAMS.text_area}
       </TitleAnchor>
 
@@ -291,7 +290,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="children">
+      <TitleAnchor renderer={"h2"} id="children">
         {NAV_PARAMS.children}
       </TitleAnchor>
 
@@ -680,7 +679,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="date">
+      <TitleAnchor renderer={"h2"} id="date">
         {NAV_PARAMS.date}
       </TitleAnchor>
 
@@ -1053,7 +1052,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="select">
+      <TitleAnchor renderer={"h2"} id="select">
         {NAV_PARAMS.select}
       </TitleAnchor>
 
@@ -1139,7 +1138,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="special">
+      <TitleAnchor renderer={"h2"} id="special">
         {NAV_PARAMS.special}
       </TitleAnchor>
 

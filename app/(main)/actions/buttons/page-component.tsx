@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 import { AnchorNav, Button, ButtonSecondary, ButtonSecondaryZone, ButtonZone, Decorator } from "@components/stateless";
 
 import { Presenter, PresenterBox, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal";
@@ -129,7 +129,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="button">
+      <TitleAnchor renderer={"h2"} id="button">
         {NAV_PARAMS.button}
       </TitleAnchor>
 
@@ -167,7 +167,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="button_secondary">
+      <TitleAnchor renderer={"h2"} id="button_secondary">
         {NAV_PARAMS.button_secondary}
       </TitleAnchor>
 
@@ -223,7 +223,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="button_zone">
+      <TitleAnchor renderer={"h2"} id="button_zone">
         {NAV_PARAMS.button_zone}
       </TitleAnchor>
 
@@ -268,7 +268,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="button_zone_secondary">
+      <TitleAnchor renderer={"h2"} id="button_zone_secondary">
         {NAV_PARAMS.button_zone_secondary}
       </TitleAnchor>
 

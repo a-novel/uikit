@@ -68,26 +68,24 @@
 
 .drop-menu-content {
     position: absolute;
-    bottom: 0;
+    top: calc(100% + 1rem);
     right: 0;
     border-style: solid;
     border-width: thin;
     border-color: var(--grey-800);
     border-radius: var(--button-radius);
-    transform-origin: top;
-    transform: translateY(100%);
     background-color: var(--background-overlay-color);
     backdrop-filter: var(--background-overlay-backdrop);
 
     opacity: 0;
     transition: linear .1s;
     pointer-events: none;
+    z-index: var(--important-index);
 }
 
 .active .drop-menu-content {
     pointer-events: all;
     opacity: 1;
-    transform: translateY(calc(100% + 1rem));
 }
 
 .drop-menu-actions {
