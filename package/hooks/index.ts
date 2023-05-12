@@ -9,3 +9,5 @@ export * from "./api";
 export * from "./mount";
 export * from "./window";
 export * from "./redirect";
+export * from "./auth";
+export * from "./auto-notifier";

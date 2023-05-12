@@ -1,5 +1,3 @@
-import "client-only";
-
 import css from "./modal.module.css";
 
 import FlaresError from "@public/icons/monochrome/flares/flares-error.svg";

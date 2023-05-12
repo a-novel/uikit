@@ -37,7 +37,9 @@ export interface AuthContextType {
    * The current token, if any.
    */
   token?: string | null;
-  cleanErrors: () => void;
+  success?: boolean;
+  failure?: boolean;
+  clearErrors: () => void;
 }
 
 export interface AuthProviderProps {
@@ -57,8 +59,8 @@ export const AuthContext = createContext<AuthContextType>({
   login: () => {
     console.warn("AuthContext.login() called before initialization.");
   },
-  cleanErrors: () => {
-    console.warn("AuthContext.cleanErrors() called before initialization.");
+  clearErrors: () => {
+    console.warn("AuthContext.clearErrors() called before initialization.");
   },
 });
 
@@ -75,12 +77,18 @@ const WithAuthComponent: FC<AuthProviderProps> = ({ children, checkInterval, api
     setResponse,
     setError,
     setAPIError,
+    clearErrors,
+    success,
+    failure,
   } = useFetch({
     call: api,
-    initial: initialToken,
   });
 
-  const status = useMemo(() => (loading ? "loading" : token ? "authenticated" : "unauthenticated"), [loading, token]);
+  const status = useMemo(
+    () =>
+      (loading == null && initialToken) || loading === true ? "loading" : token ? "authenticated" : "unauthenticated",
+    [initialToken, loading, token]
+  );
 
   const wrapperToken = useMemo(() => [token] as [string | undefined], [token]);
 
@@ -107,31 +115,29 @@ const WithAuthComponent: FC<AuthProviderProps> = ({ children, checkInterval, api
 
   const logout = useCallback(() => {
     setResponse(undefined);
-  }, [setResponse]);
-
-  const cleanErrors = useCallback(() => {
-    setAPIError(undefined);
     setError(undefined);
-  }, [setAPIError, setError]);
+    setAPIError(undefined);
+    window.localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
+  }, [setAPIError, setError, setResponse]);
 
-  // Auto logout.
+  // Auto-logout on 403.
   useEffect(() => {
-    // The local token, if any, is not valid anymore. We have to delete it and force user to re-login.
-    if (status === "authenticated" && apiError?.status === 403) {
+    if (apiError?.status === 403) {
       logout();
       return;
     }
-  }, [apiError?.status, logout, status]);
+  }, [apiError?.status, logout]);
 
   // Update localStorage values on token change.
   useEffect(() => {
-    token
-      ? window.localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, token)
-      : window.localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
+    // Only remove on explicit logout, to avoid losing local token in case of API error.
+    if (token != null) {
+      window.localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, token);
+    }
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ logout, login, error, status, token, apiError, cleanErrors }}>
+    <AuthContext.Provider value={{ success, failure, logout, login, error, status, token, apiError, clearErrors }}>
       {children}
     </AuthContext.Provider>
   );

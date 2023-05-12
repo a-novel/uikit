@@ -3,7 +3,7 @@
 import TacosIcon from "@public/icons/colored/tacos.svg";
 import checkLottie from "@public/lottie/text-input/check.json";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 import { AnchorNav, StatusPage } from "@components/stateless";
 import { Player } from "@lottiefiles/react-lottie-player";
 
@@ -31,7 +31,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="default">
+      <TitleAnchor renderer={"h2"} id="default">
         {NAV_PARAMS.default}
       </TitleAnchor>
 

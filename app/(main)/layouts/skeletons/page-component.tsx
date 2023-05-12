@@ -1,7 +1,7 @@
 "use client";
 
-import { H2, TitleAnchor } from "@components/stateful";
-import { AnchorNav, Skeleton } from "@components/stateless";
+import { Skeleton, TitleAnchor } from "@components/stateful";
+import { AnchorNav } from "@components/stateless";
 
 import { Presenter, PresenterBox } from "@internal";
 
@@ -23,7 +23,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="default">
+      <TitleAnchor renderer={"h2"} id="default">
         {NAV_PARAMS.default}
       </TitleAnchor>
 

@@ -5,8 +5,8 @@ import LinkIcon from "@public/icons/monochrome/link.svg";
 import SearchIcon from "@public/icons/monochrome/search.svg";
 import SendIcon from "@public/icons/monochrome/send.svg";
 
-import { H2, TitleAnchor } from "@components/stateful";
-import { AnchorNav, Stepper } from "@components/stateless";
+import { Stepper, TitleAnchor } from "@components/stateful";
+import { AnchorNav } from "@components/stateless";
 
 import { ResizablePresenter, ResizablePresenterBox } from "@internal";
 
@@ -28,7 +28,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="vertical">
+      <TitleAnchor renderer={"h2"} id="vertical">
         {NAV_PARAMS.vertical}
       </TitleAnchor>
 

@@ -4,7 +4,6 @@ import { FC, ReactNode } from "react";
 
 import {
   DateInput,
-  H2,
   ISO_FR,
   ISO_GREGORIAN_CALENDAR,
   ISO_GREGORIAN_WEEK_START,
@@ -96,7 +95,7 @@ export const PageComponent = () => (
     <AnchorNav params={NAV_PARAMS} />
 
     <section>
-      <TitleAnchor renderer={H2} id="basic">
+      <TitleAnchor renderer={"h2"} id="basic">
         {NAV_PARAMS.basic}
       </TitleAnchor>
 
@@ -188,7 +187,7 @@ export const PageComponent = () => (
     </section>
 
     <section>
-      <TitleAnchor renderer={H2} id="info_box">
+      <TitleAnchor renderer={"h2"} id="info_box">
         {NAV_PARAMS.info_box}
       </TitleAnchor>
 
@@ -209,7 +208,7 @@ export const PageComponent = () => (
           </FormInfoBox>
         </InfoBoxPresenter>
         <InfoBoxPresenter title="closable">
-          <FormInfoBox decorator="standard" onClose={() => console.log("clickity clockitiy")}>
+          <FormInfoBox decorator="standard" onClose={() => console.log("FUCK YOU I WON'T DO WHAT YOU TELL ME")}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat

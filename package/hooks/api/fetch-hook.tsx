@@ -1,6 +1,5 @@
-import React, { ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
-import { NotificationContentClosable, NotificationContentWithTitle } from "@components/stateless";
 import { APIError, isAPIError } from "@lib/api";
 
 import { NotificationsContext } from "@contexts";
@@ -34,9 +33,17 @@ export interface FetchHookResult<Res, Req extends any[]> {
    */
   trigger: (...req: Req) => void;
   /**
-   * Indicates if a call is currently processing.
+   * Indicates if a call is currently processing. Undefined while no call has been made.
    */
-  loading: boolean;
+  loading?: boolean;
+  /**
+   * Indicates whether last call was successful or not.
+   */
+  success?: boolean;
+  /**
+   * Indicates whether last call failed or not.
+   */
+  failure?: boolean;
   /**
    * The last returned response object, if any.
    */
@@ -64,6 +71,10 @@ export interface FetchHookResult<Res, Req extends any[]> {
    */
   setError: (err?: unknown) => void;
   clearErrors: () => void;
+  /**
+   * Reset all returns values to their initial state.
+   */
+  clear: () => void;
 }
 
 export const useFetch = <Res, Req extends any[]>({
@@ -71,10 +82,19 @@ export const useFetch = <Res, Req extends any[]>({
   initial,
   onLoading,
 }: FetchHookParams<Res, Req>): FetchHookResult<Res, Req> => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>();
+  const [success, setSuccess] = useState<boolean>();
   const [response, setResponse] = useState(initial);
   const [apiError, setAPIError] = useState<APIError>();
   const [error, setError] = useState<unknown>();
+
+  const clear = useCallback(() => {
+    setLoading(undefined);
+    setSuccess(undefined);
+    setResponse(initial);
+    setAPIError(undefined);
+    setError(undefined);
+  }, [initial]);
 
   const trigger = useCallback(
     async (...req: Req) => {
@@ -86,7 +106,9 @@ export const useFetch = <Res, Req extends any[]>({
         setResponse(res);
         setAPIError(undefined);
         setError(undefined);
+        setSuccess(true);
       } catch (e) {
+        setSuccess(false);
         if (isAPIError(e)) {
           setAPIError(e);
         } else {
@@ -114,62 +136,26 @@ export const useFetch = <Res, Req extends any[]>({
     setAPIError,
     setError,
     clearErrors,
+    success,
+    clear,
+    failure: error != null || apiError != null,
   };
 };
-
-export interface BackgroundFetchHookResult<Res, Req extends any[]> {
-  /**
-   * Indicates if a call is currently processing.
-   */
-  loading: boolean;
-  /**
-   * The last returned response object, if any.
-   */
-  response?: Res;
-  /**
-   * Force the {@link response} value.
-   */
-  setResponse: (res?: Res) => void;
-  success?: boolean;
-  /**
-   * If an error is returned by the API, it is stored here. If any other error occurs, it is stored in the
-   * {@link error} property.
-   */
-  apiError?: APIError;
-  /**
-   * If an error is returned by the API, it is stored in the {@link apiError} property. If any other error occurs, it
-   * is stored here.
-   */
-  error?: unknown;
-}
-
-export interface FetchErrorMessage {
-  title: ReactNode;
-  content: ReactNode;
-}
-
-export interface FetchErrorMessages {
-  /**
-   * The default message to display, when error is not known.
-   */
-  default: FetchErrorMessage;
-  /**
-   * Define special messages for {@link APIError} codes.
-   */
-  codeMessages?: Record<number, FetchErrorMessage>;
-}
 
 export interface BackgroundFetchHookParams<Res, Req extends any[]> extends FetchHookParams<Res, Req> {
   /**
    * Triggers a new api call every time they are modified. Must be memoized.
    */
-  params: Req;
+  params?: Req;
   condition?: boolean;
-  errors: FetchErrorMessages;
   /**
-   * Capture the error to handle it manually. You may call resume() to proceed with the default behavior.
+   * Call clear when params are nil.
    */
-  onError?: (err: unknown, resume: () => void) => void;
+  autoClean?: boolean;
+}
+
+export interface BackgroundFetchHookResult<Res, Req extends any[]> extends FetchHookResult<Res, Req> {
+  reload: () => void;
 }
 
 /**
@@ -178,78 +164,28 @@ export interface BackgroundFetchHookParams<Res, Req extends any[]> extends Fetch
  */
 export const useBackgroundFetch = <Res, Req extends any[]>({
   params,
-  errors,
-  onError,
   condition,
+  autoClean,
   ...props
 }: BackgroundFetchHookParams<Res, Req>): BackgroundFetchHookResult<Res, Req> => {
-  const id = useMemo(() => crypto.randomUUID(), []);
-  const [success, setSuccess] = useState<boolean>();
-  const { set, unset } = useContext(NotificationsContext);
+  const res = useFetch(props);
 
-  const { trigger, loading, response, error, apiError, setResponse, clearErrors } = useFetch(props);
-
-  const handleError = useCallback(() => {
-    if (error || apiError) {
-      setSuccess(false);
+  const reload = useCallback(() => {
+    if (condition !== false && params != null) {
+      res.trigger(...params);
     }
-
-    if (apiError) {
-      const errorMessage = errors.codeMessages?.[apiError.status] || errors.default;
-
-      set(id, {
-        decorator: "danger",
-        children: (
-          <NotificationContentClosable onClose={clearErrors}>
-            <NotificationContentWithTitle title={errorMessage.title}>
-              {errorMessage.content}
-            </NotificationContentWithTitle>
-          </NotificationContentClosable>
-        ),
-      });
-
-      return;
-    }
-
-    if (error) {
-      set(id, {
-        decorator: "danger",
-        children: (
-          <NotificationContentClosable onClose={clearErrors}>
-            <NotificationContentWithTitle title={errors.default.title}>
-              {errors.default.content}
-            </NotificationContentWithTitle>
-          </NotificationContentClosable>
-        ),
-      });
-
-      return;
-    }
-
-    unset(id);
-  }, [apiError, error, errors, id, clearErrors, set, unset]);
+  }, [condition, params, res]);
 
   useEffect(() => {
-    if (condition !== false) {
-      trigger(...params);
-      setSuccess(true);
-    }
-  }, [condition, params, trigger]);
+    reload();
+  }, [condition, params, reload, res, res.trigger]);
 
   useEffect(() => {
-    if ((error != null || apiError) != null && onError != null) {
-      onError(error || apiError, handleError);
-    } else {
-      handleError();
+    if (params == null && autoClean === true) {
+      res.setResponse(undefined);
+      res.clearErrors();
     }
-  }, [apiError, error, handleError, onError]);
+  }, [autoClean, params, res]);
 
-  return {
-    loading,
-    response,
-    setResponse,
-    success: success && !loading,
-    error,
-    apiError,
-  };
+  return { ...res, reload };
 };

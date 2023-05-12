@@ -1,12 +1,10 @@
 import css from "./notification.module.css";
 
 import CloseIcon from "@public/icons/monochrome/close.svg";
-import loadingLottie from "@public/lottie/status/loading.json";
 
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import { Decorator, WithDecorator } from "../index";
-import { Player } from "@lottiefiles/react-lottie-player";
 
 import { mergeClassNames } from "@lib";
 
@@ -84,12 +82,6 @@ export const NotificationContentClosable: FC<NotificationContentClosableProps> =
       <CloseIcon />
     </div>
   </NotificationContentBasic>
-);
-
-export const APILoaderNotification: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
-  <Notification>
-    <NotificationContentWithIcon icon={<Player autoplay loop src={loadingLottie} />} {...props} />
-  </Notification>
 );
 
 export const NotificationsZone: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (

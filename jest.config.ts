@@ -22,7 +22,7 @@ const customJestConfig: Config = {
     "^@public/(.*)$": ["<rootDir>/package/public/$1"],
     "^@styles$/(.*)$": ["<rootDir>/package/styles/$1"],
   },
-  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/", "<rootDir>/__old"],
+  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
   fakeTimers: {
     enableGlobally: true,
   },

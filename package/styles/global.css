@@ -105,14 +105,27 @@ h2 {
     font-size: 1.6rem;
     color: var(--text);
     font-weight: normal;
+    box-sizing: border-box;
     margin: .6rem 0;
-    width: 100%;
-    z-index: var(--important-index);
+    width: calc(100% - var(--sticky-left));
+    z-index: 50;
     background-color: var(--background-overlay-color);
     backdrop-filter: var(--background-overlay-backdrop);
-    padding: .4rem 0;
+    padding: .4rem .6rem;
     position: sticky;
+    top: var(--sticky-top);
+    left: var(--sticky-left);
+}
+
+h2.centered {
+    text-align: center;
+}
+
+h2.static {
+    z-index: 1;
+    position: static;
     top: 0;
+    left: 0;
 }
 
 h3 {

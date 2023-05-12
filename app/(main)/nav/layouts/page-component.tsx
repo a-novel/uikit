@@ -2,7 +2,7 @@
 
 import logoButton from "../../../../public/uikit/logo/logo-button.png";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 import { AnchorNav, Nav, NavLabel, NavLink, NavLinkHome, NavZone } from "@components/stateless";
 
 import { IFramePresenterBox, IframePresenter, ResizablePresenter, ResizablePresenterBox, Usage } from "@internal";
@@ -63,7 +63,7 @@ export const PageComponent = () => {
       <AnchorNav params={NAV_PARAMS} />
 
       <section>
-        <TitleAnchor renderer={H2} id="nav">
+        <TitleAnchor renderer={"h2"} id="nav">
           {NAV_PARAMS.nav}
         </TitleAnchor>
 
@@ -353,7 +353,7 @@ export const PageComponent = () => {
       </section>
 
       <section>
-        <TitleAnchor renderer={H2} id="frame">
+        <TitleAnchor renderer={"h2"} id="frame">
           {NAV_PARAMS.frame}
         </TitleAnchor>
         <IframePresenter>

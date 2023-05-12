@@ -1,6 +1,6 @@
 "use client";
 
-import { H2, TitleAnchor } from "@components/stateful";
+import { TitleAnchor } from "@components/stateful";
 import { AnchorNav } from "@components/stateless";
 
 import { IFramePresenterBox, IframePresenter } from "@internal";
@@ -28,7 +28,7 @@ export const PageComponent = () => {
       <AnchorNav params={NAV_PARAMS} />
 
       <section>
-        <TitleAnchor renderer={H2} id="nav">
+        <TitleAnchor renderer={"h2"} id="nav">
           {NAV_PARAMS.default}
         </TitleAnchor>
         <IframePresenter>

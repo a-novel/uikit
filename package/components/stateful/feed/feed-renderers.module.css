@@ -1,0 +1,10 @@
+.inline-feed-renderer {
+    width: calc(100% - 1.2rem);
+    box-sizing: border-box;
+    margin: .6rem .6rem 0 .6rem;
+    flex-shrink: 0;
+}
+
+.inline-feed-renderer:last-child {
+    margin-bottom: .6rem;
+}

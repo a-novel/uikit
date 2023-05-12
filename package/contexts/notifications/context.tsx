@@ -19,7 +19,7 @@ export interface NotificationsContextType {
   set: (key: string, props: Omit<NotificationProps, "hide">, params?: SetNotificationParamsOptions) => void;
   unset: (key: string) => void;
   unsetAll: () => void;
-  notifications: Record<string, NotificationProps>;
+  notifications: Map<string, NotificationProps>;
 }
 
 export const NotificationsContext = createContext<NotificationsContextType>({
@@ -32,13 +32,13 @@ export const NotificationsContext = createContext<NotificationsContextType>({
   unsetAll: () => {
     console.warn("NotificationsContext.unsetAll() has been called but not initialized");
   },
-  notifications: {},
+  notifications: new Map(),
 });
 
 export const WithNotifications: FC<{ children?: ReactNode }> = ({ children }) => {
   // Schedule timed notifications removal.
   const timeouts = useRef<Map<string, number>>(new Map());
-  const [notifications, setNotifications] = useState<Record<string, NotificationProps>>({});
+  const [notifications, setNotifications] = useState<Map<string, NotificationProps>>(new Map());
 
   // FadeOut animation takes 200ms, so we have a little buffer. Check the css of the notification component to make
   // sure this value always matches.
@@ -46,32 +46,46 @@ export const WithNotifications: FC<{ children?: ReactNode }> = ({ children }) =>
 
   const unset = useCallback((key: string) => {
     setNotifications((notifications) => {
-      const { [key]: _, ...rest } = notifications;
+      notifications.delete(key);
       // Cancel removal timeout, if any.
-      timeouts.current.delete(key);
-      return rest;
+      if (timeouts.current.has(key)) {
+        window.clearTimeout(timeouts.current.get(key)!);
+        timeouts.current.delete(key);
+      }
+      return new Map(notifications);
     });
   }, []);
 
   const unsetAll = useCallback(() => {
-    setNotifications({});
+    setNotifications((notifications) => {
+      notifications.clear();
+      // Cancel all removal timeouts.
+      timeouts.current.forEach((timeout) => window.clearTimeout(timeout));
+      timeouts.current.clear();
+      return new Map(notifications);
+    });
   }, []);
 
   const set = useCallback(
     (key: string, props: Omit<NotificationProps, "hide">, params?: SetNotificationParamsOptions) => {
       // Cancel removal timeout, if any (can happen if the key is updated).
-      timeouts.current.delete(key);
+      if (timeouts.current.has(key)) {
+        window.clearTimeout(timeouts.current.get(key)!);
+        timeouts.current.delete(key);
+      }
 
       // Schedule timed notifications removal.
       if (params?.ttl) {
-        const timeout = window.setTimeout(() => unset(key), params.ttl);
-        timeouts.current.set(key, timeout);
+        timeouts.current.set(
+          key,
+          window.setTimeout(() => unset(key), params.ttl)
+        );
       }
 
-      setNotifications((notifications) => ({
-        ...notifications,
-        [key]: props,
-      }));
+      setNotifications((notifications) => {
+        notifications.set(key, props);
+        return new Map(notifications);
+      });
     },
     [unset]
   );
@@ -87,7 +101,7 @@ export const WithNotifications: FC<{ children?: ReactNode }> = ({ children }) =>
   return (
     <NotificationsContext.Provider value={{ set, unset, unsetAll, notifications }}>
       <NotificationsZone className={css.container}>
-        {Object.entries(data).map(([key, props]) => (
+        {Array.from(data).map(([key, props]) => (
           <Notification key={key} hide={props.status === "removed"} {...props.content} />
         ))}
       </NotificationsZone>

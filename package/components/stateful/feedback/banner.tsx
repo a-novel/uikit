@@ -34,8 +34,8 @@ const RenderBanners: FC<{ content: BannerContent[] }> = ({ content }) => (
 export const Banner: FC<BannerProps> = ({ children, content, className, style, ...props }) => (
   <WithSticky
     mode="vertical"
-    render={(ref, stickyStyle) => (
-      <>
+    render={(ref, stickyStyle, propagateStyle) => (
+      <div style={propagateStyle}>
         <div
           ref={ref as LegacyRef<HTMLDivElement>}
           className={mergeClassNames(css.wrapper)}
@@ -45,7 +45,7 @@ export const Banner: FC<BannerProps> = ({ children, content, className, style, .
           <RenderBanners content={content} />
         </div>
         {children}
-      </>
+      </div>
     )}
   />
 );

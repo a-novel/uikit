@@ -25,7 +25,7 @@ const RenderDummySticky: FC<RenderDummyStickyProps> = ({ height, width, children
   return (
     <WithSticky
       stickyRef={ref}
-      render={(stickyRef, style) => (
+      render={(stickyRef, style, _) => (
         <>
           {/* What ru doing step-div */}
           <div data-testid={testID} style={{ position: "sticky", ...style }} ref={stickyRef}>

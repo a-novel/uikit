@@ -187,16 +187,26 @@ export interface NavProps extends HTMLAttributes<HTMLElement> {
    * present in a page, preferably at the highest level possible.
    */
   main?: boolean;
+  bordered?: boolean;
 }
 
 /**
  * The nav bar container.
  */
-export const Nav = forwardRef<HTMLElement, NavProps>(function Nav({ children, className, mode, main, ...props }, ref) {
+export const Nav = forwardRef<HTMLElement, NavProps>(function Nav(
+  { bordered, children, className, mode, main, ...props },
+  ref
+) {
   return (
     <nav
       ref={ref}
-      className={mergeClassNames(css.navBar, main ? css.main : undefined, css[mode || "horizontal"], className)}
+      className={mergeClassNames(
+        css.navBar,
+        main ? css.main : undefined,
+        bordered ? css.bordered : undefined,
+        css[mode || "horizontal"],
+        className
+      )}
       {...props}
     >
       {children}

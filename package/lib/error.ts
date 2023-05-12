@@ -1,3 +1,5 @@
+import { isAPIError } from "@lib/api";
+
 export interface CaptureExceptionOptions {
   silent?: boolean;
 }
@@ -29,7 +31,8 @@ class exceptionHandler {
 const defaultHandler = new exceptionHandler({
   handlers: [
     (error, options) => {
-      if (options?.silent) {
+      // No need to log api errors, as they are already logged by the browser no matter what.
+      if (options?.silent || isAPIError(error)) {
         return;
       }
 

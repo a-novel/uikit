@@ -6,7 +6,7 @@ import MoreIcon from "@public/icons/monochrome/more-horizontal.svg";
 import { useState } from "react";
 
 import { DefaultContent } from "../../default-content";
-import { DropMenu, DropMenuActions, H2, NavWrapper } from "@components/stateful";
+import { DropMenu, DropMenuActions, NavWrapper } from "@components/stateful";
 import { NavLabel, NavLink, NavLinkHome, NavZone, UserProfileLink } from "@components/stateless";
 
 const Page = () => {
@@ -102,7 +102,7 @@ const Page = () => {
       <DefaultContent />
       <NavWrapper navComponent={subNavComponent} mode="vertical">
         <section>
-          <H2>SubSection 1</H2>
+          <h2>SubSection 1</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus massa libero. Mauris vulputate
             sapien a elit tempor congue. Vivamus lobortis mauris sit amet ipsum tempor convallis. Nunc non augue cursus,

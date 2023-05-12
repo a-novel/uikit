@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { Dispatch, FC, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { InputBasic, InputProps } from "../basic";
 
@@ -57,6 +57,7 @@ export const TextInput: FC<TextInputProps> = ({
   const [status, setStatus] = useState<TextInputStatus>("no-change");
   const [statusError, setStatusError] = useState<TextInputError>();
   const [errorValue, setErrorValue] = useState<unknown>();
+  const ongoingPromise = useRef<Promise<void>>();
 
   const replaceSpacesRegexp = useMemo(
     () => (maxConsecutiveSpaces === Infinity ? null : new RegExp(` {${(maxConsecutiveSpaces ?? 1) + 1},}`, "g")),
@@ -64,16 +65,19 @@ export const TextInput: FC<TextInputProps> = ({
   );
 
   const updateStatusStable = useCallback(() => {
+    // Cancel any ongoing promise if the value changed.
+    ongoingPromise.current = undefined;
+
     if (value === neutral) {
       setStatus("no-change");
       setStatusError(undefined);
     } else if (value === "" && required) {
       setStatus("error");
       setStatusError("required");
-    } else if (minLength && value.length < minLength) {
+    } else if (minLength && value !== "" && value.length < minLength) {
       setStatus("error");
       setStatusError("min-length");
-    } else if (regexp && !regexp.test(value)) {
+    } else if (regexp && value !== "" && !regexp.test(value)) {
       setStatus("error");
       setStatusError("regexp");
     } else if (maxLength && value.length >= maxLength) {
@@ -84,17 +88,30 @@ export const TextInput: FC<TextInputProps> = ({
 
       if (response instanceof Promise) {
         setStatus("loading");
-        response
+
+        // React compare complex values by reference. So if a new promise is assigned to this ref before
+        // the current ones finish, its result will be invalidated.
+        const p = response
           .then(({ status, error }) => {
+            if (ongoingPromise.current !== p) {
+              return;
+            }
+
             setStatus(status);
             setErrorValue(error);
             setStatusError(error ? "custom" : undefined);
           })
           .catch((e) => {
+            if (ongoingPromise.current !== p) {
+              return;
+            }
+
             setStatus("error");
             setErrorValue(e);
             setStatusError("custom-critical");
           });
+
+        ongoingPromise.current = p;
       } else {
         setStatus(response.status);
         setErrorValue(response.error);

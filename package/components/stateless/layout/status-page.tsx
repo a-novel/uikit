@@ -12,16 +12,21 @@ export interface StatusPageProps {
   decorator: Decorator;
   icon?: ReactNode;
   relative?: boolean;
+  center?: boolean;
 }
 
-export const StatusPage = ({ title, content, decorator, icon, relative }: StatusPageProps) => (
+export const StatusPage = ({ title, content, decorator, icon, relative, center }: StatusPageProps) => (
   <WithDecorator
     decorator={decorator}
     render={(className) => (
       <div className={mergeClassNames(css.statusPage, relative ? css.relative : undefined, className)}>
         {icon && <div className={css.icon}>{icon}</div>}
         {title && <h1 className={css.title}>{title}</h1>}
-        {content && <div className={css.content}>{content}</div>}
+        {content && (
+          <div className={css.content} style={{ textAlign: center ? "center" : undefined }}>
+            {content}
+          </div>
+        )}
       </div>
     )}
   />

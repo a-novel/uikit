@@ -1,6 +1,6 @@
 import css from "./resize.module.css";
 
-import { FC, HTMLAttributes, MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
+import { FC, HTMLAttributes, MutableRefObject, forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
 import { mergeClassNames } from "@lib";
 
@@ -20,15 +20,11 @@ export interface ResizableBlockProps extends HTMLAttributes<HTMLElement> {
 /**
  * ResizableBlock returns a div that can be resized by dragging the bottom right corner, according to some preferences.
  */
-export const ResizableBlock: FC<ResizableBlockProps> = ({
-  bound,
-  children,
-  boundMode,
-  resizeHandle,
-  className,
-  ...props
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
+export const ResizableBlock = forwardRef<HTMLDivElement, ResizableBlockProps>(function ResizableBlock(
+  { bound, children, boundMode, resizeHandle, className, ...props },
+  externalRef
+) {
+  const ref = useRef<HTMLDivElement | null>();
   const rightHandleRef = useRef<HTMLDivElement>(null);
   const bottomHandleRef = useRef<HTMLDivElement>(null);
   const bottomRightHandleRef = useRef<HTMLDivElement>(null);
@@ -120,7 +116,19 @@ export const ResizableBlock: FC<ResizableBlockProps> = ({
   }, [resize, activeResizeHandle]);
 
   return (
-    <div ref={ref} className={mergeClassNames(css.container, className)} {...props}>
+    <div
+      ref={(passRef) => {
+        if (typeof externalRef === "function") {
+          externalRef(passRef);
+        } else if (externalRef != null) {
+          externalRef.current = passRef;
+        }
+
+        ref.current = passRef;
+      }}
+      className={mergeClassNames(css.container, className)}
+      {...props}
+    >
       {children}
       {(resizeHandle?.includes("right") || resizeHandle == null) && (
         <div ref={rightHandleRef} className={mergeClassNames(css.resizeHandler, css.right)} />
@@ -133,4 +141,4 @@ export const ResizableBlock: FC<ResizableBlockProps> = ({
       )}
     </div>
   );
-};
+});
