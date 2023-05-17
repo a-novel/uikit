@@ -27,6 +27,7 @@
     --background: #000000;
 
     --grey-900: #212121;
+    --grey-850: #353535;
     --grey-800: #424242;
     --grey-700: #616161;
     --grey-600: #757575;
@@ -44,14 +45,14 @@
     --important-index: 99;
     --less-important-index: 9;
 
-    --background-overlay-color: rgba(0, 0, 0, 0.3);
-    --background-overlay-backdrop: blur(0.7rem);
+    --background-overlay-color: rgba(0, 0, 0, 0.4);
+    --background-overlay-backdrop: blur(0.6rem) saturate(2);
 
     --border-radius: .4rem;
     --button-radius: .2rem;
 
     --hover-transparent: rgba(255, 255, 255, 0.25);
-    --hover-transparent-discrete: rgba(255, 255, 255, 0.15);
+    --hover-transparent-discrete: rgba(255, 255, 255, 0.2);
     --modal-shadow: 0 0 .2rem #757575;
 
     --icon-button: #9E9E9E;

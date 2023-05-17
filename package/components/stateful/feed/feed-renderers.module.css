@@ -1,10 +1,21 @@
-.inline-feed-renderer {
+.inline-wrapper {
     width: calc(100% - 1.2rem);
     box-sizing: border-box;
-    margin: .6rem .6rem 0 .6rem;
+    margin: .6rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.inline-wrapper > * {
+    width: 100%;
+    box-sizing: border-box;
     flex-shrink: 0;
 }
 
-.inline-feed-renderer:last-child {
-    margin-bottom: .6rem;
+.grid-wrapper {
+    display: grid;
+    max-width: calc(100% - 1.2rem);
+    box-sizing: border-box;
+    margin: 0 auto;
 }

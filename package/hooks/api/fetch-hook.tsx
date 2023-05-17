@@ -168,17 +168,17 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
   autoClean,
   ...props
 }: BackgroundFetchHookParams<Res, Req>): BackgroundFetchHookResult<Res, Req> => {
-  const res = useFetch(props);
+  const { trigger, ...res } = useFetch(props);
 
   const reload = useCallback(() => {
     if (condition !== false && params != null) {
-      res.trigger(...params);
+      trigger(...params);
     }
-  }, [condition, params, res]);
+  }, [condition, params, trigger]);
 
   useEffect(() => {
     reload();
-  }, [condition, params, reload, res, res.trigger]);
+  }, [reload]);
 
   useEffect(() => {
     if (params == null && autoClean === true) {
@@ -187,5 +187,5 @@ export const useBackgroundFetch = <Res, Req extends any[]>({
     }
   }, [autoClean, params, res]);
 
-  return { ...res, reload };
+  return { ...res, trigger, reload };
 };

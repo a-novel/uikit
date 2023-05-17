@@ -9,10 +9,14 @@
 }
 
 .container:not(.static-feed):not(.full),
-.container-empty:not(.static-feed),
-.container-error:not(.static-feed),
-.container-loading:not(.static-feed) {
+.container-empty:not(.static-feed):not(.full),
+.container-error:not(.static-feed):not(.full),
+.container-loading:not(.static-feed):not(.full) {
     height: 100%;
+}
+
+.full {
+    height: calc(100vh - var(--sticky-top));
 }
 
 .container:not(.full) {
@@ -30,15 +34,15 @@
 }
 
 .container-empty {
-    color: var(--grey-500);
+    color: var(--grey-700);
 }
 
 .container-error {
-    color: var(--red);
+    color: var(--red-secondary);
 }
 
 .icon svg {
-    height: 5rem!important;
+    height: 3rem!important;
     width: auto!important;
 }
 

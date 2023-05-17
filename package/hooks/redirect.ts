@@ -41,53 +41,31 @@ export const useLastPathRedirect = (): LastPathRedirectHook => {
   const pathname = usePathname();
   const { push, replace } = useRouter();
 
-  const redirectPush = useCallback(
+  const set = useCallback(
     (dest: string) => {
       localStorage.setItem(LOCAL_STORAGE_KEY, pathname);
-      redirect(dest);
+      return dest;
     },
     [pathname]
   );
 
-  const redirectPop = useCallback((fallback: string) => {
+  const pop = useCallback((fallback: string) => {
     const lastVisitedPath = localStorage.getItem(LOCAL_STORAGE_KEY);
     localStorage.removeItem(LOCAL_STORAGE_KEY);
-    redirect(lastVisitedPath || fallback);
+    return lastVisitedPath || fallback;
   }, []);
 
-  const navPush = useCallback<typeof push>(
-    (url, options) => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, pathname);
-      return push(url, options);
-    },
-    [pathname, push]
-  );
+  const redirectPush = useCallback((dest: string) => redirect(set(dest)), [set]);
 
-  const navPop = useCallback<typeof push>(
-    (url, options) => {
-      const lastVisitedPath = localStorage.getItem(LOCAL_STORAGE_KEY);
-      localStorage.removeItem(LOCAL_STORAGE_KEY);
-      return push(lastVisitedPath || url, options);
-    },
-    [push]
-  );
+  const redirectPop = useCallback((fallback: string) => redirect(pop(fallback)), [pop]);
 
-  const replacePush = useCallback<typeof replace>(
-    (url, options) => {
-      localStorage.setItem(LOCAL_STORAGE_KEY, pathname);
-      return replace(url, options);
-    },
-    [pathname, replace]
-  );
+  const navPush = useCallback<typeof push>((url, options) => push(set(url), options), [push, set]);
 
-  const replacePop = useCallback<typeof replace>(
-    (url, options) => {
-      const lastVisitedPath = localStorage.getItem(LOCAL_STORAGE_KEY);
-      localStorage.removeItem(LOCAL_STORAGE_KEY);
-      return replace(lastVisitedPath || url, options);
-    },
-    [replace]
-  );
+  const navPop = useCallback<typeof push>((url, options) => push(pop(url), options), [pop, push]);
+
+  const replacePush = useCallback<typeof replace>((url, options) => replace(set(url), options), [replace, set]);
+
+  const replacePop = useCallback<typeof replace>((url, options) => replace(pop(url), options), [pop, replace]);
 
   const clear = useCallback(() => {
     localStorage.removeItem(LOCAL_STORAGE_KEY);

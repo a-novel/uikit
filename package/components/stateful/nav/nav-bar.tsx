@@ -24,6 +24,7 @@ export interface NavWrapperProps extends HTMLAttributes<HTMLDivElement> {
    */
   main?: boolean;
   bordered?: boolean;
+  staticNav?: boolean;
 }
 
 const NavWrapperContent: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, style, ...props }) => {

@@ -16,18 +16,14 @@ export const useAutoNotification = ({ condition, clearCondition, render }: AutoN
   const id = useMemo(() => crypto.randomUUID(), []);
   const { set, unset } = useContext(NotificationsContext);
 
-  const onClose = useCallback(() => {
-    clearCondition();
-  }, [clearCondition]);
-
   useEffect(() => {
     if (!condition) {
       unset(id);
       return;
     }
 
-    set(id, render(onClose));
-  }, [condition, render, id, onClose, set, unset]);
+    set(id, render(clearCondition));
+  }, [clearCondition, render, id, set, unset, condition]);
 };
 
 export const useAutoNotificationErrorRender = (title: ReactNode, content: ReactNode) => {
