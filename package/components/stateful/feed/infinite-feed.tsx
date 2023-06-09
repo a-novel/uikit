@@ -16,7 +16,7 @@ import { mergeClassNames } from "@lib";
 
 const DEFAULT_TRIGGER_ON_RECORDS_LEFT = 10;
 
-export const EMPTY_QUERY = {};
+export const INFINITE_FEED_EMPTY_QUERY = {};
 
 interface InfiniteFeedCallbackParams {
   limit: number;
@@ -28,7 +28,7 @@ interface InfiniteFeedCallbackResponseResult {
 }
 
 interface InfiniteFeedCallbackResponse<R> {
-  results: (R & InfiniteFeedCallbackResponseResult)[];
+  data: (R & InfiniteFeedCallbackResponseResult)[];
   total: number;
 }
 
@@ -39,20 +39,70 @@ export interface InfiniteFeedElementProps<R> {
   elementRef: MutableRefObject<HTMLElement | null>;
 }
 
+export type InfiniteFeedCallback<Q extends {}, R extends {}> = (
+  query: Q & InfiniteFeedCallbackParams
+) => Promise<InfiniteFeedCallbackResponse<R>>;
+
+export type InfiniteFeedRenderer<R extends {}> = (values: InfiniteFeedElementProps<R>[]) => ReactNode;
+
 export interface InfiniteFeedProps<Q extends {}, R extends {}> extends HTMLAttributes<HTMLDivElement> {
-  api: (query: Q & InfiniteFeedCallbackParams) => Promise<InfiniteFeedCallbackResponse<R>>;
+  /**
+   * The API call to load new results.
+   */
+  api: InfiniteFeedCallback<Q, R>;
+  /**
+   * Optional error handler. By default, errors are ignored.
+   */
   onError?: (error: unknown) => void;
-  render: (values: InfiniteFeedElementProps<R>[]) => ReactNode;
+  render: InfiniteFeedRenderer<R>;
+  /**
+   * Icon to display when no results are available. This only shows up after at least one successful api call.
+   */
   emptyIcon: ReactNode;
+  /**
+   * Text to display when no results are available. This only shows up after at least one successful api call.
+   */
   emptyText: string;
+  /**
+   * When set, replaces the results display with the error icon and text. It has to be set manually, as
+   * overriding previously loaded result is not ideal in terms of user experience.
+   */
   errorIcon?: ReactNode;
+  /**
+   * When set, replaces the results display with the error icon and text. It has to be set manually, as
+   * overriding previously loaded result is not ideal in terms of user experience.
+   */
   errorText?: string;
+  /**
+   * When set, only run initial call, and don't load more content on scroll.
+   */
   staticFeed?: boolean;
+  /**
+   * Change the scrolling parent, from being the current container to the full page (document body).
+   */
   fullPage?: boolean;
+  /**
+   * The number of rows to load per api call. This parameter is passed to the API, and used to determine whether
+   * we reached the end of results.
+   */
   batchSize: number;
+  /**
+   * A function that returns a Node to display the total number of results. When set, a sticky bar
+   * will appear at the top of the feed, with this information.
+   */
   displayTotal?: ((total: number) => ReactNode) | ((total: number, loaded: number) => ReactNode);
+  /**
+   * Component to display while loading new results.
+   */
   loader?: ReactNode;
+  /**
+   * Extra params to pass to the api call.
+   */
   params: Q;
+  /**
+   * Determine how many elements should be left on the scroll list before triggering the next api call.
+   */
+  triggerOffset?: number;
 }
 
 const isChildScrolled = (parent?: HTMLElement | null, child?: HTMLElement | null) => {
@@ -61,6 +111,31 @@ const isChildScrolled = (parent?: HTMLElement | null, child?: HTMLElement | null
 
   return parentRect && childRect && childRect.top <= parentRect.bottom;
 };
+
+/**
+ * Create a reference generator for an element of a feed list. It uses refsList to keep track of already created
+ * refs, to not create them twice.
+ */
+const feedElementRef =
+  (refsList: MutableRefObject<Map<string, MutableRefObject<HTMLElement | null>>>) => (index: string) => {
+    let currentRef = refsList.current.get(index);
+
+    if (currentRef == null) {
+      currentRef = createRef<HTMLElement | null>();
+      refsList.current.set(index, currentRef);
+    }
+
+    return currentRef as MutableRefObject<HTMLElement | null>;
+  };
+
+const parseFeedResults =
+  <R,>(triggerPos: number, generateRef: ReturnType<typeof feedElementRef>) =>
+  ([id, data]: [string, R], index: number) => ({
+    id,
+    data,
+    trigger: index === triggerPos,
+    elementRef: generateRef(id),
+  });
 
 export function InfiniteFeed<Q extends {}, R extends {}>({
   api,
@@ -77,42 +152,32 @@ export function InfiniteFeed<Q extends {}, R extends {}>({
   fullPage,
   className,
   loader,
+  triggerOffset = DEFAULT_TRIGGER_ON_RECORDS_LEFT,
   ...props
 }: InfiniteFeedProps<Q, R>) {
   const [results, setResults] = useState<Map<string, R>>(new Map());
   const [total, setTotal] = useState(0);
+  // When set to true, stop loading new results.
   const [endReached, setEndReached] = useState(false);
 
-  const ongoingCall = useRef(false);
+  // Prevent concurrent calls from overlapping.
+  const ongoingCall = useRef<Promise<void>>();
+  // By default, the wrapper is the scrollable element, we want to attach a listener to.
   const wrapperRef = useRef<HTMLDivElement>(null);
+  // The offset of the query.
   const offsetRef = useRef(0);
+  // Keep a list of references to each element in the results, so we can use any of them as a trigger
+  // for the next api call.
   const elementRefs = useRef<Map<string, MutableRefObject<HTMLElement | null>>>(new Map());
 
-  const triggerOffset = useMemo(
-    () => Math.min(DEFAULT_TRIGGER_ON_RECORDS_LEFT, Math.floor(batchSize / 2)),
-    [batchSize]
-  );
+  // Compute the position of the element that should trigger the next api call.
   const triggerPos = results.size - triggerOffset;
 
-  const getRef = useCallback((index: string) => {
-    let currentRef = elementRefs.current.get(index);
-
-    if (currentRef == null) {
-      currentRef = createRef<HTMLElement | null>();
-      elementRefs.current.set(index, currentRef);
-    }
-
-    return currentRef as MutableRefObject<HTMLElement | null>;
-  }, []);
-
-  const parsedResults = useMemo(() => {
-    return Array.from(results.entries()).map(([id, data], index) => ({
-      id,
-      data,
-      trigger: index === triggerPos,
-      elementRef: getRef(id),
-    }));
-  }, [getRef, results, triggerPos]);
+  // Parse results as a props object, to be passed down to the renderer.
+  const parsedResults = useMemo(
+    () => Array.from(results.entries()).map(parseFeedResults(triggerPos, feedElementRef(elementRefs))),
+    [results, triggerPos]
+  );
 
   const updateResults = useCallback(async () => {
     const promises: Promise<InfiniteFeedCallbackResponse<R>>[] = [
@@ -127,57 +192,91 @@ export function InfiniteFeed<Q extends {}, R extends {}>({
 
     const results = await Promise.all(promises);
 
-    // The first call is the one that targets the greatest offset,
-    // meaning it should tell us if we reached the end.
-    setEndReached(results[0].results.length < batchSize);
-    // Both calls are made concurrently, so they should both return same length.
-    // Anyway, since we have to trust one, we trust the first one.
-    setTotal(results[0].total);
+    const uniqueResults = new Map();
 
-    setResults((prevResults) => {
-      const newResults = new Map(prevResults);
+    // Since the second call fetches the results at the beginning of the query, they are more relevant.
+    // We want to keep them in priority.
+    if (results[1] != null && results[1].data?.length > 0) {
+      results[1].data.forEach((result) => uniqueResults.set(result.id, result));
+    }
 
-      // Since the second call fetches the results at the beginning of the query, they are more relevant.
-      // We want to keep them in priority.
-      if (results[1] != null) {
-        results[1].results.forEach((result) => newResults.set(result.id, result));
-      }
+    if (results[0] != null && results[0].data?.length > 0) {
+      results[0].data.forEach((result) => uniqueResults.set(result.id, result));
+    }
 
-      results[0].results.forEach((result) => newResults.set(result.id, result));
-      offsetRef.current = newResults.size;
-
-      return newResults;
-    });
+    return {
+      // The first call is the one that targets the greatest offset,
+      // meaning it should tell us if we reached the end.
+      endReached: results[0].data == null || results[0].data.length < batchSize,
+      // Both calls are made concurrently, so they should both return same length.
+      // Anyway, since we have to trust one, we trust the first one.
+      total: results[0].total,
+      results: uniqueResults,
+    };
   }, [api, batchSize, params]);
 
   const run = useCallback(() => {
-    if (ongoingCall.current) return;
+    const p = updateResults()
+      .then(({ endReached, total, results }) => {
+        // A new api call was forced, those results are not valid anymore.
+        if (ongoingCall.current !== p) return;
+        ongoingCall.current = undefined;
 
-    ongoingCall.current = true;
-    updateResults()
-      .catch(onError)
-      .finally(() => {
-        ongoingCall.current = false;
+        setEndReached(endReached);
+        setTotal(total);
+        setResults((prevResults) => {
+          const newResults = new Map(prevResults);
+          results.forEach((result, id) => newResults.set(id, result));
+          offsetRef.current = newResults.size;
+          return newResults;
+        });
+      })
+      .catch(async (e) => {
+        // A new api call was forced, those results are not valid anymore.
+        if (ongoingCall.current !== p) return;
+        ongoingCall.current = undefined;
+
+        onError?.(e);
+        // Force a cool down when an error occurs, to avoid spamming the api.
+        await new Promise((resolve) => setTimeout(resolve, 3000));
       });
+
+    ongoingCall.current = p;
   }, [onError, updateResults]);
 
+  // Reset results when params change.
   useEffect(() => {
-    if (endReached || results.size > 0) return;
-    // Run initial call.
-    run();
-  }, [endReached, results.size, run]);
+    setResults(new Map());
+    setEndReached(false);
+    setTotal(0);
+    offsetRef.current = 0;
+    elementRefs.current = new Map();
+  }, [params]);
 
+  // Set scroll listener.
   useEffect(() => {
     // Avoid performing DOM measurements uselessly.
-    if (endReached || staticFeed) return;
+    if (endReached) return;
 
+    if (staticFeed) {
+      setEndReached(true);
+      run();
+      return;
+    }
+
+    // Check if we need to load new results when content is scrolled.
     const triggerUpdate = () => {
       const trigger = Array.from(elementRefs.current.values())[triggerPos];
 
-      if (isChildScrolled(wrapperRef.current, trigger.current)) {
+      // When the trigger element has been scrolled, run the next api call.
+      // A null trigger means we have not loaded any element yet.
+      if ((trigger == null || isChildScrolled(wrapperRef.current, trigger?.current)) && ongoingCall.current == null) {
         run();
       }
     };
+
+    // Force a static run, in case screen is too large and one batch is not enough to fill the gap.
+    triggerUpdate();
 
     const parent = fullPage ? document.body : wrapperRef.current;
     parent?.addEventListener("scroll", triggerUpdate);
@@ -190,7 +289,12 @@ export function InfiniteFeed<Q extends {}, R extends {}>({
   if (errorIcon && errorText) {
     return (
       <div
-        className={mergeClassNames(css.containerError, staticFeed ? css.staticFeed : undefined, className)}
+        className={mergeClassNames(
+          css.containerError,
+          staticFeed ? css.staticFeed : undefined,
+          fullPage ? css.full : undefined,
+          className
+        )}
         {...props}
       >
         <div className={css.icon}>{errorIcon}</div>
@@ -203,7 +307,12 @@ export function InfiniteFeed<Q extends {}, R extends {}>({
     if (endReached) {
       return (
         <div
-          className={mergeClassNames(css.containerEmpty, staticFeed ? css.staticFeed : undefined, className)}
+          className={mergeClassNames(
+            css.containerEmpty,
+            staticFeed ? css.staticFeed : undefined,
+            fullPage ? css.full : undefined,
+            className
+          )}
           {...props}
         >
           <div className={css.icon}>{emptyIcon}</div>
@@ -214,7 +323,12 @@ export function InfiniteFeed<Q extends {}, R extends {}>({
 
     return (
       <div
-        className={mergeClassNames(css.containerLoading, staticFeed ? css.staticFeed : undefined, className)}
+        className={mergeClassNames(
+          css.containerLoading,
+          staticFeed ? css.staticFeed : undefined,
+          fullPage ? css.full : undefined,
+          className
+        )}
         {...props}
       >
         {loader}
@@ -235,7 +349,7 @@ export function InfiniteFeed<Q extends {}, R extends {}>({
     >
       {displayTotal && <div className={css.count}>{displayTotal(total, results.size)}</div>}
       {render(parsedResults)}
-      {endReached ? null : loader}
+      {endReached || staticFeed ? null : loader}
     </div>
   );
 }

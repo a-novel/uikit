@@ -1,10 +1,43 @@
 .skeleton {
     position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--grey-900);
+    overflow: hidden;
 }
 
-.skeleton svg {
-    min-width: 100%;
-    min-height: 100%;
-    width: auto !important;
-    height: auto !important;
+.skeleton::after {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-66%);
+    background-image: linear-gradient(
+            -65deg,
+            var(--grey-900) 0,
+            var(--grey-900) 33%,
+            var(--grey-850) 50%,
+            var(--grey-900) 66%,
+            var(--grey-900) 100%
+    );
+    animation-name: shimmer;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    content: '';
+    z-index: 10;
+}
+
+.loader-message {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--grey-500);
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(67%);
+    }
 }

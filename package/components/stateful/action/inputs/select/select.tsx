@@ -133,6 +133,14 @@ export function SelectInput<V extends string | number>({
   );
 }
 
+export interface SelectItemProps<V extends string | number> {
+  value: V;
+}
+
+export function SelectItem<V extends string | number>({ value }: SelectItemProps<V>): ReactElement<any, any> {
+  return <span className="select-value">{value}</span>;
+}
+
 export interface SelectItemWithIconProps<V extends string | number> {
   icon: ReactNode;
   value: V;

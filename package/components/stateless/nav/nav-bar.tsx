@@ -188,13 +188,14 @@ export interface NavProps extends HTMLAttributes<HTMLElement> {
    */
   main?: boolean;
   bordered?: boolean;
+  staticNav?: boolean;
 }
 
 /**
  * The nav bar container.
  */
 export const Nav = forwardRef<HTMLElement, NavProps>(function Nav(
-  { bordered, children, className, mode, main, ...props },
+  { bordered, children, className, mode, main, staticNav, ...props },
   ref
 ) {
   return (
@@ -204,6 +205,7 @@ export const Nav = forwardRef<HTMLElement, NavProps>(function Nav(
         css.navBar,
         main ? css.main : undefined,
         bordered ? css.bordered : undefined,
+        staticNav ? css.static : undefined,
         css[mode || "horizontal"],
         className
       )}

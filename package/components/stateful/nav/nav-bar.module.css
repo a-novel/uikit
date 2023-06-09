@@ -18,6 +18,7 @@
 
 .nav-wrapper-content {
     flex-grow: 1;
+    position: relative;
 }
 
 .nav-wrapper.vertical > .nav-bar {
@@ -62,8 +63,9 @@
     background-color: var(--hover-transparent);
 }
 
-.active > .drop-menu-button {
-    background-color: var(--blue-tertiary);
+.active .drop-menu-button {
+    color: var(--blue);
+    border-color: var(--blue);
 }
 
 .drop-menu-content {

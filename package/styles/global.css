@@ -107,7 +107,7 @@ h2 {
     font-weight: normal;
     box-sizing: border-box;
     margin: .6rem 0;
-    width: calc(100% - var(--sticky-left));
+    width: 100%;
     z-index: 50;
     background-color: var(--background-overlay-color);
     backdrop-filter: var(--background-overlay-backdrop);

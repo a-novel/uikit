@@ -135,8 +135,8 @@ export function WithSticky<T extends HTMLElement>({
           "--sticky-left": `${reset ? 0 : parentHorizontal}px`,
         } as CSSProperties,
         {
-          "--sticky-top": `${reset ? 0 : parentVertical}px`,
-          "--sticky-left": `${reset ? 0 : parentHorizontal}px`,
+          "--sticky-top": `${vertical}px`,
+          "--sticky-left": `${horizontal}px`,
         } as CSSProperties
       )}
     </StickyContext.Provider>

@@ -5,10 +5,14 @@ import SearchIcon from "@public/icons/monochrome/search.svg";
 import { FC, MutableRefObject } from "react";
 
 import {
+  INFINITE_FEED_EMPTY_QUERY,
+  InfiniteFeed,
+  InfiniteFeedElementProps,
   InlineFeedElementProps,
   InlineFeedRenderer,
-} from "../../../../package/components/stateful/feed/feed-renderers";
-import { EMPTY_QUERY, InfiniteFeed, InfiniteFeedElementProps, Skeleton, TitleAnchor } from "@components/stateful";
+  Skeleton,
+  TitleAnchor,
+} from "@components/stateful";
 import { AnchorNav } from "@components/stateless";
 
 import { ResizablePresenter, ResizablePresenterBox } from "@internal";
@@ -43,17 +47,18 @@ const colorsAPI = async ({ limit, offset }: colorsAPIQuery) => {
     color: colors[Math.floor(i / 30)],
   }));
 
-  return { results: results.slice(offset, offset + limit), total: 120 };
+  return { data: results.slice(offset, offset + limit), total: 120 };
 };
+
+const colorsAPIEmpty = async ({ limit, offset }: colorsAPIQuery) => ({ data: [], total: 0 });
 
 const colorsAPIDelayed = async ({ limit, offset }: colorsAPIQuery) => {
   await new Promise((resolve) => setTimeout(resolve, 10000));
   return await colorsAPI({ limit, offset });
 };
 
-const RenderColor: FC<InlineFeedElementProps<Color>> = ({ data: { color }, trigger, elementRef, className }) => (
+const RenderColor: FC<InlineFeedElementProps<Color>> = ({ data: { color }, trigger, elementRef }) => (
   <div
-    className={className}
     ref={elementRef as MutableRefObject<HTMLDivElement | null>}
     style={{
       borderStyle: "solid",
@@ -92,10 +97,10 @@ export const PageComponent = () => (
           <InfiniteFeed
             api={colorsAPI}
             render={renderColors}
-            emptyIcon={SearchIcon}
+            emptyIcon={<SearchIcon />}
             emptyText="No results."
             batchSize={30}
-            params={EMPTY_QUERY}
+            params={INFINITE_FEED_EMPTY_QUERY}
           />
         </ResizablePresenterBox>
         <ResizablePresenterBox width="40rem" height="30rem" title="with results count">
@@ -103,10 +108,10 @@ export const PageComponent = () => (
             style={{ borderRadius: "var(--border-radius)" }}
             api={colorsAPI}
             render={renderColors}
-            emptyIcon={SearchIcon}
+            emptyIcon={<SearchIcon />}
             emptyText="No results."
             batchSize={30}
-            params={EMPTY_QUERY}
+            params={INFINITE_FEED_EMPTY_QUERY}
             displayTotal={(total: number, loaded: number) => `${total} results (${loaded} loaded)`}
           />
         </ResizablePresenterBox>
@@ -114,10 +119,10 @@ export const PageComponent = () => (
           <InfiniteFeed
             api={colorsAPIDelayed}
             render={renderColors}
-            emptyIcon={SearchIcon}
+            emptyIcon={<SearchIcon />}
             emptyText="No results."
             batchSize={30}
-            params={EMPTY_QUERY}
+            params={INFINITE_FEED_EMPTY_QUERY}
             loader={
               <Skeleton
                 style={{
@@ -130,6 +135,28 @@ export const PageComponent = () => (
                 }}
               />
             }
+          />
+        </ResizablePresenterBox>
+        <ResizablePresenterBox width="40rem" height="30rem" title="no results">
+          <InfiniteFeed
+            api={colorsAPIEmpty}
+            render={renderColors}
+            emptyIcon={<SearchIcon />}
+            emptyText="No results."
+            batchSize={30}
+            params={INFINITE_FEED_EMPTY_QUERY}
+          />
+        </ResizablePresenterBox>
+        <ResizablePresenterBox width="40rem" height="30rem" title="error">
+          <InfiniteFeed
+            api={colorsAPIEmpty}
+            render={renderColors}
+            emptyIcon={<SearchIcon />}
+            emptyText="No results."
+            errorIcon={<SearchIcon />}
+            errorText="No results."
+            batchSize={30}
+            params={INFINITE_FEED_EMPTY_QUERY}
           />
         </ResizablePresenterBox>
       </ResizablePresenter>

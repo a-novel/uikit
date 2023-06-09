@@ -3,10 +3,6 @@
 /* -------------------------------------------------------------------------------- */
 
 .nav-bar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: var(--important-index);
     display: flex;
     align-items: center;
     user-select: none;
@@ -17,12 +13,19 @@
     align-self: flex-start;
 }
 
+.nav-bar:not(.static) {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: var(--important-index);
+}
+
 .nav-bar.bordered {
     border-style: solid;
     border-color: var(--grey-700);
 }
 
-.nav-bar::before {
+.nav-bar:not(.static)::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -46,7 +49,8 @@
 
 .nav-bar.vertical {
     flex-direction: column;
-    width: 14rem;
+    min-width: 14rem;
+    max-width: 18rem;
     overflow: auto;
     max-height: 100%;
 }
@@ -146,27 +150,25 @@
     color: var(--text);
 }
 
-.nav-link:global(.no-decorator):not(.active):not(:global(.active)):hover,
-.nav-link:global(.no-decorator):global(.hover) {
-    background-color: var(--hover-transparent);
+.nav-link:not(:global(.decorator)):hover,
+.nav-link:not(:global(.decorator)):global(.hover) {
+    background-color: var(--hover-transparent-discrete);
 }
 
-.nav-link:global(.no-decorator).active, .nav-link:global(.no-decorator):global(.active) {
-    background-color: var(--blue-secondary);
+.nav-link:not(:global(.decorator)).active,
+.nav-link:not(:global(.decorator)):global(.active) {
+    background-color: var(--blue-tertiary);
+}
+
+.nav-link:global(.decorator):hover,
+.nav-link:global(.decorator):global(.hover),
+.nav-link:global(.decorator).active,
+.nav-link:global(.decorator):global(.active){
+    background-color: var(--decorator-dark);
 }
 
 .nav-link:global(.decorator) {
     color: var(--decorator-main);
-}
-
-.nav-link:global(.decorator):not(.active):not(:global(.active)):hover,
-.nav-link:global(.decorator):global(.hover) {
-    background-color: var(--decorator-dark);
-}
-
-.nav-link:global(.decorator).active, .nav-link:global(.decorator.active) {
-    background-color: var(--decorator-secondary);
-    color: var(--text);
 }
 
 /* -------------------------------------------------------------------------------- */

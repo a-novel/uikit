@@ -4,6 +4,7 @@ import {
   FC,
   HTMLAttributes,
   InputHTMLAttributes,
+  KeyboardEventHandler,
   ReactNode,
   TextareaHTMLAttributes,
   useCallback,
@@ -144,6 +145,7 @@ export interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
    * Helper text displayed above the input.
    */
   helper?: ReactNode;
+  allowTab?: boolean;
 }
 
 /**
@@ -162,6 +164,7 @@ export const TextArea: FC<TextAreaProps> = ({
   children,
   helper,
   disabled,
+  allowTab,
   ...props
 }) => {
   const timer = useRef<NodeJS.Timeout | null>(null);
@@ -181,9 +184,32 @@ export const TextArea: FC<TextAreaProps> = ({
   useEffect(() => {
     if (elementRef.current == null) return;
 
-    elementRef.current.style.height = "0";
+    elementRef.current.style.height = "1px";
     elementRef.current.style.height = `${elementRef.current.scrollHeight}px`;
-  }, [elementRef.current?.scrollHeight]);
+  }, [value]);
+
+  const printTab = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((e) => {
+    if (e.key == "Tab") {
+      e.preventDefault();
+      const target = e.target as HTMLTextAreaElement;
+      const { selectionStart, selectionEnd } = target;
+
+      const newValue = target.value.substring(0, selectionStart) + "\t" + target.value.substring(selectionEnd);
+
+      // Put caret at right position again.
+      target.selectionStart = target.selectionEnd = selectionStart + 1;
+
+      // Update the value in react.
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLTextAreaElement.prototype,
+        "value"
+      )!.set;
+      nativeInputValueSetter?.call(target, newValue);
+
+      const updateEvent = new Event("input", { bubbles: true });
+      target.dispatchEvent(updateEvent);
+    }
+  }, []);
 
   return (
     <div className={css.wrapper}>
@@ -198,6 +224,7 @@ export const TextArea: FC<TextAreaProps> = ({
         )}
       >
         <textarea
+          onKeyDown={allowTab ? printTab : undefined}
           ref={elementRef}
           className={css.input}
           value={value}
