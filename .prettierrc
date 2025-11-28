@@ -1,0 +1,19 @@
+{
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "semi": true,
+  "singleQuote": false,
+  "printWidth": 120,
+  "plugins": ["prettier-plugin-svelte", "@trivago/prettier-plugin-sort-imports", "prettier-plugin-packagejson"],
+  "importOrder": ["^\\$", "^\\.(\\.)?\\/", "^svelte", "^(vite|vitest)", "^@a-novel", "<THIRD_PARTY_MODULES>"],
+  "importOrderSeparation": true,
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
+}
