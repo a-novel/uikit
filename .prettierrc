@@ -6,7 +6,15 @@
   "singleQuote": false,
   "printWidth": 120,
   "plugins": ["prettier-plugin-svelte", "@trivago/prettier-plugin-sort-imports", "prettier-plugin-packagejson"],
-  "importOrder": ["^\\$", "^\\.(\\.)?\\/", "^svelte", "^(vite|vitest)", "^@a-novel", "<THIRD_PARTY_MODULES>"],
+  "importOrder": [
+    "^\\$",
+    "^\\.(\\.)?\\/",
+    "^node\\:",
+    "^svelte",
+    "^(vite|vitest)",
+    "^@a-novel",
+    "<THIRD_PARTY_MODULES>"
+  ],
   "importOrderSeparation": true,
   "overrides": [
     {

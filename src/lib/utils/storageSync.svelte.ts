@@ -11,11 +11,11 @@ export function saveLocalStorage<T>(key: string, value?: T) {
   if (!BROWSER) return;
 
   if (value == null) {
-    localStorage.removeItem(key);
+    window.localStorage.removeItem(key);
     return;
   }
 
-  localStorage.setItem(key, JSON.stringify(value));
+  window.localStorage.setItem(key, JSON.stringify(value));
 }
 
 /**
@@ -30,18 +30,18 @@ export function loadLocalStorage<T, P = null>(key: string, validator?: ZodType<T
   // Never load anything from localStorage during server-side rendering.
   if (!BROWSER) return placeholder;
 
-  const raw = localStorage.getItem(key);
+  const raw = window.localStorage.getItem(key);
   if (!raw) return placeholder;
 
   try {
-    // If any of the following operations throw, we clear the entry from localStorage.
+    // If any of the following operations throw, we clear the entry from window.localStorage.
     const parsed = JSON.parse(raw);
     return validator ? validator.parse(parsed) : (parsed as T);
   } catch (e) {
     console.warn(
       `Failed to load local storage storage '${key}', invalid value found. The key will be cleared. Error detail: ${e}`
     );
-    localStorage.removeItem(key);
+    window.localStorage.removeItem(key);
     return placeholder;
   }
 }

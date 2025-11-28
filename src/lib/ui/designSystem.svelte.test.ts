@@ -34,7 +34,7 @@ describe("DesignSystemComponent", () => {
   });
 
   it("loads theme from local storage", async () => {
-    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify("dark"));
+    window.localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify("dark"));
 
     const proxyTheme = {
       get element() {

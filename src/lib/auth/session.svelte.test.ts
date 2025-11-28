@@ -45,7 +45,7 @@ function renderSession() {
 describe("SessionSchema Component", () => {
   describe("loads session", () => {
     it("from local storage", async () => {
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
+      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
 
       const sessionRender = renderSession();
 
@@ -78,7 +78,7 @@ describe("SessionSchema Component", () => {
     it("from local storage and api if local session is incomplete", async () => {
       mockClaimsGet.mockReturnValue(Promise.resolve(MockSessionAnon.claims));
 
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
+      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
 
       const sessionRender = renderSession();
 
@@ -95,7 +95,7 @@ describe("SessionSchema Component", () => {
     });
 
     it("from local storage and fallback to api if local session is malformed", async () => {
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ accessToken: 123 }));
+      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ accessToken: 123 }));
 
       mockTokenCreateAnon.mockReturnValue(Promise.resolve(MockSessionRaw));
       mockClaimsGet.mockReturnValue(Promise.resolve(MockSessionAnon.claims));
@@ -133,7 +133,7 @@ describe("SessionSchema Component", () => {
         })
       );
 
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
+      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
 
       const sessionRender = renderSession();
 
@@ -154,7 +154,7 @@ describe("SessionSchema Component", () => {
 
   describe("mutating session", () => {
     it("opens a new anonymous session when logged out", async () => {
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
+      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
 
       const sessionRender = renderSession();
 
@@ -178,7 +178,7 @@ describe("SessionSchema Component", () => {
     });
 
     it("refetches claims when session is updated raw", async () => {
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionAnon));
+      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionAnon));
 
       const sessionRender = renderSession();
 

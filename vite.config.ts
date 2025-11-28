@@ -1,5 +1,8 @@
 import { peerDependencies } from "./package.json";
 
+import os from "node:os";
+import path from "node:path";
+
 import { defineConfig } from "vitest/config";
 
 import { sveltekit } from "@sveltejs/kit/vite";
@@ -14,6 +17,11 @@ export default defineConfig({
       external: Object.keys(peerDependencies)
     }
   },
+  resolve: process.env.VITEST
+    ? {
+        conditions: ["browser"]
+      }
+    : undefined,
   test: {
     expect: { requireAssertions: true },
     environmentOptions: {
@@ -22,13 +30,11 @@ export default defineConfig({
     projects: [
       {
         extends: "./vite.config.ts",
-        resolve: {
-          conditions: ["browser"]
-        },
         test: {
           globals: true,
           name: "client",
           environment: "jsdom",
+          execArgv: ["--localstorage-file", path.resolve(os.tmpdir(), `vitest-${process.pid}.localstorage`)],
           include: ["src/**/*.svelte.{test,spec}.{js,ts}"],
           exclude: ["src/lib/server/**"]
         }

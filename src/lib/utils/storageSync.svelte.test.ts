@@ -15,7 +15,7 @@ describe("saveLocalStorage", () => {
     saveLocalStorage(TEST_KEY, value);
 
     // Verify it's saved correctly
-    const storedValue = localStorage.getItem(TEST_KEY);
+    const storedValue = window.localStorage.getItem(TEST_KEY);
     expect(JSON.parse(storedValue!)).toEqual(value);
   });
 
@@ -24,11 +24,11 @@ describe("saveLocalStorage", () => {
 
     // First, save a value to localStorage
     saveLocalStorage(TEST_KEY, value);
-    expect(localStorage.getItem(TEST_KEY)).not.toBeNull();
+    expect(window.localStorage.getItem(TEST_KEY)).not.toBeNull();
 
     // Now, remove it by saving undefined
     saveLocalStorage(TEST_KEY, undefined);
-    expect(localStorage.getItem(TEST_KEY)).toBeNull();
+    expect(window.localStorage.getItem(TEST_KEY)).toBeNull();
   });
 });
 
@@ -37,7 +37,7 @@ describe("loadLocalStorage", () => {
     const value = { a: 1, b: "text" };
 
     // Save to localStorage directly for testing
-    localStorage.setItem(TEST_KEY, JSON.stringify(value));
+    window.localStorage.setItem(TEST_KEY, JSON.stringify(value));
 
     // Load using the function
     const loadedValue = loadLocalStorage<typeof value>(TEST_KEY);
@@ -51,14 +51,14 @@ describe("loadLocalStorage", () => {
 
   it("clears the entry and returns null for invalid JSON", () => {
     // Save invalid JSON directly to localStorage
-    localStorage.setItem(TEST_KEY, "invalid-json");
+    window.localStorage.setItem(TEST_KEY, "invalid-json");
 
     // Spy on console.warn to verify it's called
     const consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
     const loadedValue = loadLocalStorage(TEST_KEY);
     expect(loadedValue).toBeNull();
-    expect(localStorage.getItem(TEST_KEY)).toBeNull();
+    expect(window.localStorage.getItem(TEST_KEY)).toBeNull();
 
     consoleWarnSpy.mockRestore();
   });
@@ -68,7 +68,7 @@ describe("loadLocalStorage", () => {
 
     it("returns validated value", () => {
       const value = { a: 1, b: "text" };
-      localStorage.setItem(TEST_KEY, JSON.stringify(value));
+      window.localStorage.setItem(TEST_KEY, JSON.stringify(value));
 
       const loadedValue = loadLocalStorage(TEST_KEY, schema);
       expect(loadedValue).toEqual(value);
@@ -76,13 +76,13 @@ describe("loadLocalStorage", () => {
 
     it("clears the entry and returns null for invalid data", () => {
       const invalidValue = { a: "not-a-number", b: "text" };
-      localStorage.setItem(TEST_KEY, JSON.stringify(invalidValue));
+      window.localStorage.setItem(TEST_KEY, JSON.stringify(invalidValue));
 
       const consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
       const loadedValue = loadLocalStorage(TEST_KEY, schema);
       expect(loadedValue).toBeNull();
-      expect(localStorage.getItem(TEST_KEY)).toBeNull();
+      expect(window.localStorage.getItem(TEST_KEY)).toBeNull();
 
       consoleWarnSpy.mockRestore();
     });
