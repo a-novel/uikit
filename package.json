@@ -32,6 +32,7 @@
     "dist"
   ],
   "scripts": {
+    "assets:gen": "node src/scripts/assets.gen.ts",
     "build": "vite build && npm run prepack",
     "build-storybook": "storybook build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -73,6 +74,7 @@
     "@types/node": "^24.10.1",
     "@vitest/browser": "^4.0.13",
     "@vitest/coverage-v8": "^4.0.13",
+    "chalk": "^5.6.2",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-storybook": "^10.0.8",
@@ -83,6 +85,7 @@
     "prettier-plugin-packagejson": "^2.5.19",
     "prettier-plugin-svelte": "^3.4.0",
     "publint": "^0.3.15",
+    "sharp": "^0.34.5",
     "storybook": "^10.0.8",
     "svelte-check": "^4.3.4",
     "typescript": "^5.9.3",
@@ -104,10 +107,8 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@a-novel/nodelib-test",
-      "@a-novel/nodelib-browser",
-      "@a-novel/service-authentication-rest",
-      "esbuild"
+      "esbuild",
+      "sharp"
     ]
   }
 }
