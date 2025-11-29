@@ -31,12 +31,12 @@
   }
 
   button[data-gradient="true"]:not(:disabled) {
-    background-image: linear-gradient(45deg, var(--color-c-200) 0%, var(--color-200) 80%, var(--color-cc-300) 100%);
+    background-image: linear-gradient(45deg, var(--color-c-200) 0%, var(--color-200) 70%, var(--color-cc-200) 100%);
   }
 
   button[data-glow="true"]:not(:disabled) {
     box-shadow:
-      oklch(from var(--color-c-500) l c h / 60%) 0 0 0.3em 0,
+      oklch(from var(--color-c-500) l c h / 40%) 0 0 0.3em 0,
       oklch(from var(--color-c-500) l c h / 20%) 0.5em 0.5em 1.4em 0,
       oklch(from var(--color-500) l c h / 20%) -0.5em -0.5em 1.4em 0,
       oklch(from var(--color-cc-500) l c h / 20%) 0.5em -0.5em 1.4em 0,
