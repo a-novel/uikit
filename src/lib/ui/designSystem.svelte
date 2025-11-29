@@ -15,7 +15,7 @@
 
   let { theme = loadTheme(), children }: Props = $props();
 
-  // Sync theme updates with window.localStorage.
+  // Sync theme updates with localStorage.
   $effect(() => {
     saveLocalStorage(THEME_STORAGE_KEY, theme);
   });

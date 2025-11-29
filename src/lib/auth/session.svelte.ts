@@ -77,7 +77,7 @@ export class SessionStore {
     api: AuthenticationApi,
     contextKey: string = SESSION_STORAGE_KEY,
     storageKey: string = contextKey,
-    initial: Session | null = loadLocalStorage(storageKey, SessionSchema)
+    initial?: Session | null
   ): SessionStore {
     const existingSession = (getContext(contextKey) as () => SessionStore | null)?.();
     if (existingSession) {
