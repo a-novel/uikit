@@ -3,6 +3,8 @@ import { createTestSnippet, TestComponent } from "$lib/test/index.js";
 import { MockSessionAnon, MockSessionRaw, MockSessionUser } from "$lib/test/mocks/session.js";
 import "$lib/test/setup/base.js";
 
+import type { Snippet } from "svelte";
+
 import { describe, expect, it, type Mock, vi } from "vitest";
 
 import { HttpError } from "@a-novel/nodelib-browser/http";
@@ -26,7 +28,7 @@ const mockTokenCreateAnon = tokenCreateAnon as Mock;
 const mockTokenRefresh = tokenRefresh as Mock;
 const mockClaimsGet = claimsGet as Mock;
 
-function renderSession() {
+function renderSession(wrapper?: (children: Snippet) => Snippet) {
   const sessionRef = {
     session: null as SessionStore | null
   };
@@ -37,7 +39,7 @@ function renderSession() {
 
   const testSnippet = createTestSnippet(TestComponent, { callback: testCallback }, () => `<div>Loaded!</div>`);
 
-  const rendered = render(SessionComponent, { api, children: testSnippet });
+  const rendered = render(SessionComponent, { api, children: wrapper ? wrapper(testSnippet) : testSnippet });
 
   return Object.assign(sessionRef, { rendered });
 }
@@ -45,7 +47,7 @@ function renderSession() {
 describe("SessionSchema Component", () => {
   describe("loads session", () => {
     it("from local storage", async () => {
-      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
 
       const sessionRender = renderSession();
 
@@ -54,6 +56,22 @@ describe("SessionSchema Component", () => {
         expect(sessionRender.session).not.toBeNull();
         expect(sessionRender.session?.current).toEqual(MockSessionUser);
       });
+    });
+
+    it("reuses session if already init", async () => {
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
+      const localStorageSpy = vi.spyOn(Storage.prototype, "getItem");
+
+      const innerSessionRender = (children: Snippet) => createTestSnippet(SessionComponent, { api, children });
+      const sessionRender = renderSession(innerSessionRender);
+
+      await waitFor(() => {
+        expect(sessionRender.session).toBeDefined();
+        expect(sessionRender.session).not.toBeNull();
+        expect(sessionRender.session?.current).toEqual(MockSessionUser);
+      });
+
+      expect(localStorageSpy).toHaveBeenCalledTimes(1);
     });
 
     it("from api if there is no session in local storage", async () => {
@@ -78,7 +96,7 @@ describe("SessionSchema Component", () => {
     it("from local storage and api if local session is incomplete", async () => {
       mockClaimsGet.mockReturnValue(Promise.resolve(MockSessionAnon.claims));
 
-      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
 
       const sessionRender = renderSession();
 
@@ -95,7 +113,7 @@ describe("SessionSchema Component", () => {
     });
 
     it("from local storage and fallback to api if local session is malformed", async () => {
-      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ accessToken: 123 }));
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ accessToken: 123 }));
 
       mockTokenCreateAnon.mockReturnValue(Promise.resolve(MockSessionRaw));
       mockClaimsGet.mockReturnValue(Promise.resolve(MockSessionAnon.claims));
@@ -133,7 +151,7 @@ describe("SessionSchema Component", () => {
         })
       );
 
-      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionRaw));
 
       const sessionRender = renderSession();
 
@@ -154,7 +172,7 @@ describe("SessionSchema Component", () => {
 
   describe("mutating session", () => {
     it("opens a new anonymous session when logged out", async () => {
-      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionUser));
 
       const sessionRender = renderSession();
 
@@ -178,7 +196,7 @@ describe("SessionSchema Component", () => {
     });
 
     it("refetches claims when session is updated raw", async () => {
-      window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionAnon));
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(MockSessionAnon));
 
       const sessionRender = renderSession();
 

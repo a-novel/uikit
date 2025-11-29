@@ -51,11 +51,14 @@ export default defineConfig({
     ],
     coverage: {
       enabled: true,
-      clean: false,
+      clean: true,
       provider: "v8",
-      reporter: ["json"],
-      reportsDirectory: "./coverage/unit",
-      include: ["src/**/*.{ts,tsx,svelte}"]
+      reporter: ["text", "json", "html", "lcov"],
+      reportsDirectory: "./coverage",
+      include: ["src/**/*.{ts,tsx,svelte}"],
+      // No tests on storybook stories.
+      // No tests on purely visual components (unless absolutely required).
+      exclude: ["src/stories", "src/lib/ui/components"]
     }
   }
 });
