@@ -5,6 +5,10 @@ yarn.lock
 bun.lock
 bun.lockb
 
+cache
+
+src/paraglide
+
 *.xcf
 *.png
 *.pdn

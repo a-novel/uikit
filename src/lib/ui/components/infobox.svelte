@@ -11,10 +11,10 @@
     icon?: Snippet;
   }
 
-  const { children, color = "default", icon, class: className, ...props }: Props = $props();
+  const { children, color = "default", icon, ...props }: Props = $props();
 </script>
 
-<div {...props} class={["box", className]} data-color={color}>
+<div {...props} class={["box", props.class]} data-color={color}>
   {@render children?.()}
   <div class="icon">
     {@render icon?.()}
