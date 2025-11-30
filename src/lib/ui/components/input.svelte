@@ -59,4 +59,12 @@
     padding: 0 var(--spacing-s);
     color: var(--text);
   }
+
+  input:read-only {
+    color: var(--color-gray-400);
+  }
+
+  input:disabled {
+    color: var(--color-gray-300);
+  }
 </style>

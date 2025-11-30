@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
-  import { Input, Section } from "$lib/ui/components";
+  import { Input, Section, Button } from "$lib/ui/components";
+
+  import { LOREM_IPSUM } from "./utils";
 
   import EditIcon from "virtual:icons/material-symbols/edit-outline";
 
@@ -17,10 +19,6 @@
     },
     args: {}
   });
-</script>
-
-<script>
-  import { Button } from "$lib/ui/components";
 </script>
 
 {#snippet base()}
@@ -65,3 +63,19 @@
 {/snippet}
 
 <Story name="Colors" template={colors} />
+
+{#snippet readOnly()}
+  <Section style="display: flex; flex-direction: column; gap: var(--spacing-m)">
+    <Input readonly value={LOREM_IPSUM.SHORT} />
+  </Section>
+{/snippet}
+
+<Story name="Readonly" template={readOnly} />
+
+{#snippet disabled()}
+  <Section style="display: flex; flex-direction: column; gap: var(--spacing-m)">
+    <Input disabled value={LOREM_IPSUM.SHORT} />
+  </Section>
+{/snippet}
+
+<Story name="Disabled" template={disabled} />

@@ -53,14 +53,12 @@
     justify-content: center;
   }
 
-  button[data-icon="true"] :global {
-    > * {
-      color: inherit;
-      height: 1em;
-      width: auto;
-      display: block;
-      flex-shrink: 0;
-    }
+  button[data-icon="true"] :global(> svg) {
+    color: inherit;
+    height: 1em;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
   }
 
   button[data-gradient="true"]:not(:disabled) {
