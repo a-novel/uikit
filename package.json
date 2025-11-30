@@ -26,16 +26,22 @@
     "./ui/components": {
       "types": "./dist/ui/components/index.d.ts",
       "svelte": "./dist/ui/components/index.js"
-    }
+    },
+    "./assets/icons/*": "./src/assets/icons/*",
+    "./assets/logos/*": "./src/assets/logos/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "messages",
+    "src/assets/icons",
+    "src/assets/logos"
   ],
   "scripts": {
     "assets:gen": "node src/scripts/assets.gen.ts",
     "build": "vite build && npm run prepack",
-    "build-storybook": "storybook build",
+    "build:storybook": "storybook build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:ci": "pnpm build && pnpm check",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "vite dev",
     "format": "prettier --write .",
@@ -60,6 +66,7 @@
     "@eslint/compat": "^2.0.0",
     "@eslint/js": "^9.39.1",
     "@iconify-json/material-symbols": "^1.2.48",
+    "@inlang/paraglide-js": "2.5.0",
     "@storybook/addon-a11y": "^10.0.8",
     "@storybook/addon-docs": "^10.0.8",
     "@storybook/addon-svelte-csf": "^5.0.10",

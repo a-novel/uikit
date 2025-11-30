@@ -15,7 +15,7 @@ import ts from "typescript-eslint";
 const gitignorePath = fileURLToPath(new URL("./.gitignore", import.meta.url));
 
 export default defineConfig(
-  globalIgnores(["static"]),
+  globalIgnores(["static", "cache", "src/paraglide"]),
   includeIgnoreFile(gitignorePath),
   js.configs.recommended,
   ...ts.configs.recommended,
@@ -57,8 +57,7 @@ export default defineConfig(
           varsIgnorePattern: "^_",
           caughtErrorsIgnorePattern: "^_"
         }
-      ],
-      "react/react-in-jsx-scope": "off"
+      ]
     }
   }
 );

@@ -24,7 +24,22 @@ themes.light = {
   brandTitle: "A-Novel"
 };
 
-console.log("AYOOOOOOOOOOOOOOOO");
+// Create a global variable called locale in storybook
+// and add a menu in the toolbar to change your locale
+export const globalTypes = {
+  locale: {
+    name: "Locale",
+    description: "Internationalization locale",
+    toolbar: {
+      icon: "globe",
+      items: [
+        { value: "en", title: "English" },
+        { value: "fr", title: "Francais" }
+      ],
+      showName: true
+    }
+  }
+};
 
 const preview: Preview = {
   parameters: {
@@ -54,7 +69,7 @@ const preview: Preview = {
     (_, params) => {
       return {
         Component: DesignSystemComponent,
-        props: { theme: params.globals.theme || "dark" }
+        props: { theme: params.globals.theme || "dark", locale: params.globals.locale }
       };
     }
   ]
