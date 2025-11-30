@@ -10,6 +10,7 @@
     "^\\$",
     "^\\.(\\.)?\\/",
     "^node\\:",
+    "^virtual\\:",
     "^svelte",
     "^(vite|vitest)",
     "^@a-novel",

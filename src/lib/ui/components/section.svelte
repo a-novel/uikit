@@ -13,7 +13,7 @@
     background-color: var(--color-gray-200);
     border-color: transparent;
     border-width: 0;
-    border-radius: var(--spacing-s);
+    border-radius: var(--spacing-m);
     padding: var(--spacing-s) var(--spacing-m);
   }
 </style>

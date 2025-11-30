@@ -6,15 +6,24 @@
   import { z } from "zod";
 
   interface Props extends HTMLButtonAttributes {
-    color?: z.infer<typeof ComponentColor>;
+    color?: z.infer<typeof ComponentColor> | "invert";
     size?: "small" | "medium" | "large";
     gradient?: boolean;
     glow?: boolean;
+    icon?: boolean;
   }
-  let { children, color = "default", size = "medium", gradient = false, glow = false, ...props }: Props = $props();
+  let {
+    children,
+    color = "default",
+    size = "medium",
+    gradient = false,
+    glow = false,
+    icon,
+    ...props
+  }: Props = $props();
 </script>
 
-<button {...props} data-gradient={gradient} data-glow={glow} data-size={size} data-color={color}>
+<button {...props} data-gradient={gradient} data-glow={glow} data-size={size} data-icon={icon} data-color={color}>
   {@render children?.()}
 </button>
 
@@ -28,6 +37,30 @@
     background-color: var(--color-200);
     color: var(--color-600);
     box-sizing: border-box;
+  }
+
+  button[data-color="invert"] {
+    background-color: var(--background);
+    border-color: var(--background);
+    color: var(--color-400);
+  }
+
+  button[data-icon="true"] {
+    height: 1.5lh;
+    width: 1.5lh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button[data-icon="true"] :global {
+    > * {
+      color: inherit;
+      height: 1em;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+    }
   }
 
   button[data-gradient="true"]:not(:disabled) {
@@ -46,8 +79,8 @@
   button:disabled {
     cursor: not-allowed;
     position: relative;
-    background-color: var(--color-100);
-    border-color: var(--color-100);
+    background-color: var(--color-200);
+    border-color: var(--color-200);
   }
 
   button::after {

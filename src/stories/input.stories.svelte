@@ -1,0 +1,67 @@
+<script context="module" lang="ts">
+  import { Input, Section } from "$lib/ui/components";
+
+  import EditIcon from "virtual:icons/material-symbols/edit-outline";
+
+  import { defineMeta } from "@storybook/addon-svelte-csf";
+
+  // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+  const { Story } = defineMeta({
+    title: "Components/Input",
+    component: Input,
+    tags: ["autodocs"],
+    argTypes: {
+      disabled: {
+        control: { type: "boolean" }
+      }
+    },
+    args: {}
+  });
+</script>
+
+<script>
+  import { Button } from "$lib/ui/components";
+</script>
+
+{#snippet base()}
+  <Section>
+    <Input />
+  </Section>
+{/snippet}
+
+<Story name="Primary" template={base} />
+
+{#snippet adornments()}
+  <Section>
+    <Input>
+      {#snippet startAdornment()}
+        <Button icon>
+          <EditIcon color="currentColor" />
+        </Button>
+        <Button icon>
+          <EditIcon color="currentColor" />
+        </Button>
+      {/snippet}
+      {#snippet endAdornment()}
+        <Button icon>
+          <EditIcon color="currentColor" />
+        </Button>
+        <Button icon>
+          <EditIcon color="currentColor" />
+        </Button>
+      {/snippet}
+    </Input>
+  </Section>
+{/snippet}
+
+<Story name="Adornments" template={adornments} />
+
+{#snippet colors()}
+  <Section style="display: flex; flex-direction: column; gap: var(--spacing-m)">
+    <Input color="primary" />
+    <Input color="secondary" />
+    <Input color="accent" />
+  </Section>
+{/snippet}
+
+<Story name="Colors" template={colors} />
