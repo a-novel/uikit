@@ -363,7 +363,7 @@ h6 {
 }
 
 html {
-  font-size: 12px;
+  font-size: min(12px, 3.3333333333vw);
 }
 
 * {
