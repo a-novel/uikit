@@ -30,6 +30,7 @@
 <style>
   button {
     cursor: pointer;
+    user-select: none;
     transition: linear 0.1s;
     border-style: solid;
     border-width: thin;
@@ -54,7 +55,7 @@
   }
 
   button[data-icon="true"] :global(> svg) {
-    color: inherit;
+    color: currentColor;
     height: 1em;
     width: auto;
     display: block;

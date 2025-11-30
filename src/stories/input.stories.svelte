@@ -34,18 +34,18 @@
     <Input>
       {#snippet startAdornment()}
         <Button icon>
-          <EditIcon color="currentColor" />
+          <EditIcon />
         </Button>
         <Button icon>
-          <EditIcon color="currentColor" />
+          <EditIcon />
         </Button>
       {/snippet}
       {#snippet endAdornment()}
         <Button icon>
-          <EditIcon color="currentColor" />
+          <EditIcon />
         </Button>
         <Button icon>
-          <EditIcon color="currentColor" />
+          <EditIcon />
         </Button>
       {/snippet}
     </Input>

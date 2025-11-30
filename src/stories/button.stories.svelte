@@ -45,9 +45,9 @@
   </div>
   <div style="height: var(--spacing-m)"></div>
   <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: var(--spacing-m)">
-    <Button size="small" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button size="medium" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button size="large" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button size="small" icon onclick={fn()}><EditIcon /></Button>
+    <Button size="medium" icon onclick={fn()}><EditIcon /></Button>
+    <Button size="large" icon onclick={fn()}><EditIcon /></Button>
   </div>
 {/snippet}
 
@@ -62,10 +62,10 @@
   </div>
   <div style="height: var(--spacing-m)"></div>
   <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: var(--spacing-m)">
-    <Button color="default" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="primary" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="secondary" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="accent" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button color="default" icon onclick={fn()}><EditIcon /></Button>
+    <Button color="primary" icon onclick={fn()}><EditIcon /></Button>
+    <Button color="secondary" icon onclick={fn()}><EditIcon /></Button>
+    <Button color="accent" icon onclick={fn()}><EditIcon /></Button>
   </div>
 {/snippet}
 
@@ -75,7 +75,7 @@
   <Section>
     <Button color="invert" onclick={fn()}>Click me!</Button>
     <div style="height: var(--spacing-m)"></div>
-    <Button color="invert" icon onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button color="invert" icon onclick={fn()}><EditIcon /></Button>
   </Section>
 {/snippet}
 
@@ -90,10 +90,10 @@
   </div>
   <div style="height: var(--spacing-m)"></div>
   <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: var(--spacing-m)">
-    <Button color="default" icon gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="primary" icon gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="secondary" icon gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="accent" icon gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button color="default" icon gradient onclick={fn()}><EditIcon /></Button>
+    <Button color="primary" icon gradient onclick={fn()}><EditIcon /></Button>
+    <Button color="secondary" icon gradient onclick={fn()}><EditIcon /></Button>
+    <Button color="accent" icon gradient onclick={fn()}><EditIcon /></Button>
   </div>
 {/snippet}
 
@@ -108,10 +108,10 @@
   </div>
   <div style="height: var(--spacing-m)"></div>
   <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: var(--spacing-m)">
-    <Button color="default" icon glow onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="primary" icon glow onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="secondary" icon glow onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="accent" icon glow onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button color="default" icon glow onclick={fn()}><EditIcon /></Button>
+    <Button color="primary" icon glow onclick={fn()}><EditIcon /></Button>
+    <Button color="secondary" icon glow onclick={fn()}><EditIcon /></Button>
+    <Button color="accent" icon glow onclick={fn()}><EditIcon /></Button>
   </div>
 {/snippet}
 
@@ -126,10 +126,10 @@
   </div>
   <div style="height: var(--spacing-m)"></div>
   <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: var(--spacing-m)">
-    <Button color="default" icon glow gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="primary" icon glow gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="secondary" icon glow gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="accent" icon glow gradient onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button color="default" icon glow gradient onclick={fn()}><EditIcon /></Button>
+    <Button color="primary" icon glow gradient onclick={fn()}><EditIcon /></Button>
+    <Button color="secondary" icon glow gradient onclick={fn()}><EditIcon /></Button>
+    <Button color="accent" icon glow gradient onclick={fn()}><EditIcon /></Button>
   </div>
 {/snippet}
 
@@ -144,10 +144,10 @@
   </div>
   <div style="height: var(--spacing-m)"></div>
   <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; gap: var(--spacing-m)">
-    <Button color="default" icon disabled onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="primary" icon disabled onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="secondary" icon disabled onclick={fn()}><EditIcon color="currentColor" /></Button>
-    <Button color="accent" icon disabled onclick={fn()}><EditIcon color="currentColor" /></Button>
+    <Button color="default" icon disabled onclick={fn()}><EditIcon /></Button>
+    <Button color="primary" icon disabled onclick={fn()}><EditIcon /></Button>
+    <Button color="secondary" icon disabled onclick={fn()}><EditIcon /></Button>
+    <Button color="accent" icon disabled onclick={fn()}><EditIcon /></Button>
   </div>
 {/snippet}
 
