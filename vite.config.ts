@@ -5,19 +5,14 @@ import path from "node:path";
 
 import { defineConfig } from "vitest/config";
 
-import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { svelteTesting } from "@testing-library/svelte/vite";
+import { wuchale } from "@wuchale/vite-plugin";
 import { CookieJar } from "jsdom";
 import Icons from "unplugin-icons/vite";
 
 export default defineConfig({
-  plugins: [
-    paraglideVitePlugin({ project: "./project.inlang", outdir: "./src/paraglide" }),
-    sveltekit(),
-    svelteTesting(),
-    Icons({ autoInstall: true, compiler: "svelte" })
-  ],
+  plugins: [wuchale(), sveltekit(), svelteTesting(), Icons({ autoInstall: true, compiler: "svelte" })],
   build: {
     sourcemap: true,
     rollupOptions: {
@@ -65,7 +60,7 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx,svelte}"],
       // No tests on storybook stories.
       // No tests on purely visual components (unless absolutely required).
-      exclude: ["src/stories", "src/lib/ui/components", "src/scripts", "src/paraglide"]
+      exclude: ["src/stories", "src/lib/ui/components", "src/scripts"]
     }
   }
 });

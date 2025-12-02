@@ -1,3 +1,4 @@
+import { LNG } from "../src/lib/const";
 import { DesignSystemComponent } from "../src/lib/ui";
 import "../src/lib/ui/designSystem.css";
 
@@ -33,8 +34,8 @@ export const globalTypes = {
     toolbar: {
       icon: "globe",
       items: [
-        { value: "en", title: "English" },
-        { value: "fr", title: "Francais" }
+        { value: LNG.EN, title: "English" },
+        { value: LNG.FR, title: "Francais" }
       ],
       showName: true
     }

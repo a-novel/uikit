@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-02T20:32:07.019Z\n"
+"PO-Revision-Date: 2025-12-02T20:32:07.019Z\n"
+"Last-Translator: \n"
+"Language: fr\n"
+"Language-Team: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"MIME-Version: 1.0\n"
+
+#: src/lib/ui/components/errorbox.svelte
+msgid "Show error details"
+msgstr "Afficher le détail de l'erreur"
+
+#: src/lib/ui/components/errorbox.svelte
+msgid "Hide error details"
+msgstr "Masquer le détail de l'erreur"
