@@ -54,14 +54,6 @@
     justify-content: center;
   }
 
-  button[data-icon="true"] :global(> svg) {
-    color: currentColor;
-    height: 1em;
-    width: auto;
-    display: block;
-    flex-shrink: 0;
-  }
-
   button[data-gradient="true"]:not(:disabled) {
     background-image: linear-gradient(45deg, var(--color-c-200) 0%, var(--color-200) 70%, var(--color-cc-200) 100%);
   }

@@ -51,12 +51,4 @@
     align-items: center;
     z-index: 0;
   }
-
-  .icon :global(> svg) {
-    color: currentColor;
-    height: 1em;
-    width: auto;
-    display: block;
-    flex-shrink: 0;
-  }
 </style>

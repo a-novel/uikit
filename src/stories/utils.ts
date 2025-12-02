@@ -1,4 +1,6 @@
 export const LOREM_IPSUM = {
+  SHORTER: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. `,
+
   SHORT: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consectetur ut erat ac sodales. Lorem ipsum 
 dolor sit amet, consectetur adipiscing elit.`,
 
