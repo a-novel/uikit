@@ -1,5 +1,0 @@
-{
-  "$schema": "https://inlang.com/schema/inlang-message-format",
-  "showErrorDetails": "Afficher les détails de l'erreur",
-  "hideErrorDetails": "Cacher les détails de l'erreur"
-}

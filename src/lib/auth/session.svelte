@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { initSession, SESSION_STORAGE_KEY } from "$lib/auth/session.svelte.js";
+  import { initSession } from "$lib/auth/session.svelte.js";
   import { retry } from "$lib/utils/index.js";
 
   import type { Snippet } from "svelte";
@@ -8,19 +8,14 @@
   import type { AuthenticationApi } from "@a-novel/service-authentication-rest";
 
   interface Props {
-    api: AuthenticationApi;
     children: Snippet;
+    api: AuthenticationApi;
     sessionStorageKey?: string;
     sessionContextKey?: string;
   }
-  let {
-    children,
-    api,
-    sessionStorageKey = SESSION_STORAGE_KEY,
-    sessionContextKey = SESSION_STORAGE_KEY
-  }: Props = $props();
+  let { children, ...props }: Props = $props();
 
-  const session = initSession(api, sessionContextKey, sessionStorageKey);
+  let session = initSession(props.api, props.sessionContextKey, props.sessionStorageKey);
 
   // If there is no access token available, retrieve one.
   $effect(() => {

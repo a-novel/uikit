@@ -1,6 +1,5 @@
 <script lang="ts">
   import { InfoBox } from "$lib/ui/components/index";
-  import { m } from "$paraglide/messages";
 
   import AddIcon from "virtual:icons/material-symbols/add";
   import RemoveIcon from "virtual:icons/material-symbols/remove";
@@ -47,9 +46,9 @@
         </span>
         <span class="details-title-text">
           {#if showDetails}
-            {m.hideErrorDetails()}
+            Hide error details
           {:else}
-            {m.showErrorDetails()}
+            Show error details
           {/if}
         </span>
       </button>
@@ -107,6 +106,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: var(--spacing-s);
+    padding: 0 var(--spacing-s);
     flex-wrap: nowrap;
     font-size: var(--font-size-h6);
     cursor: pointer;

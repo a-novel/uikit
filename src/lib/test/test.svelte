@@ -3,6 +3,8 @@
     callback: () => void;
   }
 
-  const { callback }: Props = $props();
-  callback();
+  let { callback }: Props = $props();
+  $effect(() => {
+    callback();
+  });
 </script>

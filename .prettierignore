@@ -7,7 +7,7 @@ bun.lockb
 
 cache
 
-src/paraglide
+locales
 
 *.xcf
 *.png

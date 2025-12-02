@@ -1,5 +1,10 @@
+import type { LNG } from "$lib/const";
 import { loadLocalStorage } from "$lib/utils/index.js";
+import { locales } from "$locales/data";
+import "$locales/main.loader.svelte.js";
 
+import { BROWSER } from "esm-env";
+import { loadLocale } from "wuchale/load-utils";
 import { z } from "zod";
 
 export const Theme = z.enum(["dark", "light"]);
@@ -27,4 +32,12 @@ export function loadPreferredTheme(): z.infer<typeof Theme> {
 export function loadTheme(): z.infer<typeof Theme> {
   // Prioritize local data.
   return loadLocalStorage(THEME_STORAGE_KEY, Theme) || loadPreferredTheme();
+}
+
+export async function setLocale(locale: LNG) {
+  if (!BROWSER || !locales.includes(locale)) {
+    return;
+  }
+
+  await loadLocale(locale);
 }

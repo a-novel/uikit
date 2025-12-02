@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { loadTheme, Theme, THEME_STORAGE_KEY } from "$lib/ui/designSystem.svelte.js";
+  import { LNG } from "$lib/const";
+  import { loadTheme, setLocale, Theme, THEME_STORAGE_KEY } from "$lib/ui/designSystem.svelte.js";
   import { saveLocalStorage } from "$lib/utils/index.js";
-  import { setLocale } from "$paraglide/runtime";
 
   import "./designSystem.css";
 
@@ -12,10 +12,10 @@
   interface Props {
     theme?: z.infer<typeof Theme>;
     children?: Snippet;
-    locale?: Parameters<typeof setLocale>[0];
+    locale?: LNG;
   }
 
-  let { theme = loadTheme(), children, locale = "en" }: Props = $props();
+  let { theme = loadTheme(), children, locale = LNG.EN }: Props = $props();
 
   // Sync theme updates with localStorage.
   $effect(() => {
