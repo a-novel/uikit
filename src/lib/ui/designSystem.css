@@ -374,6 +374,33 @@ html {
   line-height: 1.6em;
 }
 
+.icon > svg,
+[data-icon="true"] > svg {
+  color: currentColor;
+  height: 1em;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+*[data-width] {
+  max-width: 100%;
+}
+*[data-width="xs"] {
+  width: 25rch;
+}
+*[data-width="s"] {
+  width: 40rch;
+}
+*[data-width="m"] {
+  width: 64rch;
+}
+*[data-width="l"] {
+  width: 102rch;
+}
+*[data-width="xl"] {
+  width: 163rch;
+}
+
 body {
   width: 100%;
   min-height: 100vh;

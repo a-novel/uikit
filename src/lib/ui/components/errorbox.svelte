@@ -22,7 +22,7 @@
   {#if title || icon}
     <div class="title">
       {#if icon}
-        <span class="title-icon">
+        <span class="icon">
           {@render icon()}
         </span>
       {/if}
@@ -37,7 +37,7 @@
   {#if error}
     <div class="details">
       <button type="button" class="details-title" onclick={() => (showDetails = !showDetails)}>
-        <span class="details-title-icon">
+        <span class="icon">
           {#if showDetails}
             <RemoveIcon />
           {:else}
@@ -81,11 +81,8 @@
     font-weight: bold;
   }
 
-  .title-icon :global(> svg) {
-    color: currentColor;
-    display: block;
-    height: 1.2em;
-    width: auto;
+  .title > .icon {
+    font-size: 1.2em;
   }
 
   .title-text {
@@ -114,13 +111,6 @@
     border: none;
     outline: none;
     color: inherit;
-  }
-
-  .details-title-icon :global(> svg) {
-    color: currentColor;
-    display: block;
-    height: 1em;
-    width: auto;
   }
 
   .details-title-text {
