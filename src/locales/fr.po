@@ -19,3 +19,15 @@ msgstr "Afficher le détail de l'erreur"
 #: src/lib/ui/components/errorbox.svelte
 msgid "Hide error details"
 msgstr "Masquer le détail de l'erreur"
+
+#: src/lib/ui/components/navbar.svelte
+msgid "Close navigation menu"
+msgstr "Fermer le menu de navigation"
+
+#: src/lib/ui/components/navbar.svelte
+msgid "Open navigation menu"
+msgstr "Ouvrir le menu de navigation"
+
+#: src/lib/ui/components/navbar.svelte
+msgid "Navigation menu"
+msgstr "Menu de navigation"

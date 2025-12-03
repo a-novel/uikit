@@ -18,19 +18,19 @@
 <section {...props} data-color={color ?? "default"}>
   {#if icon}
     <div class="icon">
-      {@render icon?.()}
+      {@render icon()}
     </div>
   {/if}
 
   {#if title}
     <h2 data-width="l">
-      {@render title?.()}
+      {@render title()}
     </h2>
   {/if}
 
   {#if children}
     <p data-width="l">
-      {@render children?.()}
+      {@render children()}
     </p>
   {/if}
 </section>

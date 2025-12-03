@@ -48,6 +48,7 @@ export default defineConfig(
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/ban-ts-comment": "off",
+      "svelte/no-navigation-without-resolve": ["error", { ignoreLinks: true }],
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",

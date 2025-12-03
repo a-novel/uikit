@@ -13,7 +13,8 @@ const config = {
     // See https://svelte.dev/docs/kit/adapters for more information about adapters.
     adapter: adapter(),
     alias: {
-      "$locales/*": "./src/locales/*"
+      "$locales/*": "./src/locales/*",
+      "$assets/*": "./src/assets/*"
     }
   }
 };
