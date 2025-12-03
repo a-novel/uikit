@@ -11,8 +11,6 @@ describe("debounce", () => {
 
     debouncer.call(callback);
 
-    await new Promise((resolve) => setTimeout(resolve, 20));
-
     expect(callback).toHaveBeenCalledOnce();
   });
 
@@ -24,7 +22,6 @@ describe("debounce", () => {
     debouncer.call(callback);
     await new Promise((resolve) => setTimeout(resolve, 20));
     debouncer.call(callback);
-    await new Promise((resolve) => setTimeout(resolve, 20));
 
     expect(callback).toHaveBeenCalledTimes(2);
   });
@@ -35,9 +32,10 @@ describe("debounce", () => {
     const debouncer = new Debounce(10);
 
     debouncer.call(callback);
-    debouncer.call(callback); // This call is ignored.
-    await new Promise((resolve) => setTimeout(resolve, 20));
-    debouncer.call(callback);
+    debouncer.call(callback); // This call is ignored, because of the one that comes right after.
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    debouncer.call(callback); // This call is delayed for debouncing.
+    expect(callback).toHaveBeenCalledTimes(1);
     await new Promise((resolve) => setTimeout(resolve, 20));
 
     expect(callback).toHaveBeenCalledTimes(2);
