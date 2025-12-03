@@ -52,7 +52,7 @@
           {/if}
         </span>
       </button>
-      <pre class="details-content" data-show={showDetails}>{error.toString().trim()}</pre>
+      <pre class="details-content" data-display={showDetails}>{error.toString().trim()}</pre>
     </div>
   {/if}
 </InfoBox>
@@ -132,7 +132,7 @@
     overflow: hidden;
   }
 
-  .details-content[data-show="true"] {
+  .details-content[data-display="true"] {
     transform: scaleY(1);
     margin-top: var(--spacing-s);
     height: 100%;

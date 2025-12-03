@@ -1,4 +1,4 @@
-/* -------------------------------------------------- COLORS -------------------------------------------------- */
+/* ----------------------------------------------------- COLORS ----------------------------------------------------- */
 
 :root {
   --blend-50: var(--base-black) 90%;
@@ -150,7 +150,7 @@
   --base-white: #ffffff;
 }
 
-/* ----------------------------------------------- COLOR PRESETS ---------------------------------------------- */
+/* -------------------------------------------------- COLOR PRESETS ------------------------------------------------- */
 [data-color="default"] {
   --color-50: var(--color-gray-50);
   --color-100: var(--color-gray-100);
@@ -303,7 +303,7 @@
   --color-cc-950: var(--color-accent-cc-950);
 }
 
-/* ------------------------------------------------- SPACINGS ------------------------------------------------- */
+/* ---------------------------------------------------- SPACINGS ---------------------------------------------------- */
 
 :root {
   --spacing-xs: 0.5rem;
@@ -313,7 +313,7 @@
   --spacing-xl: 3.2rem;
 }
 
-/* ------------------------------------------------ FONT SIZES ------------------------------------------------ */
+/* --------------------------------------------------- FONT SIZES --------------------------------------------------- */
 
 :root {
   --font-size-h1: 2.986rem;
@@ -374,6 +374,13 @@ html {
   line-height: 1.6em;
 }
 
+/* ----------------------------------------------------- OTHER ------------------------------------------------------ */
+
+:root {
+  --z-index-nav: 900;
+  --z-index-nav-popover: 500;
+}
+
 .icon > svg,
 [data-icon="true"] > svg {
   color: currentColor;
@@ -382,6 +389,7 @@ html {
   display: block;
   flex-shrink: 0;
 }
+
 *[data-width] {
   max-width: 100%;
 }
@@ -407,12 +415,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  padding: 0;
+  margin: 0;
 
   font-family: Arimo, sans-serif;
 
   /* Body always have a theme class assigned, so this will work */
   background-color: var(--background);
   color: var(--text);
+}
+
+[data-show]:not([data-show="true"]) {
+  display: none !important;
 }
 
 /*

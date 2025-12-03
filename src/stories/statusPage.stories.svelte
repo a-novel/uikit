@@ -31,6 +31,9 @@
     {#snippet title()}
       {LOREM_IPSUM.SHORTER}
     {/snippet}
+    {#snippet icon()}
+      <InfoIcon />
+    {/snippet}
   </StatusPage>
 {/snippet}
 

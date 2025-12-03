@@ -1,8 +1,12 @@
 import Button from "./button.svelte";
 import ErrorBox from "./errorbox.svelte";
+import Image from "./img.svelte";
 import InfoBox from "./infobox.svelte";
 import Input from "./input.svelte";
+import NavBar from "./navbar.svelte";
 import Section from "./section.svelte";
 import StatusPage from "./statusPage.svelte";
 
-export { Button, Input, InfoBox, ErrorBox, Section, StatusPage };
+export * from "./navbar.svelte.js";
+
+export { Button, Input, InfoBox, ErrorBox, Section, StatusPage, NavBar, Image };
