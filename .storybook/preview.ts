@@ -1,6 +1,7 @@
 import { LNG } from "../src/lib/const";
 import { DesignSystemComponent } from "../src/lib/ui";
 import "../src/lib/ui/designSystem.css";
+import "./preview.css";
 
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/sveltekit";

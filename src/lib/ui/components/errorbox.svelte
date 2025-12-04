@@ -26,7 +26,7 @@
           {@render icon()}
         </span>
       {/if}
-      <span class="title-text">
+      <span class="text">
         {@render title?.()}
       </span>
     </div>
@@ -36,7 +36,7 @@
 
   {#if error}
     <div class="details">
-      <button type="button" class="details-title" onclick={() => (showDetails = !showDetails)}>
+      <button type="button" class="title" onclick={() => (showDetails = !showDetails)}>
         <span class="icon">
           {#if showDetails}
             <RemoveIcon />
@@ -44,7 +44,7 @@
             <AddIcon />
           {/if}
         </span>
-        <span class="details-title-text">
+        <span class="text">
           {#if showDetails}
             Hide error details
           {:else}
@@ -52,7 +52,7 @@
           {/if}
         </span>
       </button>
-      <pre class="details-content" data-display={showDetails}>{error.toString().trim()}</pre>
+      <pre class="content" data-display={showDetails}>{error.toString().trim()}</pre>
     </div>
   {/if}
 </InfoBox>
@@ -79,14 +79,14 @@
     flex-wrap: nowrap;
     font-size: var(--font-size-h5);
     font-weight: bold;
-  }
 
-  .title > .icon {
-    font-size: 1.2em;
-  }
+    & > .icon {
+      font-size: 1.2em;
+    }
 
-  .title-text {
-    white-space: pre;
+    & > .text {
+      white-space: pre;
+    }
   }
 
   .details {
@@ -95,46 +95,46 @@
     gap: 0;
     align-items: stretch;
     height: fit-content;
-  }
 
-  .details-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--spacing-s);
-    padding: 0 var(--spacing-s);
-    flex-wrap: nowrap;
-    font-size: var(--font-size-h6);
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-    color: inherit;
-  }
+    & > .title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--spacing-s);
+      padding: 0 var(--spacing-s);
+      flex-wrap: nowrap;
+      font-size: var(--font-size-h6);
+      cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      color: inherit;
 
-  .details-title-text {
-    white-space: pre;
-  }
+      & > .text {
+        white-space: pre;
+      }
+    }
 
-  .details-content {
-    transform-origin: top;
-    position: relative;
-    transform: scaleY(0);
-    height: 0;
-    padding: 0 var(--spacing-m) 0 var(--spacing-s);
-    margin: 0 0 var(--spacing-s) var(--spacing-s);
-    transition: linear 0.3s;
-    white-space: break-spaces;
-    border-color: currentColor;
-    border-style: solid;
-    border-width: 0 0 0 thin;
-    overflow: hidden;
-  }
+    & > .content {
+      transform-origin: top;
+      position: relative;
+      transform: scaleY(0);
+      height: 0;
+      padding: 0 var(--spacing-m) 0 var(--spacing-s);
+      margin: 0 0 var(--spacing-s) var(--spacing-s);
+      transition: linear 0.3s;
+      white-space: break-spaces;
+      border-color: currentColor;
+      border-style: solid;
+      border-width: 0 0 0 thin;
+      overflow: hidden;
 
-  .details-content[data-display="true"] {
-    transform: scaleY(1);
-    margin-top: var(--spacing-s);
-    height: 100%;
+      &[data-display="true"] {
+        transform: scaleY(1);
+        margin-top: var(--spacing-s);
+        height: 100%;
+      }
+    }
   }
 </style>

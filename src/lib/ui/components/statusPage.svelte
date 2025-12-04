@@ -23,13 +23,13 @@
   {/if}
 
   {#if title}
-    <h2 data-width="l">
+    <h2 data-width="m">
       {@render title()}
     </h2>
   {/if}
 
   {#if children}
-    <p data-width="l">
+    <p data-width="m">
       {@render children()}
     </p>
   {/if}
@@ -45,11 +45,11 @@
     flex-grow: 1;
     padding: 0;
     margin: 0;
-    gap: var(--spacing-m);
+    gap: var(--spacing-s);
   }
 
   .icon {
-    color: var(--color-300);
+    color: var(--color-400);
     font-size: 6rem;
   }
 
@@ -59,6 +59,7 @@
   }
 
   p {
-    text-align: left;
+    text-align: center;
+    margin: 0;
   }
 </style>
