@@ -13,10 +13,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 
 #: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
 msgid "Show error details"
 msgstr "Afficher le détail de l'erreur"
 
 #: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
 msgid "Hide error details"
 msgstr "Masquer le détail de l'erreur"
 
@@ -31,3 +33,27 @@ msgstr "Ouvrir le menu de navigation"
 #: src/lib/ui/components/navbar.svelte
 msgid "Navigation menu"
 msgstr "Menu de navigation"
+
+#: src/lib/ui/components/statusPages/404.svelte
+msgid "Page not found."
+msgstr "Page introuvable."
+
+#: src/lib/ui/components/statusPages/404.svelte
+msgid "This page either does not exist or has been removed."
+msgstr "Soit cette page n'existe pas, soit elle a été supprimée."
+
+#: src/lib/ui/components/statusPages/404.svelte
+msgid "Please check your browser URL."
+msgstr "Vérifiez l'URL dans votre navigateur."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "Oops! An unexpected error occurred."
+msgstr "Oups ! Une erreur inattendue s'est produite."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
+msgstr "Une erreur anormale s'est produite sur nos serveurs. Nous travaillons à résoudre le problème au plus vite."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "You may retry later or clear your browser cache."
+msgstr "Vous pouvez réessayer plus tard, ou vider le cache de votre navigateur."

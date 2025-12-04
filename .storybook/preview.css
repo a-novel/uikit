@@ -1,0 +1,10 @@
+body {
+  display: flex !important;
+  flex-direction: column;
+}
+
+#storybook-root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

@@ -13,10 +13,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 
 #: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
 msgid "Show error details"
 msgstr "Show error details"
 
 #: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
 msgid "Hide error details"
 msgstr "Hide error details"
 
@@ -31,3 +33,27 @@ msgstr "Open navigation menu"
 #: src/lib/ui/components/navbar.svelte
 msgid "Navigation menu"
 msgstr "Navigation menu"
+
+#: src/lib/ui/components/statusPages/404.svelte
+msgid "Page not found."
+msgstr "Page not found."
+
+#: src/lib/ui/components/statusPages/404.svelte
+msgid "This page either does not exist or has been removed."
+msgstr "This page either does not exist or has been removed."
+
+#: src/lib/ui/components/statusPages/404.svelte
+msgid "Please check your browser URL."
+msgstr "Please check your browser URL."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "Oops! An unexpected error occurred."
+msgstr "Oops! An unexpected error occurred."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
+msgstr "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "You may retry later or clear your browser cache."
+msgstr "You may retry later or clear your browser cache."

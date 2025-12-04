@@ -34,6 +34,6 @@
   <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" />
 </svelte:head>
 
-<div data-theme={theme}>
-  {@render children?.()}
-</div>
+<div data-theme={theme}></div>
+
+{@render children?.()}
