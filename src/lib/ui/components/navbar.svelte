@@ -1,13 +1,14 @@
 <script lang="ts">
   import { Button } from "$lib/ui/components/index";
   import { type NavItem, isNavButton, isNavLink } from "$lib/ui/components/navbar.svelte.js";
-  import { Debounce } from "$lib/utils/debounce";
 
   import CloseIcon from "virtual:icons/material-symbols/close";
   import MenuIcon from "virtual:icons/material-symbols/menu";
 
   import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
+
+  import { Debounce } from "@a-novel/nodelib-browser/utils";
 
   interface Props extends Omit<HTMLAttributes<HTMLElement>, "title"> {
     homeButton: Snippet;
