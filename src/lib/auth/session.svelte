@@ -1,10 +1,10 @@
 <script lang="ts">
   import { initSession } from "$lib/auth/session.svelte.js";
-  import { retry } from "$lib/utils/index.js";
 
   import type { Snippet } from "svelte";
 
   import { isHttpStatusError } from "@a-novel/nodelib-browser/http";
+  import { retry } from "@a-novel/nodelib-browser/utils";
   import type { AuthenticationApi } from "@a-novel/service-authentication-rest";
 
   interface Props {
@@ -27,7 +27,7 @@
   // If claims are missing, retrieve them. Not anonymous getSession do have claims.
   $effect(() => {
     if (session.accessToken && !session.claims) {
-      const refresher = retry(session.syncClaims, { condition: (err) => !isHttpStatusError(err, 401) });
+      const refresher = retry(session.syncClaims, { condition: (err: unknown) => !isHttpStatusError(err, 401) });
       refresher().catch(session.catchRefreshSessionOnSessionError);
     }
   });

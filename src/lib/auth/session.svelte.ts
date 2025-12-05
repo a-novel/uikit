@@ -1,8 +1,9 @@
-import { loadLocalStorage, retry, saveLocalStorage } from "$lib/utils/index.js";
+import { loadLocalStorage, saveLocalStorage } from "$lib/utils/index.js";
 
 import { getContext, setContext } from "svelte";
 
 import { isHttpStatusError } from "@a-novel/nodelib-browser/http";
+import { retry } from "@a-novel/nodelib-browser/utils";
 import {
   AuthenticationApi,
   ClaimsSchema,
