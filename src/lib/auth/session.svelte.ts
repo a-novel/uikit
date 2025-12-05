@@ -10,7 +10,7 @@ import {
   type Claims,
   tokenCreateAnon,
   claimsGet,
-  tokenRefresh
+  tokenRefresh,
 } from "@a-novel/service-authentication-rest";
 
 import { z } from "zod";
@@ -28,7 +28,7 @@ export const SESSION_STORAGE_KEY = "a-novel-getSession";
 export const SessionSchema = z.object({
   claims: ClaimsSchema.optional(),
   accessToken: z.string().optional(),
-  refreshToken: z.string().optional()
+  refreshToken: z.string().optional(),
 });
 
 export type Session = z.infer<typeof SessionSchema>;
@@ -137,7 +137,7 @@ export class SessionStore {
   merge(value: Partial<Session>) {
     this.current = {
       ...this.current,
-      ...value
+      ...value,
     };
   }
 
@@ -194,7 +194,7 @@ export class SessionStore {
       // Reset session state.
       this.current = {
         accessToken: data.accessToken,
-        refreshToken: data.refreshToken
+        refreshToken: data.refreshToken,
       };
     });
   }
@@ -215,12 +215,12 @@ export class SessionStore {
   async refresh() {
     await tokenRefresh(this._api, {
       accessToken: this.accessToken,
-      refreshToken: this.refreshToken
+      refreshToken: this.refreshToken,
     }).then((data) => {
       // Update session tokens.
       this.current = {
         accessToken: data.accessToken,
-        refreshToken: data.refreshToken
+        refreshToken: data.refreshToken,
       };
     });
   }

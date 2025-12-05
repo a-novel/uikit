@@ -11,7 +11,7 @@
     component: StatusPageInternalError,
     tags: ["autodocs"],
     argTypes: {},
-    args: {}
+    args: {},
   });
 </script>
 

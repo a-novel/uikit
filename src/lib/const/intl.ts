@@ -18,7 +18,7 @@ export interface LngMeta {
 
 export enum LNG {
   EN = "en",
-  FR = "fr"
+  FR = "fr",
 }
 
 export const DEFAULT_LNG = LNG.EN;
@@ -27,11 +27,11 @@ export const LNG_META: Record<LNG, LngMeta> = {
   [LNG.EN]: {
     flag: "us",
     label: "English",
-    shortLabel: "ENG"
+    shortLabel: "ENG",
   },
   [LNG.FR]: {
     flag: "fr",
     label: "Français",
-    shortLabel: "FRA"
-  }
+    shortLabel: "FRA",
+  },
 };

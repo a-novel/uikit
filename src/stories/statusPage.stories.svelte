@@ -13,7 +13,7 @@
     component: StatusPage,
     tags: ["autodocs"],
     argTypes: {},
-    args: {}
+    args: {},
   });
 </script>
 

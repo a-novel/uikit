@@ -16,18 +16,18 @@ export default defineConfig({
   build: {
     sourcemap: true,
     rollupOptions: {
-      external: Object.keys(peerDependencies)
-    }
+      external: Object.keys(peerDependencies),
+    },
   },
   resolve: process.env.VITEST
     ? {
-        conditions: ["browser"]
+        conditions: ["browser"],
       }
     : undefined,
   test: {
     expect: { requireAssertions: true },
     environmentOptions: {
-      cookieJar: new CookieJar(undefined, { allowSpecialUseDomain: true })
+      cookieJar: new CookieJar(undefined, { allowSpecialUseDomain: true }),
     },
     projects: [
       {
@@ -38,8 +38,8 @@ export default defineConfig({
           environment: "jsdom",
           execArgv: ["--localstorage-file", path.resolve(os.tmpdir(), `vitest-${process.pid}.localstorage`)],
           include: ["src/**/*.svelte.{test,spec}.{js,ts}"],
-          exclude: ["src/lib/server/**"]
-        }
+          exclude: ["src/lib/server/**"],
+        },
       },
       {
         extends: "./vite.config.ts",
@@ -47,9 +47,9 @@ export default defineConfig({
           name: "server",
           environment: "node",
           include: ["src/**/*.{test,spec}.{js,ts}", "src/lib/server/**"],
-          exclude: ["src/**/*.svelte.{test,spec}.{js,ts}"]
-        }
-      }
+          exclude: ["src/**/*.svelte.{test,spec}.{js,ts}"],
+        },
+      },
     ],
     coverage: {
       enabled: true,
@@ -60,7 +60,7 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx,svelte}"],
       // No tests on storybook stories.
       // No tests on purely visual components (unless absolutely required).
-      exclude: ["src/stories", "src/lib/ui/components", "src/scripts"]
-    }
-  }
+      exclude: ["src/stories", "src/lib/ui/components", "src/scripts"],
+    },
+  },
 });

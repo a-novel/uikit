@@ -15,15 +15,15 @@
     tags: ["autodocs"],
     argTypes: {
       disabled: {
-        control: { type: "boolean" }
-      }
+        control: { type: "boolean" },
+      },
     },
     args: {
       onclick: fn(),
       children: createRawSnippet(() => ({
-        render: () => "Click me!"
-      }))
-    }
+        render: () => "Click me!",
+      })),
+    },
   });
 </script>
 

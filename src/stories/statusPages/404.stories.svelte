@@ -9,7 +9,7 @@
     component: StatusPageNotFound,
     tags: ["autodocs"],
     argTypes: {},
-    args: {}
+    args: {},
   });
 </script>
 

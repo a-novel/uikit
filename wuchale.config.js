@@ -7,7 +7,7 @@ export default defineConfig({
   adapters: {
     main: svelte({
       loader: "sveltekit",
-      files: ["src/lib/**/*.svelte"]
-    })
-  }
+      files: ["src/lib/**/*.svelte"],
+    }),
+  },
 });

@@ -10,6 +10,6 @@ export function createTestSnippet<Props extends Record<string, any>, Exports ext
     setup: (target) => {
       const comp = mount<Props, Exports>(Component, { target, props });
       return () => unmount(comp);
-    }
+    },
   }));
 }

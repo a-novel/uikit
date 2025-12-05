@@ -22,7 +22,7 @@ const LOGOS_INPUTS = [
   "raw/studio/studio icon (light).png",
 
   "raw/storyverse/storyverse (dark).png",
-  "raw/storyverse/storyverse (light).png"
+  "raw/storyverse/storyverse (light).png",
 ];
 
 const ICONS_INPUTS = [
@@ -30,31 +30,31 @@ const ICONS_INPUTS = [
   "raw/agora/agora icon (light).png",
 
   "raw/studio/studio icon (dark).png",
-  "raw/studio/studio icon (light).png"
+  "raw/studio/studio icon (light).png",
 ];
 
 const LOGOS_DESTINATIONS: Record<string, Destination> = {
   "logos/4k": {
-    height: 3840
+    height: 3840,
   },
   "logos/HD": {
-    height: 1080
+    height: 1080,
   },
   "logos/integrated": {
-    height: 300
-  }
+    height: 300,
+  },
 };
 
 const ICONS_DESTINATIONS: Record<string, Destination> = {
   "icons/app": {
-    height: 64
+    height: 64,
   },
   "icons/browser": {
-    height: 32
+    height: 32,
   },
   "icons/sd": {
-    height: 16
-  }
+    height: 16,
+  },
 };
 
 const BASE_PATH = path.join(__dirname, "../assets");

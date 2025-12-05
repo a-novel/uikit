@@ -10,14 +10,14 @@ describe("DesignSystemComponent", () => {
     const proxyTheme = {
       get element() {
         return document.querySelector("div");
-      }
+      },
     };
 
     const component = render(DesignSystemComponent, {
       target: document.body,
       props: {
-        theme: "dark"
-      }
+        theme: "dark",
+      },
     });
 
     await waitFor(() => {
@@ -25,7 +25,7 @@ describe("DesignSystemComponent", () => {
     });
 
     await component.rerender({
-      theme: "light"
+      theme: "light",
     });
 
     await waitFor(() => {
@@ -39,11 +39,11 @@ describe("DesignSystemComponent", () => {
     const proxyTheme = {
       get element() {
         return document.querySelector("div");
-      }
+      },
     };
 
     render(DesignSystemComponent, {
-      target: document.body
+      target: document.body,
     });
 
     await waitFor(() => {

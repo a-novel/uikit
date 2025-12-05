@@ -14,7 +14,7 @@ themes.dark = {
   appContentBg: "#000000",
   appPreviewBg: "#000000",
   fontBase: "Arimo, sans-serif",
-  brandTitle: "A-Novel"
+  brandTitle: "A-Novel",
 };
 
 themes.light = {
@@ -23,7 +23,7 @@ themes.light = {
   appContentBg: "#FFFFFF",
   appPreviewBg: "#FFFFFF",
   fontBase: "Arimo, sans-serif",
-  brandTitle: "A-Novel"
+  brandTitle: "A-Novel",
 };
 
 // Create a global variable called locale in storybook
@@ -36,45 +36,45 @@ export const globalTypes = {
       icon: "globe",
       items: [
         { value: LNG.EN, title: "English" },
-        { value: LNG.FR, title: "Francais" }
+        { value: LNG.FR, title: "Francais" },
       ],
-      showName: true
-    }
-  }
+      showName: true,
+    },
+  },
 };
 
 const preview: Preview = {
   parameters: {
     docs: {
-      theme: themes.dark
+      theme: themes.dark,
     },
     viewport: {
       viewports: INITIAL_VIEWPORTS,
-      defaultViewport: "ipad"
+      defaultViewport: "ipad",
     },
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i
-      }
-    }
+        date: /Date$/i,
+      },
+    },
   },
   decorators: [
     withThemeByDataAttribute({
       themes: {
         light: "",
-        dark: "dark"
+        dark: "dark",
       },
       defaultTheme: "dark",
-      attributeName: "data-theme"
+      attributeName: "data-theme",
     }),
     (_, params) => {
       return {
         Component: DesignSystemComponent,
-        props: { theme: params.globals.theme || "dark", locale: params.globals.locale }
+        props: { theme: params.globals.theme || "dark", locale: params.globals.locale },
       };
-    }
-  ]
+    },
+  ],
 };
 
 export default preview;

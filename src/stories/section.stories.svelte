@@ -17,9 +17,9 @@
     args: {
       onclick: fn(),
       children: createRawSnippet(() => ({
-        render: () => LOREM_IPSUM.LONG
-      }))
-    }
+        render: () => LOREM_IPSUM.LONG,
+      })),
+    },
   });
 </script>
 

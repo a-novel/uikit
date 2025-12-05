@@ -13,31 +13,31 @@
     component: NavBar,
     tags: ["autodocs"],
     argTypes: {},
-    args: {}
+    args: {},
   });
 
   const navItemsDefault: NavItem[] = [
     {
       content: "Link 1",
-      link: window.location.href
+      link: window.location.href,
     },
     {
       content: "Link 2",
       link: window.location.href,
-      active: true
+      active: true,
     },
     {
       content: "Button 1",
-      action: () => {}
+      action: () => {},
     },
     {
       content: "Button 2",
-      action: () => {}
+      action: () => {},
     },
     {
       content: "Button 3",
-      action: () => {}
-    }
+      action: () => {},
+    },
   ];
 </script>
 

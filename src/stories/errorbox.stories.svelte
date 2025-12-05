@@ -17,9 +17,9 @@
     argTypes: {},
     args: {
       children: createRawSnippet(() => ({
-        render: () => LOREM_IPSUM.MEDIUM
-      }))
-    }
+        render: () => LOREM_IPSUM.MEDIUM,
+      })),
+    },
   });
 </script>
 

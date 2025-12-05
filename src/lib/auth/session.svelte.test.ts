@@ -18,7 +18,7 @@ vi.mock(import("@a-novel/service-authentication-rest"), async (importOriginal) =
     ...mod,
     tokenCreateAnon: vi.fn(),
     tokenRefresh: vi.fn(),
-    claimsGet: vi.fn()
+    claimsGet: vi.fn(),
   };
 });
 
@@ -30,7 +30,7 @@ const mockClaimsGet = claimsGet as Mock;
 
 function renderSession(wrapper?: (children: Snippet) => Snippet) {
   const sessionRef = {
-    session: null as SessionStore | null
+    session: null as SessionStore | null,
   };
 
   const testCallback = () => {
@@ -85,7 +85,7 @@ describe("SessionSchema Component", () => {
         expect(sessionRender.session).not.toBeNull();
         expect(sessionRender.session?.current).toEqual({
           ...MockSessionRaw,
-          claims: MockSessionAnon.claims
+          claims: MockSessionAnon.claims,
         });
       });
 
@@ -105,7 +105,7 @@ describe("SessionSchema Component", () => {
         expect(sessionRender.session).not.toBeNull();
         expect(sessionRender.session?.current).toEqual({
           ...MockSessionRaw,
-          claims: MockSessionAnon.claims
+          claims: MockSessionAnon.claims,
         });
       });
 
@@ -127,7 +127,7 @@ describe("SessionSchema Component", () => {
         expect(sessionRender.session).not.toBeNull();
         expect(sessionRender.session?.current).toEqual({
           ...MockSessionRaw,
-          claims: MockSessionAnon.claims
+          claims: MockSessionAnon.claims,
         });
       });
 
@@ -147,7 +147,7 @@ describe("SessionSchema Component", () => {
       mockTokenRefresh.mockReturnValue(
         Promise.resolve({
           accessToken: MockSessionUser.accessToken,
-          refreshToken: MockSessionUser.refreshToken
+          refreshToken: MockSessionUser.refreshToken,
         })
       );
 
@@ -165,7 +165,7 @@ describe("SessionSchema Component", () => {
       expect(mockClaimsGet).toHaveBeenNthCalledWith(2, api, MockSessionUser.accessToken);
       expect(mockTokenRefresh).toHaveBeenCalledExactlyOnceWith(api, {
         accessToken: MockSessionRaw.accessToken,
-        refreshToken: MockSessionRaw.refreshToken
+        refreshToken: MockSessionRaw.refreshToken,
       });
     });
   });
@@ -210,7 +210,7 @@ describe("SessionSchema Component", () => {
 
       sessionRender.session!.current = {
         accessToken: MockSessionUser.accessToken,
-        refreshToken: MockSessionUser.refreshToken
+        refreshToken: MockSessionUser.refreshToken,
       };
 
       await waitFor(() => {

@@ -14,10 +14,10 @@
     tags: ["autodocs"],
     argTypes: {
       disabled: {
-        control: { type: "boolean" }
-      }
+        control: { type: "boolean" },
+      },
     },
-    args: {}
+    args: {},
   });
 </script>
 
