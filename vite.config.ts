@@ -12,7 +12,12 @@ import { CookieJar } from "jsdom";
 import Icons from "unplugin-icons/vite";
 
 export default defineConfig({
-  plugins: [wuchale(), sveltekit(), svelteTesting(), Icons({ autoInstall: true, compiler: "svelte" })],
+  plugins: [
+    wuchale(path.join(import.meta.dirname, "wuchale.config.ts")),
+    sveltekit(),
+    svelteTesting(),
+    Icons({ autoInstall: true, compiler: "svelte" }),
+  ],
   build: {
     sourcemap: true,
     rollupOptions: {

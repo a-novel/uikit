@@ -50,7 +50,7 @@
     "dev": "vite dev",
     "format": "prettier --write . --config prettier.config.ts",
     "generate": "pnpm generate:translations",
-    "generate:translations": "npx wuchale -c",
+    "generate:translations": "npx wuchale -c --config wuchale.config.ts",
     "preinstall": "npx only-allow pnpm",
     "lint": "prettier --check . --config prettier.config.ts && eslint .",
     "lint:ci": "pnpm generate && pnpm lint",
