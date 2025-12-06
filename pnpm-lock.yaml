@@ -20,9 +20,6 @@ importers:
       '@wuchale/vite-plugin':
         specifier: ^0.15.3
         version: 0.15.4
-      esm-env:
-        specifier: ^1.2.2
-        version: 1.2.2
       svelte:
         specifier: ^5.0.0
         version: 5.45.5
