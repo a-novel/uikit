@@ -39,7 +39,10 @@ function renderSession(wrapper?: (children: Snippet) => Snippet) {
 
   const testSnippet = createTestSnippet(TestComponent, { callback: testCallback }, () => `<div>Loaded!</div>`);
 
-  const rendered = render(SessionComponent, { api, children: wrapper ? wrapper(testSnippet) : testSnippet });
+  const rendered = render(SessionComponent, {
+    api,
+    children: wrapper ? wrapper(testSnippet) : testSnippet,
+  });
 
   return Object.assign(sessionRef, { rendered });
 }
