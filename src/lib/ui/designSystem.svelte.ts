@@ -5,7 +5,6 @@ import "$locales/main.loader.svelte.js";
 
 import { getContext } from "svelte";
 
-import { BROWSER } from "esm-env";
 import { loadLocale } from "wuchale/load-utils";
 import { z } from "zod";
 
@@ -47,7 +46,7 @@ export function getActiveTheme(): () => z.infer<typeof Theme> {
 }
 
 export async function setLocale(locale: LNG) {
-  if (!BROWSER || !locales.includes(locale)) {
+  if (typeof window === "undefined" || !locales.includes(locale)) {
     return;
   }
 

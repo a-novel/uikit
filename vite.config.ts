@@ -42,8 +42,8 @@ export default defineConfig({
           name: "client",
           environment: "jsdom",
           execArgv: ["--localstorage-file", path.resolve(os.tmpdir(), `vitest-${process.pid}.localstorage`)],
-          include: ["src/**/*.svelte.{test,spec}.{js,ts}"],
-          exclude: ["src/lib/server/**"],
+          include: ["src/**/*.{test,spec}.{js,ts}"],
+          exclude: ["src/**/*.server.{test,spec}.{js,ts}"],
         },
       },
       {
@@ -51,8 +51,7 @@ export default defineConfig({
         test: {
           name: "server",
           environment: "node",
-          include: ["src/**/*.{test,spec}.{js,ts}", "src/lib/server/**"],
-          exclude: ["src/**/*.svelte.{test,spec}.{js,ts}"],
+          include: ["src/**/*.server.{test,spec}.{js,ts}"],
         },
       },
     ],

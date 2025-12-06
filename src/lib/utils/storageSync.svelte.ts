@@ -1,4 +1,3 @@
-import { BROWSER } from "esm-env";
 import type { ZodType } from "zod";
 
 /**
@@ -8,7 +7,7 @@ import type { ZodType } from "zod";
  */
 export function saveLocalStorage<T>(key: string, value?: T) {
   // Never save anything to localStorage during server-side rendering.
-  if (!BROWSER) return;
+  if (typeof localStorage === "undefined") return;
 
   if (value == null) {
     localStorage.removeItem(key);
@@ -26,9 +25,13 @@ export function saveLocalStorage<T>(key: string, value?: T) {
  *
  * This method is safe to run server-side, and will result in a no-op.
  */
-export function loadLocalStorage<T, P = null>(key: string, validator?: ZodType<T>, placeholder: P = null as P): T | P {
+export function loadLocalStorage<T = any, P = null>(
+  key: string,
+  validator?: ZodType<T>,
+  placeholder: P = null as P
+): T | P {
   // Never load anything from localStorage during server-side rendering.
-  if (!BROWSER) return placeholder;
+  if (typeof localStorage === "undefined") return placeholder;
 
   const raw = localStorage.getItem(key);
   if (!raw) return placeholder;
