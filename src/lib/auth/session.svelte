@@ -27,7 +27,9 @@
   // If claims are missing, retrieve them. Not anonymous getSession do have claims.
   $effect(() => {
     if (session.accessToken && !session.claims) {
-      const refresher = retry(session.syncClaims, { condition: (err: unknown) => !isHttpStatusError(err, 401) });
+      const refresher = retry(session.syncClaims, {
+        condition: (err: unknown) => !isHttpStatusError(err, 401),
+      });
       refresher().catch(session.catchRefreshSessionOnSessionError);
     }
   });

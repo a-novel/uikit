@@ -51,9 +51,9 @@ msgid "Oops! An unexpected error occurred."
 msgstr "Oups ! Une erreur inattendue s'est produite."
 
 #: src/lib/ui/components/statusPages/5xx.svelte
-msgid "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
-msgstr "Une erreur anormale s'est produite sur nos serveurs. Nous travaillons à résoudre le problème au plus vite."
-
-#: src/lib/ui/components/statusPages/5xx.svelte
 msgid "You may retry later or clear your browser cache."
 msgstr "Vous pouvez réessayer plus tard, ou vider le cache de votre navigateur."
+
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
+msgstr "Une erreur anormale est survenue sur nos serveurs. Nous travaillons à résoudre le problème au plus vite."

@@ -71,7 +71,10 @@ const preview: Preview = {
     (_, params) => {
       return {
         Component: DesignSystemComponent,
-        props: { theme: params.globals.theme || "dark", locale: params.globals.locale },
+        props: {
+          theme: params.globals.theme || "dark",
+          locale: params.globals.locale,
+        },
       };
     },
   ],

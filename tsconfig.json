@@ -1,6 +1,6 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
-  "exclude": ["src/locales"],
+  "exclude": ["src/locales/.wuchale"],
   "compilerOptions": {
     "types": ["@testing-library/jest-dom"],
     "allowJs": true,
