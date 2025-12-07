@@ -65,20 +65,20 @@
   span[data-scope] + :global(*) {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-s);
     align-items: stretch;
+    gap: var(--spacing-s);
     height: fit-content;
   }
 
   .title {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--spacing-s);
     flex-wrap: nowrap;
-    font-size: var(--font-size-h5);
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing-s);
     font-weight: bold;
+    font-size: var(--font-size-h5);
 
     & > .icon {
       font-size: 1.2em;
@@ -92,24 +92,24 @@
   .details {
     display: flex;
     flex-direction: column;
-    gap: 0;
     align-items: stretch;
+    gap: 0;
     height: fit-content;
 
     & > .title {
       display: flex;
       flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      gap: var(--spacing-s);
-      padding: 0 var(--spacing-s);
       flex-wrap: nowrap;
-      font-size: var(--font-size-h6);
+      justify-content: flex-start;
+      align-items: center;
+      gap: var(--spacing-s);
       cursor: pointer;
-      background: none;
-      border: none;
       outline: none;
+      border: none;
+      background: none;
+      padding: 0 var(--spacing-s);
       color: inherit;
+      font-size: var(--font-size-h6);
 
       & > .text {
         white-space: pre;
@@ -117,18 +117,18 @@
     }
 
     & > .content {
-      transform-origin: top;
       position: relative;
       transform: scaleY(0);
-      height: 0;
-      padding: 0 var(--spacing-m) 0 var(--spacing-s);
-      margin: 0 0 var(--spacing-s) var(--spacing-s);
+      transform-origin: top;
       transition: linear 0.3s;
-      white-space: break-spaces;
-      border-color: currentColor;
-      border-style: solid;
+      margin: 0 0 var(--spacing-s) var(--spacing-s);
       border-width: 0 0 0 thin;
+      border-style: solid;
+      border-color: currentColor;
+      padding: 0 var(--spacing-m) 0 var(--spacing-s);
+      height: 0;
       overflow: hidden;
+      white-space: break-spaces;
 
       &[data-display="true"] {
         transform: scaleY(1);

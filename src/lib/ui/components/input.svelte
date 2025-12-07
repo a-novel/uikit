@@ -26,20 +26,20 @@
   div {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: var(--spacing-xs) var(--spacing-s);
-    gap: var(--spacing-xs);
     flex-wrap: nowrap;
-    border-radius: var(--spacing-s);
+    align-items: center;
+    gap: var(--spacing-xs);
     border-width: thin;
     border-style: solid;
     border-color: var(--color-400);
+    border-radius: var(--spacing-s);
     background-color: var(--color-100);
+    padding: var(--spacing-xs) var(--spacing-s);
   }
 
   div[data-color=""] {
-    background-color: var(--background);
     border-color: var(--background);
+    background-color: var(--background);
   }
 
   div > * {
@@ -52,11 +52,11 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    outline: none;
     border: none;
     background: none;
-    outline: none;
-    min-width: 0;
     padding: 0 var(--spacing-s);
+    min-width: 0;
     color: var(--text);
   }
 

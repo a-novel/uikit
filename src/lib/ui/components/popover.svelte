@@ -110,60 +110,60 @@
     .popover-base {
       display: none;
       position: fixed;
-      z-index: var(--z-index-nav-popover);
-      width: 24rem;
       top: var(--popover-offset);
       right: 0;
-      background-color: var(--background);
-      margin: 0;
-      padding: var(--spacing-s);
-
-      overflow-y: auto;
-      overflow-x: hidden;
       flex-direction: column;
       gap: 0;
+      z-index: var(--z-index-nav-popover);
+      margin: 0;
+      background-color: var(--background);
+      padding: var(--spacing-s);
+      width: 24rem;
+      overflow-x: hidden;
+
+      overflow-y: auto;
 
       &[data-popover="true"] {
         display: flex;
       }
 
       & h6 {
+        align-self: center;
+        background-color: var(--background);
+        padding: var(--spacing-s);
+        width: fit-content;
         color: var(--text);
         font-weight: normal;
         text-align: center;
-        padding: var(--spacing-s);
-        background-color: var(--background);
-        width: fit-content;
-        align-self: center;
 
         &:before {
-          content: "";
           display: block;
           position: absolute;
-          left: var(--spacing-s);
           right: var(--spacing-s);
-          margin-top: calc(1lh / 2 - 1px);
-          height: 1px;
-          background-color: var(--color-gray-400);
+          left: var(--spacing-s);
           z-index: -1;
+          margin-top: calc(1lh / 2 - 1px);
+          background-color: var(--color-gray-400);
+          height: 1px;
+          content: "";
         }
       }
 
       & .popover-base {
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
+        left: 0;
         width: unset !important;
       }
     }
 
     @media (max-width: 28rem) {
       .popover-base {
-        width: unset !important;
         right: 0;
         left: 0;
+        width: unset !important;
       }
 
       body:has(*[data-popover="true"]) {
@@ -185,9 +185,9 @@
 
     @media (min-width: 36rem) {
       .popover-base {
-        border-radius: var(--spacing-m);
         margin: var(--spacing-m);
         box-shadow: var(--color-gray-500) 0 0 0.1rem 0.1rem;
+        border-radius: var(--spacing-m);
         max-height: calc(100vh - 2 * var(--spacing-m) - var(--popover-offset));
       }
     }

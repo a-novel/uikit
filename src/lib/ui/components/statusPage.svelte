@@ -38,14 +38,14 @@
 <style>
   section {
     display: flex;
-    flex-direction: column;
-    align-self: stretch;
-    align-items: center;
-    justify-content: center;
     flex-grow: 1;
-    padding: 0;
-    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
     gap: var(--spacing-s);
+    margin: 0;
+    padding: 0;
   }
 
   .icon {
@@ -54,12 +54,12 @@
   }
 
   h2 {
-    text-align: center;
     color: var(--color-500);
+    text-align: center;
   }
 
   p {
-    text-align: center;
     margin: 0;
+    text-align: center;
   }
 </style>

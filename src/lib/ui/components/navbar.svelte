@@ -179,24 +179,23 @@
 
 <style>
   .wrapper {
+    display: flex;
     position: sticky;
     top: 0;
-    margin: 0 0 var(--spacing-m) 0;
-    padding: 0;
-    gap: var(--spacing-m);
-    z-index: var(--z-index-nav);
-
-    background-color: var(--background);
-    box-shadow: oklch(from var(--background) l c h / 80%) 0 0 var(--spacing-s) 0;
-
-    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow: auto;
-    align-items: stretch;
     justify-content: space-between;
+    align-items: stretch;
+    gap: var(--spacing-m);
+    z-index: var(--z-index-nav);
     box-sizing: border-box;
+    margin: 0 0 var(--spacing-m) 0;
+    box-shadow: oklch(from var(--background) l c h / 80%) 0 0 var(--spacing-s) 0;
+
+    background-color: var(--background);
+    padding: 0;
     max-width: 100%;
+    overflow: auto;
 
     &:has(.desktop:global([data-show="true"])) .mobile .actions {
       display: none;
@@ -213,15 +212,15 @@
   .left,
   .right,
   .middle {
-    margin: 0;
-    padding: 0;
-    gap: var(--spacing-m);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-m);
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   .left {
     justify-content: flex-start;
@@ -236,8 +235,8 @@
     & > .main {
       flex-direction: row;
       flex-wrap: nowrap;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
 
       & > * {
         padding: var(--spacing-m);
@@ -252,16 +251,16 @@
     box-sizing: border-box;
 
     & > * {
-      cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: var(--font-size-p);
-      color: var(--color-gray-500);
-      text-align: center;
-      user-select: none;
       transition: linear 0.1s;
+      cursor: pointer;
       border-radius: var(--spacing-s);
+      color: var(--color-gray-500);
+      font-size: var(--font-size-p);
+      user-select: none;
+      text-align: center;
 
       &:not([data-active="true"]):hover {
         color: var(--text);
@@ -273,9 +272,9 @@
     }
 
     & > button {
-      background-color: var(--background);
       outline: none;
       border: none;
+      background-color: var(--background);
     }
 
     & > a {
@@ -287,19 +286,19 @@
   }
 
   .home {
-    user-select: none;
-    background-color: var(--background);
-    text-decoration: none !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: var(--font-size-h4);
     cursor: pointer;
+    background-color: var(--background);
     padding: var(--spacing-s) var(--spacing-m);
+    height: var(--font-size-h4);
+    user-select: none;
+    text-decoration: none !important;
 
     & > :global(*) {
-      height: inherit;
       width: auto;
+      height: inherit;
     }
   }
 
@@ -317,10 +316,10 @@
         max-width: 100%;
 
         & > * {
+          position: relative;
           padding: var(--spacing-s) var(--spacing-l);
           text-align: center;
           white-space: nowrap;
-          position: relative;
 
           &[data-active="true"] {
             background-color: var(--color-primary-200);

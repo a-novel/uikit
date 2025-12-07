@@ -334,9 +334,9 @@ h3,
 h4,
 h5,
 h6 {
+  margin: 0;
   font-weight: 700;
   line-height: 1.15em;
-  margin: 0;
 }
 
 h1 {
@@ -387,16 +387,16 @@ html {
 
 .icon > svg,
 [data-icon="true"] > svg {
-  color: currentColor;
-  height: 1em;
-  width: auto;
   display: block;
   flex-shrink: 0;
+  width: auto;
+  height: 1em;
+  color: currentColor;
 }
 
 *[data-width] {
-  max-width: 100%;
   box-sizing: border-box;
+  max-width: 100%;
 }
 *[data-width="xs"] {
   width: 25rch;
@@ -415,19 +415,19 @@ html {
 }
 
 body {
-  width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 0;
   margin: 0;
-
-  font-family: Arimo, sans-serif;
 
   /* Body always have a theme class assigned, so this will work */
   background-color: var(--background);
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
   color: var(--text);
+
+  font-family: Arimo, sans-serif;
 }
 
 [data-show]:not([data-show="true"]) {

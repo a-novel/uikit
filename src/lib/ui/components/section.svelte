@@ -10,10 +10,10 @@
 
 <style>
   section {
-    background-color: var(--color-gray-200);
-    border-color: transparent;
     border-width: 0;
+    border-color: transparent;
     border-radius: var(--spacing-m);
+    background-color: var(--color-gray-200);
     padding: var(--spacing-s) var(--spacing-m);
   }
 </style>

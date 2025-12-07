@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
   import { Section } from "$lib/ui/components";
-
   import { LOREM_IPSUM } from "$lib/utils";
 
   import { createRawSnippet } from "svelte";

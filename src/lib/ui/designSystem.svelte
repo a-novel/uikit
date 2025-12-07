@@ -1,20 +1,20 @@
 <script lang="ts">
   import { LNG } from "$lib/const";
   import {
+    LOCALE_CONTEXT_KEY,
+    LOCALE_STORAGE_KEY,
+    THEME_CONTEXT_KEY,
+    THEME_STORAGE_KEY,
+    Theme,
+    loadLocale,
     loadTheme,
     setLocale,
-    Theme,
-    THEME_CONTEXT_KEY,
-    LOCALE_CONTEXT_KEY,
-    THEME_STORAGE_KEY,
-    LOCALE_STORAGE_KEY,
-    loadLocale,
   } from "$lib/ui/designSystem.helper.svelte.js";
   import { saveLocalStorage } from "$lib/utils/index.js";
 
   import "./designSystem.css";
 
-  import { setContext, type Snippet } from "svelte";
+  import { type Snippet, setContext } from "svelte";
 
   import { z } from "zod";
 

@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
-  import { Input, Section, Button } from "$lib/ui/components";
-
+  import { Button, Input, Section } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 
   import EditIcon from "virtual:icons/material-symbols/edit-outline";

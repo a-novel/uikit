@@ -1,7 +1,7 @@
 import "$lib/test/setup/base.js";
 import { DesignSystemComponent, THEME_STORAGE_KEY } from "$lib/ui/index.js";
 
-import { expect, describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { render, waitFor } from "@testing-library/svelte";
 
