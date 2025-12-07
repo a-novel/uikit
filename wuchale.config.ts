@@ -6,6 +6,7 @@ export default defineConfig({
   otherLocales: ["fr"],
   adapters: {
     main: svelte({
+      localesDir: "./src/lib/locales",
       loader: "sveltekit",
       files: ["src/lib/**/*.svelte"],
     }),

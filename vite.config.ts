@@ -11,12 +11,18 @@ import { wuchale } from "@wuchale/vite-plugin";
 import { CookieJar } from "jsdom";
 import Icons from "unplugin-icons/vite";
 
+const baseResolve = process.env.VITEST
+  ? {
+      conditions: ["browser"],
+    }
+  : undefined;
+
 export default defineConfig({
   plugins: [
+    Icons({ autoInstall: true, compiler: "svelte" }),
     wuchale(path.join(import.meta.dirname, "wuchale.config.ts")),
     sveltekit(),
     svelteTesting(),
-    Icons({ autoInstall: true, compiler: "svelte" }),
   ],
   build: {
     sourcemap: true,
@@ -24,11 +30,7 @@ export default defineConfig({
       external: Object.keys(peerDependencies),
     },
   },
-  resolve: process.env.VITEST
-    ? {
-        conditions: ["browser"],
-      }
-    : undefined,
+  resolve: baseResolve,
   test: {
     expect: { requireAssertions: true },
     environmentOptions: {

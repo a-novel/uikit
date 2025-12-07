@@ -13,37 +13,43 @@
   "exports": {
     "./utils": {
       "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js"
+      "import": "./dist/utils/index.js",
+      "svelte": "./dist/utils/index.js"
     },
     "./const": {
       "types": "./dist/const/index.d.ts",
-      "import": "./dist/const/index.js"
+      "import": "./dist/const/index.js",
+      "svelte": "./dist/const/index.js"
     },
     "./ui": {
       "types": "./dist/ui/index.d.ts",
-      "import": "./dist/ui/index.js"
+      "import": "./dist/ui/index.js",
+      "svelte": "./dist/ui/index.js"
     },
     "./ui/components": {
       "types": "./dist/ui/components/index.d.ts",
-      "import": "./dist/ui/components/index.js"
+      "import": "./dist/ui/components/index.js",
+      "svelte": "./dist/ui/components/index.js"
     },
     "./ui/components/statusPages": {
       "types": "./dist/ui/components/statusPages/index.d.ts",
-      "import": "./dist/ui/components/statusPages/index.js"
+      "import": "./dist/ui/components/statusPages/index.js",
+      "svelte": "./dist/ui/components/statusPages/index.js"
     },
     "./ui/components/nav": {
       "types": "./dist/ui/components/nav/index.d.ts",
-      "import": "./dist/ui/components/nav/index.js"
+      "import": "./dist/ui/components/nav/index.js",
+      "svelte": "./dist/ui/components/nav/index.js"
     },
-    "./assets/icons/*": "./src/assets/icons/*",
-    "./assets/logos/*": "./src/assets/logos/*",
+    "./assets/icons/*": "./src/lib/assets/icons/*",
+    "./assets/logos/*": "./src/lib/assets/logos/*",
     "./ui/designSystem.css": "./dist/ui/designSystem.css"
   },
   "files": [
     "dist",
     "messages",
-    "src/assets/icons",
-    "src/assets/logos"
+    "src/lib/assets/icons",
+    "src/lib/assets/logos"
   ],
   "scripts": {
     "assets:gen": "node src/scripts/assets.gen.ts",

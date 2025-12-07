@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-  import agoraLogoDark from "$assets/logos/integrated/agora (dark).png";
-  import agoraLogoLight from "$assets/logos/integrated/agora (light).png";
+  import agoraLogoDark from "$lib/assets/logos/integrated/agora (dark).png";
+  import agoraLogoLight from "$lib/assets/logos/integrated/agora (light).png";
   import { Button, NavBar, type NavItem, Section } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 

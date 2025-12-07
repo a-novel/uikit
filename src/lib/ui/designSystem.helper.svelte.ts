@@ -1,7 +1,7 @@
 import { DEFAULT_LNG, LNG, LngSchema, SUPPORTED_LNGS } from "$lib/const";
+import { locales } from "$lib/locales/data";
+import "$lib/locales/main.loader.svelte.js";
 import { loadLocalStorage } from "$lib/utils/index.js";
-import { locales } from "$locales/data";
-import "$locales/main.loader.svelte.js";
 
 import { getContext } from "svelte";
 
