@@ -36,7 +36,8 @@
       "import": "./dist/ui/components/nav/index.js"
     },
     "./assets/icons/*": "./src/assets/icons/*",
-    "./assets/logos/*": "./src/assets/logos/*"
+    "./assets/logos/*": "./src/assets/logos/*",
+    "./ui/designSystem.css": "./dist/ui/designSystem.css"
   },
   "files": [
     "dist",
