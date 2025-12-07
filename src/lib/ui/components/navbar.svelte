@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "$lib/ui/components/index";
+  import { Button, Popover } from "$lib/ui/components/index";
   import { type NavItem, isNavButton, isNavLink } from "$lib/ui/components/navbar.svelte.js";
 
   import CloseIcon from "virtual:icons/material-symbols/close";
@@ -21,12 +21,6 @@
   }
 
   let { homeButton, homeLink, nav, actionsMobile, actionsDesktop, class: className, ...props }: Props = $props();
-
-  // When mobile menu is active, toggle it open or closed using this state.
-  let mobileMenuOpen = $state(false);
-  function toggleMobileMenu() {
-    mobileMenuOpen = !mobileMenuOpen;
-  }
 
   // Used to position the popover menu under the nav bar.
   let wrapperHeight = $state(0);
@@ -99,46 +93,53 @@
 
 <!-- Side navigation -->
 
-{#snippet mobileMenu(content: Snippet | undefined)}
-  <Button
-    icon
-    color="invert"
-    class="popover-button"
-    onclick={toggleMobileMenu}
-    aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-  >
-    {#if mobileMenuOpen}
-      <CloseIcon />
-    {:else}
-      <MenuIcon />
-    {/if}
-  </Button>
-
-  <!--
-    Add a negative offset of 1px to the top attribute to compensate for some browser leaving a visible pixel gap
-    between the popover and the head menu (due to floating numbers).
-   -->
-  <div
-    class="popover"
-    style={`top: ${wrapperHeight - 1}px;`}
-    data-popover={mobileMenuOpen}
-    role={mobileMenuOpen ? "dialog" : undefined}
-    aria-modal={mobileMenuOpen ? "true" : undefined}
-    aria-label={mobileMenuOpen ? "Navigation menu" : undefined}
-  >
-    <nav class="main">
-      {#each nav as navItem, i (`${i}:${navItem.content}`)}
-        {@render navLink(navItem)}
-      {/each}
-    </nav>
-    <div class="actions">
-      {@render content?.()}
-    </div>
-  </div>
+{#snippet mobileMenu(menuActions: Snippet | undefined)}
+  <Popover>
+    {#snippet button(binding, popoverOpen, togglePopoverOpen)}
+      <Button
+        bind:element={binding.getRef, binding.setRef}
+        icon
+        color="invert"
+        class="popover-button"
+        onclick={togglePopoverOpen}
+        aria-label={popoverOpen ? "Close navigation menu" : "Open navigation menu"}
+      >
+        {#if popoverOpen}
+          <CloseIcon />
+        {:else}
+          <MenuIcon />
+        {/if}
+      </Button>
+    {/snippet}
+    {#snippet content(binding, popoverOpen)}
+      <div
+        class="popover-base popover"
+        bind:this={binding.getRef, binding.setRef}
+        data-popover={popoverOpen}
+        role={popoverOpen ? "dialog" : undefined}
+        aria-modal={popoverOpen ? "true" : undefined}
+        aria-label={popoverOpen ? "Navigation menu" : undefined}
+      >
+        <nav class="main" data-keep-popover="true">
+          {#each nav as navItem, i (`${i}:${navItem.content}`)}
+            {@render navLink(navItem)}
+          {/each}
+        </nav>
+        <div class="actions" data-keep-popover="true">
+          {@render menuActions?.()}
+        </div>
+      </div>
+    {/snippet}
+  </Popover>
 {/snippet}
 
+<!--
+  Add a negative offset of 1px to the top attribute to compensate for some browser leaving a visible pixel gap
+  between the popover and the head menu (due to floating numbers).
+ -->
 <div
   {...props}
+  style={`--popover-offset: ${wrapperHeight - 1}px; ${props.style ?? ""}`}
   class={["wrapper", className]}
   bind:clientHeight={wrapperHeight}
   bind:contentBoxSize={null, reflowMenuDebounced}
@@ -303,26 +304,13 @@
     }
 
     & > .popover {
-      display: none;
-      position: fixed;
-      z-index: var(--z-index-nav-popover);
-      width: 24rem;
-      right: 0;
       bottom: 0;
-      background-color: var(--background);
-      padding: var(--spacing-m) 0;
-
-      overflow: auto;
-      flex-direction: column;
-      gap: var(--spacing-m);
-
-      &[data-popover="true"] {
-        display: flex;
-      }
+      border-radius: 0;
 
       & > .main {
         flex-direction: column;
         align-items: stretch;
+        max-width: 100%;
 
         & > * {
           padding: var(--spacing-s) var(--spacing-l);
@@ -376,16 +364,5 @@
     align-items: center;
     gap: var(--spacing-s);
     margin-right: var(--spacing-s);
-  }
-
-  @media (max-width: 28rem) {
-    .mobile > .popover {
-      width: unset;
-      left: 0;
-    }
-
-    :global(body):has(*[data-popover="true"]) {
-      overflow: hidden;
-    }
   }
 </style>

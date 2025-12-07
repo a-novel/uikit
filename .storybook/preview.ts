@@ -1,4 +1,4 @@
-import { LNG } from "../src/lib/const";
+import { DEFAULT_LNG, LNG } from "../src/lib/const";
 import { DesignSystemComponent } from "../src/lib/ui";
 import "../src/lib/ui/designSystem.css";
 import "./preview.css";
@@ -72,8 +72,19 @@ const preview: Preview = {
       return {
         Component: DesignSystemComponent,
         props: {
-          theme: params.globals.theme || "dark",
-          locale: params.globals.locale,
+          get theme() {
+            return params.globals.theme || "dark";
+          },
+          set theme(value: string) {
+            params.globals.theme = value;
+          },
+
+          get locale() {
+            return params.globals.locale || DEFAULT_LNG;
+          },
+          set locale(value: string) {
+            params.globals.locale = value;
+          },
         },
       };
     },

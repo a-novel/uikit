@@ -57,3 +57,30 @@ msgstr "Vous pouvez réessayer plus tard, ou vider le cache de votre navigateur.
 #: src/lib/ui/components/statusPages/5xx.svelte
 msgid "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
 msgstr "Une erreur anormale est survenue sur nos serveurs. Nous travaillons à résoudre le problème au plus vite."
+
+#. placeholder {0}: LNG_META[activeLocale.locale].label
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Active locale ({0})"
+msgstr "Langue sélectionnée ({0})"
+
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Lang selection menu"
+msgstr "Menu de sélection de la langue"
+
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Cancel"
+msgstr "Annuler"
+
+#. placeholder {0}: meta.label
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Select {0}"
+msgstr "Sélectionner {0}"
+
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Select language"
+msgstr "Sélectionner la langue"
+
+#. placeholder {0}: meta.label
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Locale ({0})"
+msgstr "Langue ({0})"

@@ -306,6 +306,7 @@
 /* ---------------------------------------------------- SPACINGS ---------------------------------------------------- */
 
 :root {
+  --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-s: 0.8rem;
   --spacing-m: 1.3rem;
@@ -379,6 +380,9 @@ html {
 :root {
   --z-index-nav: 900;
   --z-index-nav-popover: 500;
+
+  /* Global variables that can be overridden locally */
+  --popover-offset: 0;
 }
 
 .icon > svg,
@@ -392,6 +396,7 @@ html {
 
 *[data-width] {
   max-width: 100%;
+  box-sizing: border-box;
 }
 *[data-width="xs"] {
   width: 25rch;

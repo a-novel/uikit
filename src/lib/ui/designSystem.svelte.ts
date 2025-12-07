@@ -1,11 +1,11 @@
-import type { LNG } from "$lib/const";
+import { DEFAULT_LNG, LNG, LngSchema, SUPPORTED_LNGS } from "$lib/const";
 import { loadLocalStorage } from "$lib/utils/index.js";
 import { locales } from "$locales/data";
 import "$locales/main.loader.svelte.js";
 
 import { getContext } from "svelte";
 
-import { loadLocale } from "wuchale/load-utils";
+import { loadLocale as loadLocaleInternal } from "wuchale/load-utils";
 import { z } from "zod";
 
 export const Theme = z.enum(["dark", "light"]);
@@ -14,6 +14,9 @@ export const ComponentColor = z.enum(["default", ...Color.options]);
 
 export const THEME_STORAGE_KEY = "app_theme";
 export const THEME_CONTEXT_KEY = THEME_STORAGE_KEY;
+
+export const LOCALE_STORAGE_KEY = "app_locale";
+export const LOCALE_CONTEXT_KEY = LOCALE_STORAGE_KEY;
 
 /**
  * Load theme from browser preferences.
@@ -32,12 +35,14 @@ export function loadPreferredTheme(): z.infer<typeof Theme> {
  * Load relevant user theme from environment.
  */
 export function loadTheme(): z.infer<typeof Theme> {
-  // Prioritize local data.
-  return loadLocalStorage(THEME_STORAGE_KEY, Theme) || loadPreferredTheme();
+  return loadLocalStorage(THEME_STORAGE_KEY, Theme, loadPreferredTheme());
 }
 
-export function getActiveTheme(): () => z.infer<typeof Theme> {
-  const theme = getContext(THEME_CONTEXT_KEY) as () => z.infer<typeof Theme>;
+/**
+ * Get the currently active theme.
+ */
+export function getActiveTheme(): { theme: z.infer<typeof Theme> } {
+  const theme = getContext(THEME_CONTEXT_KEY) as { theme: z.infer<typeof Theme> };
   if (!theme) {
     throw new Error(`Unable to find theme: ${THEME_CONTEXT_KEY}`);
   }
@@ -45,10 +50,47 @@ export function getActiveTheme(): () => z.infer<typeof Theme> {
   return theme;
 }
 
+/**
+ * Update the user application locale.
+ */
 export async function setLocale(locale: LNG) {
   if (typeof window === "undefined" || !locales.includes(locale)) {
     return;
   }
 
-  await loadLocale(locale);
+  window.document.documentElement.lang = locale;
+  await loadLocaleInternal(locale);
+}
+
+export function loadPreferredLocale(): LNG {
+  if (typeof navigator !== "undefined") {
+    const navigatorLangs = navigator.languages;
+
+    for (const lang of navigatorLangs) {
+      const lowerLang = lang.toLowerCase();
+      const match = SUPPORTED_LNGS.find((supportedLang) => lowerLang.startsWith(supportedLang));
+
+      if (match) {
+        return match;
+      }
+    }
+  }
+
+  return DEFAULT_LNG;
+}
+
+export function loadLocale(): LNG {
+  return loadLocalStorage(LOCALE_STORAGE_KEY, LngSchema, loadPreferredLocale());
+}
+
+/**
+ * Get the currently active locale.
+ */
+export function getActiveLocale(): { locale: LNG } {
+  const locale = getContext(LOCALE_CONTEXT_KEY) as { locale: LNG };
+  if (!locale) {
+    throw new Error(`Unable to find locale: ${LOCALE_CONTEXT_KEY}`);
+  }
+
+  return locale;
 }
