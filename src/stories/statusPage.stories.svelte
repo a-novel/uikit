@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { StatusPage } from "$lib/ui/components";
 
-  import { LOREM_IPSUM } from "./utils";
+  import { LOREM_IPSUM } from "$lib/utils";
 
   import InfoIcon from "virtual:icons/material-symbols/info-outline";
 

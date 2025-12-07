@@ -8,6 +8,6 @@ import Popover from "./popover.svelte";
 import Section from "./section.svelte";
 import StatusPage from "./statusPage.svelte";
 
-export * from "./navbar.svelte.js";
+export * from "./navbar.helper.svelte.js";
 
 export { Button, Input, InfoBox, ErrorBox, Section, StatusPage, NavBar, Image, Popover };

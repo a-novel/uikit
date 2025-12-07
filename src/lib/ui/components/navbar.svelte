@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button, Popover } from "$lib/ui/components/index";
-  import { type NavItem, isNavButton, isNavLink } from "$lib/ui/components/navbar.svelte.js";
+  import { type NavItem, isNavButton, isNavLink } from "$lib/ui/components/navbar.helper.svelte.js";
 
   import CloseIcon from "virtual:icons/material-symbols/close";
   import MenuIcon from "virtual:icons/material-symbols/menu";

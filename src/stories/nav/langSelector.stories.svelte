@@ -4,7 +4,7 @@
   import { NavBar, type NavItem, Section } from "$lib/ui/components";
   import { LangSelector as LangSelectorMeta } from "$lib/ui/components/nav";
 
-  import { LOREM_IPSUM } from "../utils";
+  import { LOREM_IPSUM } from "$lib/utils";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
 

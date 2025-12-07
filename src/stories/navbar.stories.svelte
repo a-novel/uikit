@@ -3,7 +3,7 @@
   import agoraLogoLight from "$assets/logos/integrated/agora (light).png";
   import { Button, NavBar, type NavItem, Section } from "$lib/ui/components";
 
-  import { LOREM_IPSUM } from "./utils";
+  import { LOREM_IPSUM } from "$lib/utils";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
 

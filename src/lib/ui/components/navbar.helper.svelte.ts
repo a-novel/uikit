@@ -1,12 +1,12 @@
-interface NavLinkItem {
+export interface NavLinkItem {
   link: string;
 }
 
-interface NavButtonItem {
+export interface NavButtonItem {
   action: () => void;
 }
 
-interface NavItemCommon {
+export interface NavItemCommon {
   content: string;
   active?: boolean;
 }

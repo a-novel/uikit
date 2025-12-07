@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { ErrorBox } from "$lib/ui/components";
 
-  import { LOREM_IPSUM } from "./utils";
+  import { LOREM_IPSUM } from "$lib/utils";
 
   import HeartBrokenIcon from "virtual:icons/material-symbols/heart-broken-outline";
 
