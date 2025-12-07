@@ -36,7 +36,7 @@
 
   let popoverOpen = $state(false);
 
-  function togglePopoverOpen(evt: MouseEvent) {
+  export function togglePopoverOpen(evt: MouseEvent) {
     evt.preventDefault();
     evt.stopPropagation();
     popoverOpen = !popoverOpen;
@@ -49,7 +49,6 @@
     set popoverOpen(open: boolean) {
       popoverOpen = open;
     },
-    togglePopoverOpen,
   };
 
   const ignoreTagNames = ["H1", "H2", "H3", "H4", "H5", "H6", "P"];
@@ -68,18 +67,19 @@
 
     // Ignore events immediately on the button or popover themselves.
     if (target.isSameNode(popoverButton) || popoverButton.contains(target)) {
-      event.stopImmediatePropagation();
+      event.stopPropagation();
       popoverOpen = false;
       return;
     }
     if (target.isSameNode(popoverContent)) {
-      event.stopImmediatePropagation();
+      event.stopPropagation();
       return;
     }
 
     if (popoverContent.contains(target)) {
       // Ignore event if the `keep-popover` prop is set.
       if (target.dataset.keepPopover === "true") {
+        event.stopPropagation();
         return;
       }
 
@@ -89,15 +89,15 @@
       }
     }
 
-    event.stopImmediatePropagation();
+    event.stopPropagation();
     popoverOpen = false;
   }
 
   // Auto-close popover when clicking outside.
   $effect(() => {
-    document.addEventListener("click", closePopover, true);
+    window.addEventListener("click", closePopover, false);
     return () => {
-      document.removeEventListener("click", closePopover, true);
+      window.removeEventListener("click", closePopover, false);
     };
   });
 </script>
@@ -116,19 +116,39 @@
       right: 0;
       background-color: var(--background);
       margin: 0;
-      padding: 0;
+      padding: var(--spacing-s);
 
       overflow-y: auto;
       overflow-x: hidden;
       flex-direction: column;
-      gap: var(--spacing-m);
+      gap: 0;
 
       &[data-popover="true"] {
         display: flex;
       }
-    }
 
-    .popover-base {
+      & h6 {
+        color: var(--text);
+        font-weight: normal;
+        text-align: center;
+        padding: var(--spacing-s);
+        background-color: var(--background);
+        width: fit-content;
+        align-self: center;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: var(--spacing-s);
+          right: var(--spacing-s);
+          margin-top: calc(1lh / 2 - 1px);
+          height: 1px;
+          background-color: var(--color-gray-400);
+          z-index: -1;
+        }
+      }
+
       & .popover-base {
         position: absolute;
         top: 0;
@@ -141,7 +161,8 @@
 
     @media (max-width: 28rem) {
       .popover-base {
-        width: 100% !important;
+        width: unset !important;
+        right: 0;
         left: 0;
       }
 
@@ -163,8 +184,11 @@
     }
 
     @media (min-width: 36rem) {
-      .popover {
-        border-radius: 0 0 0 var(--spacing-m);
+      .popover-base {
+        border-radius: var(--spacing-m);
+        margin: var(--spacing-m);
+        box-shadow: var(--color-gray-500) 0 0 0.1rem 0.1rem;
+        max-height: calc(100vh - 2 * var(--spacing-m) - var(--popover-offset));
       }
     }
   }

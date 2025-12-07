@@ -11,13 +11,16 @@
   let { class: className, fullWidth = false, ...props }: Props = $props();
 
   let activeLocale = getActiveLocale();
+  let popover: ReturnType<typeof Popover>;
 
-  function setLocale(lng: string) {
+  function setLocale(evt: MouseEvent, lng: string) {
+    evt.stopPropagation();
+    popover.togglePopoverOpen(evt);
     activeLocale.locale = lng as LNG;
   }
 </script>
 
-<Popover>
+<Popover bind:this={popover}>
   {#snippet button(binding, _, togglePopoverOpen)}
     <button
       type="button"
@@ -44,6 +47,7 @@
       bind:this={binding.getRef, binding.setRef}
       data-fullWidth={fullWidth}
       data-popover={popoverOpen}
+      data-keep-popover="true"
       role={popoverOpen ? "dialog" : undefined}
       aria-label={popoverOpen ? "Lang selection menu" : undefined}
     >
@@ -54,7 +58,7 @@
               data-selected={lng === activeLocale.locale}
               aria-label={`Select ${meta.label}`}
               type="button"
-              onclick={() => setLocale(lng)}
+              onclick={(evt) => setLocale(evt, lng)}
             >
               <img loading="lazy" src={`https://flagcdn.com/w40/${meta.flag}.png`} alt={`Locale (${meta.label})`} />
               <span>{meta.label}</span>
@@ -131,9 +135,9 @@
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      padding: var(--spacing-s);
-      gap: var(--spacing-m);
+      gap: var(--spacing-s);
       margin: 0;
+      padding: 0;
 
       & > li {
         user-select: none;
