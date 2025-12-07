@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { getActiveLocale } from "$lib/ui";
   import { LNG, LNG_META } from "$lib/const";
+  import { getActiveLocale } from "$lib/ui";
+  import { Button, Popover } from "$lib/ui/components";
+
   import type { HTMLButtonAttributes } from "svelte/elements";
-  import { Popover, Button } from "$lib/ui/components";
 
   interface Props extends Omit<HTMLButtonAttributes, "children" | "onclick"> {
     fullWidth?: boolean;
@@ -75,96 +76,91 @@
 
 <style>
   .menu {
-    user-select: none;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 0;
-    margin: 0;
-    background-color: transparent;
-
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--spacing-m);
-    font-size: var(--font-size-p);
+    cursor: pointer;
+    margin: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
     color: var(--color-gray-800);
+    font-size: var(--font-size-p);
+    user-select: none;
 
     &[data-fullWidth="true"] {
-      width: 100%;
       box-sizing: border-box;
+      width: 100%;
     }
 
     & > span {
-      color: inherit;
       flex-shrink: 0;
+      color: inherit;
     }
 
     & > img {
-      background-color: var(--color-gray-500);
-      box-shadow: var(--color-gray-500) 0 0 0 0.1rem;
-      height: 1.4em;
-      width: auto;
-      margin: 0;
       display: block;
+      margin: 0;
+      box-shadow: var(--color-gray-500) 0 0 0 0.1rem;
       border-radius: var(--spacing-xxs);
+      background-color: var(--color-gray-500);
+      width: auto;
+      height: 1.4em;
     }
   }
 
   .popover {
+    align-items: stretch;
     width: 16rem;
 
-    align-items: stretch;
-
     & .cancel {
-      padding: var(--spacing-m);
+      display: flex;
       position: sticky;
       bottom: 0;
-      z-index: 99;
-      background-color: var(--background);
-
-      display: flex;
       flex-direction: column;
       align-items: stretch;
+      z-index: 99;
 
       margin-top: auto;
+      background-color: var(--background);
+      padding: var(--spacing-m);
     }
 
     & > ul {
-      list-style: none;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       gap: var(--spacing-s);
       margin: 0;
       padding: 0;
+      list-style: none;
 
       & > li {
-        user-select: none;
-
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        user-select: none;
 
         & > button {
-          border: none;
-          outline: none;
-          background-color: var(--background);
-
           display: flex;
           flex-direction: row;
-          align-items: center;
           justify-content: space-between;
-
-          margin: 0;
-          padding: var(--spacing-s) var(--spacing-m);
-          border-radius: var(--spacing-xs);
-
-          cursor: pointer;
-          font-size: var(--font-size-p);
+          align-items: center;
 
           transition: linear 0s;
+
+          cursor: pointer;
+
+          margin: 0;
+          outline: none;
+          border: none;
+          border-radius: var(--spacing-xs);
+          background-color: var(--background);
+          padding: var(--spacing-s) var(--spacing-m);
           color: var(--color-gray-800);
+          font-size: var(--font-size-p);
 
           &:hover:not([data-selected="true"]) {
             transition: linear 0.1s;
@@ -172,14 +168,14 @@
           }
 
           &[data-selected="true"] {
-            color: var(--color-primary-700);
             background-color: var(--color-primary-200);
+            color: var(--color-primary-700);
           }
 
           & > img {
-            height: 1.2em;
-            width: auto;
             box-shadow: var(--color-gray-500) 0 0 0 0.1rem;
+            width: auto;
+            height: 1.2em;
           }
         }
       }

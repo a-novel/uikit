@@ -39,29 +39,29 @@
 
 <style>
   button {
-    cursor: pointer;
-    user-select: none;
     transition: linear 0.1s;
-    border-style: solid;
+    cursor: pointer;
+    box-sizing: border-box;
     border-width: thin;
+    border-style: solid;
     border-color: var(--color-200);
     background-color: var(--color-200);
     color: var(--color-600);
-    box-sizing: border-box;
+    user-select: none;
   }
 
   button[data-color="invert"] {
-    background-color: var(--background);
     border-color: var(--background);
+    background-color: var(--background);
     color: var(--color-400);
   }
 
   button[data-icon="true"] {
-    height: 1.5lh;
-    width: 1.5lh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 1.5lh;
+    height: 1.5lh;
   }
 
   button[data-gradient="true"]:not(:disabled) {
@@ -78,23 +78,23 @@
   }
 
   button:disabled {
-    cursor: not-allowed;
     position: relative;
-    background-color: var(--color-200);
+    cursor: not-allowed;
     border-color: var(--color-200);
+    background-color: var(--color-200);
   }
 
   button::after {
-    position: absolute;
-    content: "";
     display: block;
+    position: absolute;
     top: -1px;
-    left: -1px;
     right: -1px;
     bottom: -1px;
+    left: -1px;
     z-index: 2;
-    border-radius: inherit;
     backdrop-filter: grayscale(60%) saturate(60%);
+    border-radius: inherit;
+    content: "";
   }
 
   button:not(:disabled)::after {

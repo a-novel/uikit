@@ -54,27 +54,27 @@
   .details {
     display: flex;
     flex-direction: column;
-    gap: 0;
     align-items: stretch;
-    height: fit-content;
+    gap: 0;
     margin-top: var(--spacing-l);
     border-radius: var(--spacing-m);
     background-color: var(--color-gray-200);
+    height: fit-content;
 
     & > .title {
       display: flex;
       flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-s);
-      padding: var(--spacing-s);
       flex-wrap: nowrap;
-      font-size: var(--font-size-h6);
+      justify-content: center;
+      align-items: center;
+      gap: var(--spacing-s);
       cursor: pointer;
-      background: none;
-      border: none;
       outline: none;
+      border: none;
+      background: none;
+      padding: var(--spacing-s);
       color: inherit;
+      font-size: var(--font-size-h6);
 
       & > .text {
         white-space: pre;
@@ -82,16 +82,16 @@
     }
 
     & > .content {
-      transform-origin: top;
       position: relative;
       transform: scaleY(0);
-      height: 0;
-      padding: 0 var(--spacing-m);
-      margin: 0;
+      transform-origin: top;
       transition: linear 0.3s;
-      white-space: break-spaces;
+      margin: 0;
+      padding: 0 var(--spacing-m);
+      height: 0;
       overflow: hidden;
       color: var(--color-gray-600);
+      white-space: break-spaces;
 
       &[data-display="true"] {
         transform: scaleY(1);
