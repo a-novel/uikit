@@ -9,7 +9,7 @@
     THEME_STORAGE_KEY,
     LOCALE_STORAGE_KEY,
     loadLocale,
-  } from "$lib/ui/designSystem.svelte.js";
+  } from "$lib/ui/designSystem.helper.svelte.js";
   import { saveLocalStorage } from "$lib/utils/index.js";
 
   import "./designSystem.css";

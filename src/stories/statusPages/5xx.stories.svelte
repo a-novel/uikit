@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { StatusPageInternalError } from "$lib/ui/components/statusPages";
 
-  import { LOREM_IPSUM } from "../utils";
+  import { LOREM_IPSUM } from "$lib/utils";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
 
