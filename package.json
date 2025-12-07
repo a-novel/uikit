@@ -13,27 +13,27 @@
   "exports": {
     "./utils": {
       "types": "./dist/utils/index.d.ts",
-      "svelte": "./dist/utils/index.js"
+      "import": "./dist/utils/index.js"
     },
     "./const": {
       "types": "./dist/const/index.d.ts",
-      "svelte": "./dist/const/index.js"
+      "import": "./dist/const/index.js"
     },
     "./ui": {
       "types": "./dist/ui/index.d.ts",
-      "svelte": "./dist/ui/index.js"
+      "import": "./dist/ui/index.js"
     },
     "./ui/components": {
       "types": "./dist/ui/components/index.d.ts",
-      "svelte": "./dist/ui/components/index.js"
+      "import": "./dist/ui/components/index.js"
     },
     "./ui/components/statusPages": {
       "types": "./dist/ui/components/statusPages/index.d.ts",
-      "svelte": "./dist/ui/components/statusPages/index.js"
+      "import": "./dist/ui/components/statusPages/index.js"
     },
     "./ui/components/nav": {
       "types": "./dist/ui/components/nav/index.d.ts",
-      "svelte": "./dist/ui/components/nav/index.js"
+      "import": "./dist/ui/components/nav/index.js"
     },
     "./assets/icons/*": "./src/assets/icons/*",
     "./assets/logos/*": "./src/assets/logos/*"
