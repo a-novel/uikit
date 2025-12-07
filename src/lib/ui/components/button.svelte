@@ -11,6 +11,7 @@
     gradient?: boolean;
     glow?: boolean;
     icon?: boolean;
+    element?: HTMLButtonElement;
   }
   let {
     children,
@@ -19,11 +20,20 @@
     gradient = false,
     glow = false,
     icon,
+    element = $bindable(),
     ...props
   }: Props = $props();
 </script>
 
-<button {...props} data-gradient={gradient} data-glow={glow} data-size={size} data-icon={icon} data-color={color}>
+<button
+  {...props}
+  bind:this={element}
+  data-gradient={gradient}
+  data-glow={glow}
+  data-size={size}
+  data-icon={icon}
+  data-color={color}
+>
   {@render children?.()}
 </button>
 

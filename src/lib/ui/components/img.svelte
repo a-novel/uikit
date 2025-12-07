@@ -13,7 +13,7 @@
   let activeTheme = getActiveTheme();
 
   let actualSrc = $derived.by(() => {
-    switch (activeTheme()) {
+    switch (activeTheme.theme) {
       case "dark":
         return darkModeSrc ?? src;
       case "light":

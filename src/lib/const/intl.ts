@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 /**
  * LangMetadata interface represents metadata for a language in the UI selector.
  */
@@ -10,10 +12,6 @@ export interface LngMeta {
    * Display label for the given language (eg. "English", "Français").
    */
   label: string;
-  /**
-   * Short display label for the given language (eg. "ENG", "FRA").
-   */
-  shortLabel: string;
 }
 
 export enum LNG {
@@ -21,17 +19,19 @@ export enum LNG {
   FR = "fr",
 }
 
+export const SUPPORTED_LNGS = Object.values(LNG);
+
 export const DEFAULT_LNG = LNG.EN;
+
+export const LngSchema = z.enum(SUPPORTED_LNGS);
 
 export const LNG_META: Record<LNG, LngMeta> = {
   [LNG.EN]: {
     flag: "us",
     label: "English",
-    shortLabel: "ENG",
   },
   [LNG.FR]: {
     flag: "fr",
     label: "Français",
-    shortLabel: "FRA",
   },
 };
