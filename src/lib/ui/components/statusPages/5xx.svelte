@@ -1,11 +1,11 @@
 <script lang="ts">
   import { StatusPage } from "$lib/ui/components";
 
-  import AddIcon from "virtual:icons/material-symbols/add";
-  import DestructionIcon from "virtual:icons/material-symbols/destruction-outline-rounded";
-  import RemoveIcon from "virtual:icons/material-symbols/remove";
-
   import type { HTMLAttributes } from "svelte/elements";
+
+  import AddIcon from "~icons/material-symbols/add";
+  import DestructionIcon from "~icons/material-symbols/destruction-outline-rounded";
+  import RemoveIcon from "~icons/material-symbols/remove";
 
   type Props = Omit<HTMLAttributes<HTMLElement>, "title" | "children"> & {
     error?: unknown;

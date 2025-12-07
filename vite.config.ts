@@ -19,10 +19,10 @@ const baseResolve = process.env.VITEST
 
 export default defineConfig({
   plugins: [
-    Icons({ autoInstall: true, compiler: "svelte" }),
     wuchale(path.join(import.meta.dirname, "wuchale.config.ts")),
     sveltekit(),
     svelteTesting(),
+    Icons({ autoInstall: true, compiler: "svelte" }),
   ],
   build: {
     sourcemap: true,

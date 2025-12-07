@@ -1,9 +1,9 @@
 <script lang="ts">
   import { StatusPage } from "$lib/ui/components";
 
-  import NotFoundIcon from "virtual:icons/nrk/media-404-notfound";
-
   import type { HTMLAttributes } from "svelte/elements";
+
+  import NotFoundIcon from "~icons/nrk/media-404-notfound";
 
   type Props = Omit<HTMLAttributes<HTMLElement>, "title" | "children">;
 

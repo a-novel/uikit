@@ -2,9 +2,8 @@
   import { Button, Input, Section } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 
-  import EditIcon from "virtual:icons/material-symbols/edit-outline";
-
   import { defineMeta } from "@storybook/addon-svelte-csf";
+  import EditIcon from "~icons/material-symbols/edit-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({

@@ -1,10 +1,10 @@
 <script lang="ts">
   import { InfoBox } from "$lib/ui/components/index";
 
-  import AddIcon from "virtual:icons/material-symbols/add";
-  import RemoveIcon from "virtual:icons/material-symbols/remove";
-
   import type { ComponentProps, Snippet } from "svelte";
+
+  import AddIcon from "~icons/material-symbols/add";
+  import RemoveIcon from "~icons/material-symbols/remove";
 
   interface Props extends Omit<ComponentProps<typeof InfoBox>, "color" | "icon" | "title"> {
     icon?: Snippet;

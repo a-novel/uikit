@@ -2,11 +2,10 @@
   import { InfoBox, Section } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 
-  import InfoIcon from "virtual:icons/material-symbols/info-outline";
-
   import { createRawSnippet } from "svelte";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
+  import InfoIcon from "~icons/material-symbols/info-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({

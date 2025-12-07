@@ -2,11 +2,10 @@
   import { ErrorBox } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 
-  import HeartBrokenIcon from "virtual:icons/material-symbols/heart-broken-outline";
-
   import { createRawSnippet } from "svelte";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
+  import HeartBrokenIcon from "~icons/material-symbols/heart-broken-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({

@@ -1,12 +1,11 @@
 <script context="module" lang="ts">
   import { Button, Section } from "$lib/ui/components";
 
-  import EditIcon from "virtual:icons/material-symbols/edit-outline";
-
   import { createRawSnippet } from "svelte";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
   import { fn } from "storybook/test";
+  import EditIcon from "~icons/material-symbols/edit-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({

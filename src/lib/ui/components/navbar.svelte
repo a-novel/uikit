@@ -2,13 +2,13 @@
   import { Button, Popover } from "$lib/ui/components/index";
   import { type NavItem, isNavButton, isNavLink } from "$lib/ui/components/navbar.helper.svelte.js";
 
-  import CloseIcon from "virtual:icons/material-symbols/close";
-  import MenuIcon from "virtual:icons/material-symbols/menu";
-
   import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
 
   import { Debounce } from "@a-novel/nodelib-browser/utils";
+
+  import CloseIcon from "~icons/material-symbols/close";
+  import MenuIcon from "~icons/material-symbols/menu";
 
   interface Props extends Omit<HTMLAttributes<HTMLElement>, "title"> {
     homeButton: Snippet;
