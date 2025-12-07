@@ -46,10 +46,20 @@
 
     const wrapperWidth = (wrapperObservedWidth as ResizeObserverSize[])[0].inlineSize;
 
+    // Prevents flashing.
+    navElement.style.opacity = "0";
+    mobileActionsElement.style.opacity = "0";
+
     // Reset displays for measurements. This will not affect the wrapper's client width, as it is locked to its
     // container.
     navElement.dataset.show = "true";
-    desktopActionsElement.dataset.show = "true";
+
+    // If nav element is already hidden by static css rules, return.
+    if (getComputedStyle(navElement).display === "none") {
+      mobileActionsElement.dataset.show = "true";
+      return;
+    }
+
     mobileActionsElement.dataset.show = "false";
 
     // If the rightmost element does not overlap the wrapper, nothing to do. Fall back to the default state if not
@@ -58,21 +68,20 @@
       return;
     }
 
-    // First, try to hide links and see if the right menu still overflows.
+    // Hide links and see if the right menu still overflows.
     navElement.dataset.show = "false";
     mobileActionsElement.dataset.show = "true";
+  }
 
-    if (Math.floor(rightElement.getBoundingClientRect().right) <= wrapperWidth) {
-      return;
-    }
-
-    // If it still overflows, hide the desktop actions.
-    desktopActionsElement.dataset.show = "false";
+  function postReflow() {
+    navElement.style.opacity = "";
+    mobileActionsElement.style.opacity = "";
   }
 
   function reflowMenuDebounced(wrapperObservedWidth: any | ResizeObserverSize[] | null | undefined) {
     debouncer.call(() => {
       reflowMenu(wrapperObservedWidth);
+      postReflow();
     });
   }
 </script>
@@ -142,7 +151,7 @@
   style={`--popover-offset: ${wrapperHeight - 1}px; ${props.style ?? ""}`}
   class={["wrapper", className]}
   bind:clientHeight={wrapperHeight}
-  bind:contentBoxSize={null, reflowMenuDebounced}
+  bind:borderBoxSize={null, reflowMenuDebounced}
 >
   <div class="left">
     <a class="home" href={homeLink}>
@@ -239,9 +248,6 @@
   }
 
   .main {
-    margin: 0;
-    padding: 0;
-    gap: 0;
     display: flex;
     box-sizing: border-box;
 
@@ -255,13 +261,14 @@
       text-align: center;
       user-select: none;
       transition: linear 0.1s;
+      border-radius: var(--spacing-s);
 
       &:not([data-active="true"]):hover {
         color: var(--text);
       }
 
       &[data-active="true"] {
-        color: var(--color-primary-500);
+        color: var(--color-primary-600);
       }
     }
 
@@ -304,9 +311,6 @@
     }
 
     & > .popover {
-      bottom: 0;
-      border-radius: 0;
-
       & > .main {
         flex-direction: column;
         align-items: stretch;
@@ -319,7 +323,7 @@
           position: relative;
 
           &[data-active="true"] {
-            background-color: var(--color-primary-100);
+            background-color: var(--color-primary-200);
           }
         }
       }
@@ -329,30 +333,6 @@
         flex-direction: column;
         align-items: stretch;
         gap: var(--spacing-s);
-
-        & > :global(h6) {
-          position: relative;
-          color: var(--text);
-          font-weight: normal;
-          text-align: center;
-          padding: var(--spacing-s);
-          background-color: var(--background);
-          width: fit-content;
-          align-self: center;
-
-          &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90vw;
-            height: 1px;
-            background-color: var(--color-gray-400);
-            z-index: -1;
-          }
-        }
       }
     }
   }
@@ -364,5 +344,27 @@
     align-items: center;
     gap: var(--spacing-s);
     margin-right: var(--spacing-s);
+  }
+
+  @media (max-width: 36rem) {
+    .desktop {
+      display: none;
+    }
+
+    .middle > nav.main {
+      display: none;
+    }
+  }
+
+  @media (min-width: 36rem) {
+    .mobile {
+      &:not([data-show="true"]) {
+        display: none;
+      }
+
+      & .actions {
+        display: none !important;
+      }
+    }
   }
 </style>

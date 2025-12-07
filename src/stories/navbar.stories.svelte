@@ -98,7 +98,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: var(--spacing-s);
-        padding: 0 var(--spacing-m);
+        padding: 0;
         "
       >
         <Button color="default">Login</Button>
