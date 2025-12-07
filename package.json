@@ -41,15 +41,13 @@
       "import": "./dist/ui/components/nav/index.js",
       "svelte": "./dist/ui/components/nav/index.js"
     },
-    "./assets/icons/*": "./src/lib/assets/icons/*",
-    "./assets/logos/*": "./src/lib/assets/logos/*",
+    "./assets/*": "./src/lib/assets/*",
     "./ui/designSystem.css": "./dist/ui/designSystem.css"
   },
   "files": [
     "dist",
-    "messages",
-    "src/lib/assets/icons",
-    "src/lib/assets/logos"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "assets:gen": "node src/scripts/assets.gen.ts",

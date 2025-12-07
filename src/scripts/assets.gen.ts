@@ -11,26 +11,26 @@ type Destination = {
 };
 
 const LOGOS_INPUTS = [
-  "raw/agora/agora (dark).png",
-  "raw/agora/agora (light).png",
-  "raw/agora/agora icon (dark).png",
-  "raw/agora/agora icon (light).png",
+  "agora/agora (dark).png",
+  "agora/agora (light).png",
+  "agora/agora icon (dark).png",
+  "agora/agora icon (light).png",
 
-  "raw/studio/studio (dark).png",
-  "raw/studio/studio (light).png",
-  "raw/studio/studio icon (dark).png",
-  "raw/studio/studio icon (light).png",
+  "studio/studio (dark).png",
+  "studio/studio (light).png",
+  "studio/studio icon (dark).png",
+  "studio/studio icon (light).png",
 
-  "raw/storyverse/storyverse (dark).png",
-  "raw/storyverse/storyverse (light).png",
+  "storyverse/storyverse (dark).png",
+  "storyverse/storyverse (light).png",
 ];
 
 const ICONS_INPUTS = [
-  "raw/agora/agora icon (dark).png",
-  "raw/agora/agora icon (light).png",
+  "agora/agora icon (dark).png",
+  "agora/agora icon (light).png",
 
-  "raw/studio/studio icon (dark).png",
-  "raw/studio/studio icon (light).png",
+  "studio/studio icon (dark).png",
+  "studio/studio icon (light).png",
 ];
 
 const LOGOS_DESTINATIONS: Record<string, Destination> = {
@@ -57,7 +57,8 @@ const ICONS_DESTINATIONS: Record<string, Destination> = {
   },
 };
 
-const BASE_PATH = path.join(__dirname, "../assets");
+const RAW_BASE_PATH = path.join(__dirname, "../assets-raw");
+const BASE_PATH = path.join(__dirname, "../lib/assets");
 
 sharp.cache(false);
 
@@ -66,7 +67,7 @@ async function compute(sources: string[], destinations: Record<string, Destinati
     const { height } = destinations[dest];
 
     for (const file of sources) {
-      const filePath = path.normalize(path.join(BASE_PATH, file));
+      const filePath = path.normalize(path.join(RAW_BASE_PATH, file));
       const fileName = path.basename(filePath);
       const destPath = path.normalize(path.join(BASE_PATH, dest, fileName));
 
