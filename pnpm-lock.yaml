@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@a-novel/nodelib-browser':
-        specifier: ^1.1.1
-        version: 1.1.1(zod@4.1.12)
+      '@a-novel-kit/nodelib-browser':
+        specifier: ^1.3.1
+        version: 1.3.1(zod@4.1.12)
       '@iconify-json/material-symbols':
         specifier: ^1.2.48
         version: 1.2.49
@@ -42,9 +42,9 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
     devDependencies:
-      '@a-novel/nodelib-config':
-        specifier: ^1.3.0
-        version: 1.3.0(72ec4413d565e8e83a97838222a01c3e)
+      '@a-novel-kit/nodelib-config':
+        specifier: ^1.3.1
+        version: 1.3.1(72ec4413d565e8e83a97838222a01c3e)
       '@chromatic-com/storybook':
         specifier: ^4.1.3
         version: 4.1.3(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
@@ -165,14 +165,14 @@ importers:
 
 packages:
 
-  '@a-novel/nodelib-browser@1.1.1':
-    resolution: {integrity: sha512-XyCVPEGEdcQoK4lR4fT4tZST+fnyvqpbje5p85b7kAyo/BIKiMcaJNdQvsuG1foHMkYyGaznDqPWQ/5oiokeqA==, tarball: https://npm.pkg.github.com/download/@a-novel/nodelib-browser/1.1.1/958537455baef0e1d7fff363f9f924d5c4ebe119}
+  '@a-novel-kit/nodelib-browser@1.3.1':
+    resolution: {integrity: sha512-aX3if8ZJiRebJTJr9DbhIXJc+etaf3oNDobiYcAxzJe6AvlJGtebey7YOmmZOeRqCrFUGoURlxTlTgn5mC4qLA==, tarball: https://npm.pkg.github.com/download/@a-novel-kit/nodelib-browser/1.3.1/86fb0ce034564f653eae9a2444d5c31b19105c16}
     engines: {node: '>=24.0.0', npm: '>=10.9.2'}
     peerDependencies:
       zod: ^4.1.12
 
-  '@a-novel/nodelib-config@1.3.0':
-    resolution: {integrity: sha512-8hTwkrBbqHOk9xf1Te9kVv9DY878WEOOzbni8M4BnPgADe628kZiOMrx0IKwrBBuZryT9K2AKwWPd85mxF5pbQ==, tarball: https://npm.pkg.github.com/download/@a-novel/nodelib-config/1.3.0/1a8464b5e8631149fc4bf0628773e3077a14e5ca}
+  '@a-novel-kit/nodelib-config@1.3.1':
+    resolution: {integrity: sha512-3uh6bs6Pa9wC2qUyc/BnOeobLqSNF9dNinMhDheQt/WmkPEkG3/Swi7CfmMzg4p3Gj+V8VFSP5Ymr/i8vD5K1w==, tarball: https://npm.pkg.github.com/download/@a-novel-kit/nodelib-config/1.3.1/0ed2a84b82d1cc2e96a4dc7d08db4df414a29ec5}
     engines: {node: '>=24.0.0', npm: '>=10.9.2'}
     peerDependencies:
       '@eslint/compat': ^2.0.0
@@ -192,6 +192,19 @@ packages:
       prettier-plugin-svelte: ^3.4.0
       typescript: ^5.8.3
       typescript-eslint: ^8.38.0
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      eslint-plugin-storybook:
+        optional: true
+      eslint-plugin-svelte:
+        optional: true
+      prettier-plugin-css-order:
+        optional: true
+      prettier-plugin-sql:
+        optional: true
+      prettier-plugin-svelte:
+        optional: true
 
   '@acemir/cssom@0.9.28':
     resolution: {integrity: sha512-LuS6IVEivI75vKN8S04qRD+YySP0RmU/cV8UNukhQZvprxF+76Z43TNo/a08eCodaGhT1Us8etqS1ZRY9/Or0A==}
@@ -2901,29 +2914,30 @@ packages:
 
 snapshots:
 
-  '@a-novel/nodelib-browser@1.1.1(zod@4.1.12)':
+  '@a-novel-kit/nodelib-browser@1.3.1(zod@4.1.12)':
     dependencies:
       zod: 4.1.12
 
-  '@a-novel/nodelib-config@1.3.0(72ec4413d565e8e83a97838222a01c3e)':
+  '@a-novel-kit/nodelib-config@1.3.1(72ec4413d565e8e83a97838222a01c3e)':
     dependencies:
       '@eslint/compat': 2.0.0(eslint@9.39.1(jiti@2.6.1))
       '@eslint/js': 9.39.1
-      '@sveltejs/kit': 2.49.1(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.5)(vite@7.2.7(@types/node@24.10.1)(jiti@2.6.1)))(svelte@5.45.5)(vite@7.2.7(@types/node@24.10.1)(jiti@2.6.1))
       '@trivago/prettier-plugin-sort-imports': 6.0.0(prettier-plugin-svelte@3.4.0(prettier@3.7.4)(svelte@5.45.5))(prettier@3.7.4)(svelte@5.45.5)
       '@types/node': 24.10.1
       eslint: 9.39.1(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@9.39.1(jiti@2.6.1))
       eslint-plugin-prettier: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.1(jiti@2.6.1)))(eslint@9.39.1(jiti@2.6.1))(prettier@3.7.4)
-      eslint-plugin-storybook: 10.1.4(eslint@9.39.1(jiti@2.6.1))(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.3)
-      eslint-plugin-svelte: 3.13.1(eslint@9.39.1(jiti@2.6.1))(svelte@5.45.5)
       prettier: 3.7.4
-      prettier-plugin-css-order: 2.1.2(postcss@8.5.6)(prettier@3.7.4)
       prettier-plugin-packagejson: 2.5.20(prettier@3.7.4)
-      prettier-plugin-sql: 0.19.2(prettier@3.7.4)
-      prettier-plugin-svelte: 3.4.0(prettier@3.7.4)(svelte@5.45.5)
       typescript: 5.9.3
       typescript-eslint: 8.48.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+    optionalDependencies:
+      '@sveltejs/kit': 2.49.1(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.5)(vite@7.2.7(@types/node@24.10.1)(jiti@2.6.1)))(svelte@5.45.5)(vite@7.2.7(@types/node@24.10.1)(jiti@2.6.1))
+      eslint-plugin-storybook: 10.1.4(eslint@9.39.1(jiti@2.6.1))(storybook@10.1.4(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.3)
+      eslint-plugin-svelte: 3.13.1(eslint@9.39.1(jiti@2.6.1))(svelte@5.45.5)
+      prettier-plugin-css-order: 2.1.2(postcss@8.5.6)(prettier@3.7.4)
+      prettier-plugin-sql: 0.19.2(prettier@3.7.4)
+      prettier-plugin-svelte: 3.4.0(prettier@3.7.4)(svelte@5.45.5)
 
   '@acemir/cssom@0.9.28': {}
 
@@ -3846,7 +3860,8 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
-  '@types/pegjs@0.10.6': {}
+  '@types/pegjs@0.10.6':
+    optional: true
 
   '@types/react@19.2.6':
     dependencies:
@@ -4122,7 +4137,8 @@ snapshots:
     dependencies:
       require-from-string: 2.0.2
 
-  big-integer@1.6.52: {}
+  big-integer@1.6.52:
+    optional: true
 
   brace-expansion@1.1.12:
     dependencies:
@@ -4182,7 +4198,8 @@ snapshots:
 
   color-name@1.1.4: {}
 
-  commander@2.20.3: {}
+  commander@2.20.3:
+    optional: true
 
   commondir@1.0.1: {}
 
@@ -4257,7 +4274,8 @@ snapshots:
 
   devalue@5.5.0: {}
 
-  discontinuous-range@1.0.0: {}
+  discontinuous-range@1.0.0:
+    optional: true
 
   dom-accessibility-api@0.5.16: {}
 
@@ -4679,7 +4697,8 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  jsox@1.2.124: {}
+  jsox@1.2.124:
+    optional: true
 
   keyv@4.5.4:
     dependencies:
@@ -4751,7 +4770,8 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.1
 
-  moo@0.5.2: {}
+  moo@0.5.2:
+    optional: true
 
   mri@1.2.0: {}
 
@@ -4798,11 +4818,13 @@ snapshots:
       moo: 0.5.2
       railroad-diagrams: 1.0.0
       randexp: 0.4.6
+    optional: true
 
   node-sql-parser@5.3.13:
     dependencies:
       '@types/pegjs': 0.10.6
       big-integer: 1.6.52
+    optional: true
 
   obug@2.1.1: {}
 
@@ -4944,6 +4966,7 @@ snapshots:
       prettier: 3.7.4
       sql-formatter: 15.6.10
       tslib: 2.8.1
+    optional: true
 
   prettier-plugin-svelte@3.4.0(prettier@3.7.4)(svelte@5.45.5):
     dependencies:
@@ -4969,12 +4992,14 @@ snapshots:
 
   quansync@0.2.11: {}
 
-  railroad-diagrams@1.0.0: {}
+  railroad-diagrams@1.0.0:
+    optional: true
 
   randexp@0.4.6:
     dependencies:
       discontinuous-range: 1.0.0
       ret: 0.1.15
+    optional: true
 
   react-dom@19.2.0(react@19.2.0):
     dependencies:
@@ -5015,7 +5040,8 @@ snapshots:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
-  ret@0.1.15: {}
+  ret@0.1.15:
+    optional: true
 
   rettime@0.7.0:
     optional: true
@@ -5134,6 +5160,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
       nearley: 2.20.1
+    optional: true
 
   stackback@0.0.2: {}
 

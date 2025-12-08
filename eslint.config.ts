@@ -2,7 +2,7 @@ import svelteConfig from "./svelte.config.js";
 
 import path from "node:path";
 
-import { Eslint } from "@a-novel/nodelib-config";
+import { Eslint } from "@a-novel-kit/nodelib-config";
 
 import { defineConfig } from "eslint/config";
 

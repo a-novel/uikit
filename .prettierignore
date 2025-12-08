@@ -7,7 +7,7 @@ bun.lockb
 
 cache
 
-locales
+src/lib/locales
 
 *.xcf
 *.png

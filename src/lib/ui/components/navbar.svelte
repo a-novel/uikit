@@ -5,7 +5,7 @@
   import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
 
-  import { Debounce } from "@a-novel/nodelib-browser/utils";
+  import { Debounce } from "@a-novel-kit/nodelib-browser/utils";
 
   import CloseIcon from "~icons/material-symbols/close";
   import MenuIcon from "~icons/material-symbols/menu";
@@ -222,13 +222,16 @@
     margin: 0;
     padding: 0;
   }
+
   .left {
     justify-content: flex-start;
   }
+
   .right {
     justify-content: flex-end;
     gap: 0;
   }
+
   .middle {
     justify-content: center;
 
@@ -279,6 +282,7 @@
 
     & > a {
       text-decoration: none;
+
       &:visited {
         color: initial;
       }
