@@ -131,7 +131,7 @@
     "unplugin-icons": "^22.5.0",
     "zod": "^4.1.12"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.25.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
