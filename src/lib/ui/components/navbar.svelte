@@ -7,8 +7,7 @@
 
   import { Debounce } from "@a-novel-kit/nodelib-browser/utils";
 
-  import CloseIcon from "~icons/material-symbols/close";
-  import MenuIcon from "~icons/material-symbols/menu";
+  import Icon from "@iconify/svelte";
 
   interface Props extends Omit<HTMLAttributes<HTMLElement>, "title"> {
     homeButton: Snippet;
@@ -114,9 +113,9 @@
         aria-label={popoverOpen ? "Close navigation menu" : "Open navigation menu"}
       >
         {#if popoverOpen}
-          <CloseIcon />
+          <Icon icon="material-symbols:close" />
         {:else}
-          <MenuIcon />
+          <Icon icon="material-symbols:menu" />
         {/if}
       </Button>
     {/snippet}
