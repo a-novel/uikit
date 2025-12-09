@@ -20,7 +20,7 @@ importers:
     devDependencies:
       '@a-novel-kit/nodelib-browser':
         specifier: ^1.3.1
-        version: 1.3.1(zod@4.1.12)
+        version: 1.3.1(zod@4.1.13)
       '@a-novel-kit/nodelib-config':
         specifier: ^1.3.1
         version: 1.3.1(7c96bdcabfa74b1e6918ae283b0c3c5e)
@@ -152,7 +152,7 @@ importers:
         version: 2.0.1(svelte@5.45.8)(vitest@4.0.15(@types/node@24.10.2)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(msw@2.12.3(@types/node@24.10.2)(typescript@5.9.3)))
       zod:
         specifier: ^4.1.12
-        version: 4.1.12
+        version: 4.1.13
 
 packages:
 
@@ -2826,14 +2826,14 @@ packages:
   zimmerframe@1.1.4:
     resolution: {integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==}
 
-  zod@4.1.12:
-    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
+  zod@4.1.13:
+    resolution: {integrity: sha512-AvvthqfqrAhNH9dnfmrfKzX5upOdjUVJYFqNSlkmGf64gRaTzlPwz99IHYnVs28qYAybvAlBV+H7pn0saFY4Ig==}
 
 snapshots:
 
-  '@a-novel-kit/nodelib-browser@1.3.1(zod@4.1.12)':
+  '@a-novel-kit/nodelib-browser@1.3.1(zod@4.1.13)':
     dependencies:
-      zod: 4.1.12
+      zod: 4.1.13
 
   '@a-novel-kit/nodelib-config@1.3.1(7c96bdcabfa74b1e6918ae283b0c3c5e)':
     dependencies:
@@ -5376,4 +5376,4 @@ snapshots:
 
   zimmerframe@1.1.4: {}
 
-  zod@4.1.12: {}
+  zod@4.1.13: {}
