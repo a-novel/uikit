@@ -3,8 +3,7 @@
 
   import type { ComponentProps, Snippet } from "svelte";
 
-  import AddIcon from "~icons/material-symbols/add";
-  import RemoveIcon from "~icons/material-symbols/remove";
+  import Icon from "@iconify/svelte";
 
   interface Props extends Omit<ComponentProps<typeof InfoBox>, "color" | "icon" | "title"> {
     icon?: Snippet;
@@ -39,9 +38,9 @@
       <button type="button" class="title" onclick={() => (showDetails = !showDetails)}>
         <span class="icon">
           {#if showDetails}
-            <RemoveIcon />
+            <Icon icon="material-symbols:remove" />
           {:else}
-            <AddIcon />
+            <Icon icon="material-symbols:add" />
           {/if}
         </span>
         <span class="text">
@@ -59,9 +58,9 @@
 
 <style>
   /*
-    Waiting for svelte to support classname API:
-    https://github.com/sveltejs/svelte/issues/7776
-  */
+      Waiting for svelte to support classname API:
+      https://github.com/sveltejs/svelte/issues/7776
+    */
   span[data-scope] + :global(*) {
     display: flex;
     flex-direction: column;

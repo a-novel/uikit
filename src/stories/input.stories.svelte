@@ -2,8 +2,8 @@
   import { Button, Input, Section } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 
+  import Icon from "@iconify/svelte";
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import EditIcon from "~icons/material-symbols/edit-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
@@ -32,18 +32,18 @@
     <Input>
       {#snippet startAdornment()}
         <Button icon>
-          <EditIcon />
+          <Icon icon="material-symbols:edit-outline" />
         </Button>
         <Button icon>
-          <EditIcon />
+          <Icon icon="material-symbols:edit-outline" />
         </Button>
       {/snippet}
       {#snippet endAdornment()}
         <Button icon>
-          <EditIcon />
+          <Icon icon="material-symbols:edit-outline" />
         </Button>
         <Button icon>
-          <EditIcon />
+          <Icon icon="material-symbols:edit-outline" />
         </Button>
       {/snippet}
     </Input>

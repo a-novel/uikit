@@ -3,7 +3,7 @@
 
   import type { HTMLAttributes } from "svelte/elements";
 
-  import NotFoundIcon from "~icons/nrk/media-404-notfound";
+  import Icon from "@iconify/svelte";
 
   type Props = Omit<HTMLAttributes<HTMLElement>, "title" | "children">;
 
@@ -13,7 +13,7 @@
 <!-- Kind of a 'normal' error so no need to use alarming color scheme -->
 <StatusPage {...props} color="primary">
   {#snippet icon()}
-    <NotFoundIcon />
+    <Icon icon="nrk:media-404-notfound" />
   {/snippet}
   {#snippet title()}
     Page not found.

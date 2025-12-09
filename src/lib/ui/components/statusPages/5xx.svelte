@@ -3,9 +3,7 @@
 
   import type { HTMLAttributes } from "svelte/elements";
 
-  import AddIcon from "~icons/material-symbols/add";
-  import DestructionIcon from "~icons/material-symbols/destruction-outline-rounded";
-  import RemoveIcon from "~icons/material-symbols/remove";
+  import Icon from "@iconify/svelte";
 
   type Props = Omit<HTMLAttributes<HTMLElement>, "title" | "children"> & {
     error?: unknown;
@@ -18,7 +16,7 @@
 
 <StatusPage {...props} color="accent">
   {#snippet icon()}
-    <DestructionIcon />
+    <Icon icon="material-symbols:destruction-outline-rounded" />
   {/snippet}
   {#snippet title()}
     Oops! An unexpected error occurred.
@@ -32,9 +30,9 @@
       <button aria-expanded={showDetails} type="button" class="title" onclick={() => (showDetails = !showDetails)}>
         <span class="icon">
           {#if showDetails}
-            <RemoveIcon />
+            <Icon icon="material-symbols:remove" />
           {:else}
-            <AddIcon />
+            <Icon icon="material-symbols:add" />
           {/if}
         </span>
         <span class="text">

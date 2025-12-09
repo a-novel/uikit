@@ -4,8 +4,8 @@
 
   import { createRawSnippet } from "svelte";
 
+  import Icon from "@iconify/svelte";
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import InfoIcon from "~icons/material-symbols/info-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
@@ -69,28 +69,28 @@
   <InfoBox color="default">
     {LOREM_IPSUM.MEDIUM}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </InfoBox>
   <br /><br />
   <InfoBox color="primary">
     {LOREM_IPSUM.MEDIUM}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </InfoBox>
   <br /><br />
   <InfoBox color="secondary">
     {LOREM_IPSUM.MEDIUM}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </InfoBox>
   <br /><br />
   <InfoBox color="accent">
     {LOREM_IPSUM.MEDIUM}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </InfoBox>
 {/snippet}

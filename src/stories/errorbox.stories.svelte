@@ -4,8 +4,8 @@
 
   import { createRawSnippet } from "svelte";
 
+  import Icon from "@iconify/svelte";
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import HeartBrokenIcon from "~icons/material-symbols/heart-broken-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
@@ -26,7 +26,7 @@
 {/snippet}
 
 {#snippet icon()}
-  <HeartBrokenIcon />
+  <Icon icon="material-symbols:heart-broken-outline" />
 {/snippet}
 
 <Story name="Primary" />

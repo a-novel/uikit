@@ -2,8 +2,8 @@
   import { StatusPage } from "$lib/ui/components";
   import { LOREM_IPSUM } from "$lib/utils";
 
+  import Icon from "@iconify/svelte";
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import InfoIcon from "~icons/material-symbols/info-outline";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
@@ -30,7 +30,7 @@
       {LOREM_IPSUM.SHORTER}
     {/snippet}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </StatusPage>
 {/snippet}
@@ -44,7 +44,7 @@
       {LOREM_IPSUM.SHORTER}
     {/snippet}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </StatusPage>
   <hr />
@@ -54,7 +54,7 @@
       {LOREM_IPSUM.SHORTER}
     {/snippet}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </StatusPage>
   <hr />
@@ -64,7 +64,7 @@
       {LOREM_IPSUM.SHORTER}
     {/snippet}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </StatusPage>
   <hr />
@@ -74,7 +74,7 @@
       {LOREM_IPSUM.SHORTER}
     {/snippet}
     {#snippet icon()}
-      <InfoIcon />
+      <Icon icon="material-symbols:info-outline" />
     {/snippet}
   </StatusPage>
 {/snippet}

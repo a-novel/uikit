@@ -9,7 +9,6 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { svelteTesting } from "@testing-library/svelte/vite";
 import { wuchale } from "@wuchale/vite-plugin";
 import { CookieJar } from "jsdom";
-import Icons from "unplugin-icons/vite";
 
 const baseResolve = process.env.VITEST
   ? {
@@ -18,12 +17,7 @@ const baseResolve = process.env.VITEST
   : undefined;
 
 export default defineConfig({
-  plugins: [
-    wuchale(path.join(import.meta.dirname, "wuchale.config.ts")),
-    sveltekit(),
-    svelteTesting(),
-    Icons({ autoInstall: true, compiler: "svelte" }),
-  ],
+  plugins: [wuchale(path.join(import.meta.dirname, "wuchale.config.ts")), sveltekit(), svelteTesting()],
   build: {
     sourcemap: true,
     rollupOptions: {
