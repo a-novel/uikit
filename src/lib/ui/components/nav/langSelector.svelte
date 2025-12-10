@@ -68,7 +68,7 @@
         {/each}
       </ul>
       <div class="cancel" data-show={fullWidth}>
-        <Button onclick={togglePopoverOpen}>Cancel</Button>
+        <Button aria-label="Close language selection menu" onclick={togglePopoverOpen}>Cancel</Button>
       </div>
     </div>
   {/snippet}

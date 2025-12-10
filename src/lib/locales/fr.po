@@ -84,3 +84,22 @@ msgstr "Sélectionner la langue"
 #: src/lib/ui/components/nav/langSelector.svelte
 msgid "Locale ({0})"
 msgstr "Langue ({0})"
+
+#: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "Toggle error details"
+msgstr "Afficher/Masquer le détail de l'erreur"
+
+#: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "Error details (visible)"
+msgstr "Détail de l'erreur (visible)"
+
+#: src/lib/ui/components/errorbox.svelte
+#: src/lib/ui/components/statusPages/5xx.svelte
+msgid "Error details (hidden)"
+msgstr "Détail de l'erreur (masqué)"
+
+#: src/lib/ui/components/nav/langSelector.svelte
+msgid "Close language selection menu"
+msgstr "Fermer le menu de sélection de la langue"

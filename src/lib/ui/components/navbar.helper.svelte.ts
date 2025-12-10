@@ -4,6 +4,7 @@ export interface NavLinkItem {
 
 export interface NavButtonItem {
   action: () => void;
+  ariaLabel?: string;
 }
 
 export interface NavItemCommon {

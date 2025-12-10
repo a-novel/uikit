@@ -89,7 +89,7 @@
 
 {#snippet navLink(item: NavItem)}
   {#if isNavButton(item)}
-    <button data-active={item.active} onclick={item.action}>
+    <button aria-label={item.ariaLabel ?? "false"} data-active={item.active} onclick={item.action}>
       {item.content}
     </button>
   {:else if isNavLink(item)}

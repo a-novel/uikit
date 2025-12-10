@@ -27,7 +27,13 @@
 
   {#if error}
     <div class="details">
-      <button aria-expanded={showDetails} type="button" class="title" onclick={() => (showDetails = !showDetails)}>
+      <button
+        aria-expanded={showDetails}
+        aria-label="Toggle error details"
+        type="button"
+        class="title"
+        onclick={() => (showDetails = !showDetails)}
+      >
         <span class="icon">
           {#if showDetails}
             <Icon icon="material-symbols:remove" />
@@ -43,7 +49,11 @@
           {/if}
         </span>
       </button>
-      <pre class="content" data-display={showDetails}>{error.toString().trim()}</pre>
+      <pre
+        class="content"
+        aria-label={showDetails ? "Error details (visible)" : "Error details (hidden)"}
+        data-display={showDetails}>{error.toString().trim()}</pre
+      >
     </div>
   {/if}
 </StatusPage>
