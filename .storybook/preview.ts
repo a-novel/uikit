@@ -1,3 +1,4 @@
+import { LocaleSyncComponent } from "../src/lib";
 import { DEFAULT_LNG, LNG } from "../src/lib/const";
 import { DesignSystemComponent } from "../src/lib/ui";
 import "../src/lib/ui/designSystem.css";
@@ -69,6 +70,19 @@ const preview: Preview = {
     }),
     (_, params) => {
       return {
+        Component: LocaleSyncComponent,
+        props: {
+          get locale() {
+            return params.globals.locale || DEFAULT_LNG;
+          },
+          set locale(value: string) {
+            params.globals.locale = value;
+          },
+        },
+      };
+    },
+    (_, params) => {
+      return {
         Component: DesignSystemComponent,
         props: {
           get theme() {
@@ -76,13 +90,6 @@ const preview: Preview = {
           },
           set theme(value: string) {
             params.globals.theme = value;
-          },
-
-          get locale() {
-            return params.globals.locale || DEFAULT_LNG;
-          },
-          set locale(value: string) {
-            params.globals.locale = value;
           },
         },
       };

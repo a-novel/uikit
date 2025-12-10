@@ -57,10 +57,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json", "html", "lcov"],
       reportsDirectory: "./coverage",
-      include: ["src/**/*.{ts,tsx,svelte}"],
-      // No tests on storybook stories.
-      // No tests on purely visual components (unless absolutely required).
-      exclude: ["src/stories", "src/lib/ui/components", "src/scripts"],
+      include: ["src/lib/utils/*.{ts,tsx,svelte}"],
     },
   },
 });

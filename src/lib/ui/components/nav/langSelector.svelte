@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { getActiveLocale } from "$lib";
   import { LNG, LNG_META } from "$lib/const";
-  import { getActiveLocale } from "$lib/ui";
   import { Button, Popover } from "$lib/ui/components";
 
   import type { HTMLButtonAttributes } from "svelte/elements";

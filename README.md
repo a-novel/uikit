@@ -37,3 +37,82 @@ Then, install the package using pnpm:
 # pnpm config set auto-install-peers true --location project
 pnpm add @a-novel/uikit
 ```
+
+## Usage
+
+Wrap the UI with the provider component.
+
+```svelte
+<!-- Load this as early as possible -->
+<script lang="ts">
+  import type { Snippet } from "svelte";
+
+  import { DesignSystemComponent } from "@a-novel/uikit/ui";
+
+  interface Props {
+    // ...
+    children: Snippet;
+  }
+
+  let { children }: Props = $props();
+</script>
+
+<DesignSystemComponent>
+  <!-- Here goes your UI -->
+  {@render children()}
+</DesignSystemComponent>
+```
+
+> ⚠️ **Important**: Design system component loads the relevant theme by itself. You can override this and enforce
+> a specific theme by passing the `theme` prop to it.
+
+```svelte
+<!-- Force the application theme to dark mode -->
+<DesignSystemComponent theme="dark">
+  {@render children()}
+</DesignSystemComponent>
+```
+
+You should also import your application locales and sync them with the design system.
+
+```svelte
+<!-- Load this as early as possible. -->
+<!-- You can do this in the same component where you load the theme. -->
+<script lang="ts">
+  // If you also use wuchale, register them.
+  import type { Snippet } from "svelte";
+
+  import { LocaleSyncComponent } from "@a-novel/uikit";
+
+  import "[WUCHALE_LOCALES_DIR]/main.loader.svelte.js";
+
+  interface Props {
+    // ...
+    children: Snippet;
+  }
+
+  let { children }: Props = $props();
+</script>
+
+<LocaleSyncComponent>
+  {@render children()}
+</LocaleSyncComponent>
+```
+
+If you have SSR components, you can also setup a hook loader.
+
+```ts
+// hooks.server.ts
+import { localeHandler } from "@a-novel/uikit";
+
+import type { Handle } from "@sveltejs/kit";
+import * as main from "[WUCHALE_LOCALES_DIR]/main.loader.server.svelte.js";
+import { loadLocales } from "wuchale/load-utils/server";
+
+await loadLocales(main.key, main.loadIDs, main.loadCatalog, locales);
+
+export const handle: Handle = async (input) => {
+  // ...
+  localeHandler();
+};
+```
