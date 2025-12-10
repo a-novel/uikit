@@ -1,7 +1,7 @@
-import { loadCatalog, loadIDs } from './.wuchale/main.proxy.sync.js'
+import { loadCatalog, loadIDs } from './.wuchale/kit.proxy.sync.js'
 import { currentRuntime } from 'wuchale/load-utils/server'
 
-const key = 'main'
+const key = 'kit'
 
 export { loadCatalog, loadIDs, key } // for hooks.server.{js,ts}
 

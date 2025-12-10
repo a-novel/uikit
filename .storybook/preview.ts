@@ -1,7 +1,6 @@
-import { LocaleSyncComponent } from "../src/lib";
 import { DEFAULT_LNG, LNG } from "../src/lib/const";
-import { DesignSystemComponent } from "../src/lib/ui";
 import "../src/lib/ui/designSystem.css";
+import { DecoratorComponent } from "../src/storybook";
 import "./preview.css";
 
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
@@ -70,7 +69,7 @@ const preview: Preview = {
     }),
     (_, params) => {
       return {
-        Component: LocaleSyncComponent,
+        Component: DecoratorComponent,
         props: {
           get locale() {
             return params.globals.locale || DEFAULT_LNG;
@@ -78,13 +77,6 @@ const preview: Preview = {
           set locale(value: string) {
             params.globals.locale = value;
           },
-        },
-      };
-    },
-    (_, params) => {
-      return {
-        Component: DesignSystemComponent,
-        props: {
           get theme() {
             return params.globals.theme || "dark";
           },

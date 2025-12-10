@@ -83,6 +83,7 @@ You should also import your application locales and sync them with the design sy
   import type { Snippet } from "svelte";
 
   import { LocaleSyncComponent } from "@a-novel/uikit";
+  import "@a-novel/uikit/locales/client";
 
   import "[WUCHALE_LOCALES_DIR]/main.loader.svelte.js";
 
@@ -104,12 +105,14 @@ If you have SSR components, you can also setup a hook loader.
 ```ts
 // hooks.server.ts
 import { localeHandler } from "@a-novel/uikit";
+import * as kit from "@a-novel/uikit/locales/server";
 
 import type { Handle } from "@sveltejs/kit";
 import * as main from "[WUCHALE_LOCALES_DIR]/main.loader.server.svelte.js";
 import { loadLocales } from "wuchale/load-utils/server";
 
 await loadLocales(main.key, main.loadIDs, main.loadCatalog, locales);
+await loadLocales(main.key, kit.loadIDs, kit.loadCatalog, locales);
 
 export const handle: Handle = async (input) => {
   // ...

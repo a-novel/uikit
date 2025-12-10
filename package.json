@@ -26,6 +26,8 @@
       "import": "./dist/const/index.js",
       "svelte": "./dist/const/index.js"
     },
+    "./locales/client": "./dist/locales/kit.loader.svelte.js",
+    "./locales/server": "./dist/locales/kit.loader.server.svelte.js",
     "./ui": {
       "types": "./dist/ui/index.d.ts",
       "import": "./dist/ui/index.js",

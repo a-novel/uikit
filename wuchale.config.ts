@@ -5,7 +5,7 @@ export default defineConfig({
   sourceLocale: "en",
   otherLocales: ["fr"],
   adapters: {
-    main: svelte({
+    kit: svelte({
       localesDir: "./src/lib/locales",
       loader: "sveltekit",
       files: ["src/lib/**/*.svelte"],

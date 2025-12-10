@@ -1,7 +1,7 @@
-import { loadCatalog, loadIDs } from './.wuchale/main.proxy.js'
+import { loadCatalog, loadIDs } from './.wuchale/kit.proxy.js'
 import { registerLoaders, defaultCollection } from 'wuchale/load-utils'
 
-const key = 'main'
+const key = 'kit'
 
 const runtimes = $state({})
 

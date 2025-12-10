@@ -2,7 +2,6 @@
   import { LNG } from "$lib/const";
   import { LOCALE_CONTEXT_KEY, LOCALE_STORAGE_KEY, loadLocale, setLocale } from "$lib/localeSync.helper.svelte";
   import { locales } from "$lib/locales/data";
-  import "$lib/locales/main.loader.svelte.js";
   import { saveLocalStorage } from "$lib/utils";
 
   import { type Snippet, setContext } from "svelte";
