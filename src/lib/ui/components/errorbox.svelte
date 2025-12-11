@@ -4,6 +4,7 @@
   import type { ComponentProps, Snippet } from "svelte";
 
   import Icon from "@iconify/svelte";
+  import { getTranslate } from "@tolgee/svelte";
 
   interface Props extends Omit<ComponentProps<typeof InfoBox>, "color" | "icon" | "title"> {
     icon?: Snippet;
@@ -14,6 +15,8 @@
   const { children, title, error, icon, ...props }: Props = $props();
 
   let showDetails = $state(false);
+
+  const { t } = getTranslate("common");
 </script>
 
 <span data-scope hidden></span>
@@ -38,7 +41,7 @@
       <button
         type="button"
         class="title"
-        aria-label="Toggle error details"
+        aria-label={$t("errorbox.aria.toggleDetails", "Toggle error details")}
         onclick={() => (showDetails = !showDetails)}
       >
         <span class="icon">
@@ -50,15 +53,16 @@
         </span>
         <span class="text">
           {#if showDetails}
-            Hide error details
+            {$t("errorbox.toggleDetails.hide", "Hide error details")}
           {:else}
-            Show error details
+            {$t("errorbox.toggleDetails.show", "Show error details")}
           {/if}
         </span>
       </button>
       <pre
         class="content"
-        aria-label={showDetails ? "Error details (visible)" : "Error details (hidden)"}
+        aria-label={$t("errorbox.aria.details", "Error details")}
+        aria-hidden={!showDetails}
         data-display={showDetails}>{error.toString().trim()}</pre
       >
     </div>

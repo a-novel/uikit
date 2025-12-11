@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { getActiveLocale } from "$lib";
   import { LNG, LNG_META } from "$lib/const";
   import { Button, Popover } from "$lib/ui/components";
 
   import type { HTMLButtonAttributes } from "svelte/elements";
+
+  import { getTolgee, getTranslate } from "@tolgee/svelte";
 
   interface Props extends Omit<HTMLButtonAttributes, "children" | "onclick"> {
     fullWidth?: boolean;
@@ -11,14 +12,18 @@
 
   let { class: className, fullWidth = false, ...props }: Props = $props();
 
-  let activeLocale = getActiveLocale();
   let popover: ReturnType<typeof Popover>;
+
+  const tolgee = getTolgee(["language", "pendingLanguage"]);
+  let activeLocale = $tolgee.getLanguage() as LNG | undefined;
 
   function setLocale(evt: MouseEvent, lng: string) {
     evt.stopPropagation();
     popover.togglePopoverOpen(evt);
-    activeLocale.locale = lng as LNG;
+    $tolgee.changeLanguage(lng);
   }
+
+  const { t } = getTranslate("common");
 </script>
 
 <Popover bind:this={popover}>
@@ -30,16 +35,18 @@
       bind:this={binding.getRef, binding.setRef}
       data-fullWidth={fullWidth}
       class={["menu", className]}
-      aria-label="Select language"
+      aria-label={$t("langSelector.aria.selectLanguage", "Select language")}
       onclick={togglePopoverOpen}
     >
-      <img
-        loading="lazy"
-        data-keep-popover="true"
-        src={`https://flagcdn.com/w40/${LNG_META[activeLocale.locale].flag}.png`}
-        alt={`Active locale (${LNG_META[activeLocale.locale].label})`}
-      />
-      <span data-show={fullWidth} data-keep-popover="true">{LNG_META[activeLocale.locale].label}</span>
+      {#if activeLocale}
+        <img
+          loading="lazy"
+          data-keep-popover="true"
+          src={`https://flagcdn.com/w40/${LNG_META[activeLocale].flag}.png`}
+          alt={$t("langSelector.aria.activeLocale", "Active locale ({lang})", { lang: LNG_META[activeLocale].label })}
+        />
+        <span data-show={fullWidth} data-keep-popover="true">{LNG_META[activeLocale].label}</span>
+      {/if}
     </button>
   {/snippet}
   {#snippet content(binding, popoverOpen, togglePopoverOpen)}
@@ -48,27 +55,35 @@
       bind:this={binding.getRef, binding.setRef}
       data-fullWidth={fullWidth}
       data-popover={popoverOpen}
+      aria-hidden={!popoverOpen}
       data-keep-popover="true"
-      role={popoverOpen ? "dialog" : undefined}
-      aria-label={popoverOpen ? "Lang selection menu" : undefined}
+      role="dialog"
+      aria-label={popoverOpen ? $t("langSelector.aria.selectionMenu", "Lang selection menu") : undefined}
     >
       <ul>
         {#each Object.entries(LNG_META) as [lng, meta] (lng)}
           <li>
             <button
-              data-selected={lng === activeLocale.locale}
+              data-selected={lng === activeLocale}
               aria-label={`Select ${meta.label}`}
               type="button"
               onclick={(evt) => setLocale(evt, lng)}
             >
-              <img loading="lazy" src={`https://flagcdn.com/w40/${meta.flag}.png`} alt={`Locale (${meta.label})`} />
+              <img
+                loading="lazy"
+                src={`https://flagcdn.com/w40/${meta.flag}.png`}
+                alt={$t("langSelector.alt.flag", "Select locale ({lang})", { lang: meta.label })}
+              />
               <span>{meta.label}</span>
             </button>
           </li>
         {/each}
       </ul>
       <div class="cancel" data-show={fullWidth}>
-        <Button aria-label="Close language selection menu" onclick={togglePopoverOpen}>Cancel</Button>
+        <Button
+          aria-label={$t("langSelector.aria.closeMenu", "Close language selection menu")}
+          onclick={togglePopoverOpen}>{$t("langSelector.closeMenu", "Close language selection menu")}</Button
+        >
       </div>
     </div>
   {/snippet}

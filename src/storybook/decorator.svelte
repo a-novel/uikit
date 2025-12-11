@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { LocaleSyncComponent } from "$lib";
   import { LNG } from "$lib/const";
-  import "$lib/locales/kit.loader.svelte.js";
+  import { TolgeeConfig } from "$lib/locales";
   import { DesignSystemComponent } from "$lib/ui";
 
+  import { LocaleSyncComponent } from "./index";
+
   import type { ComponentProps, Snippet } from "svelte";
+
+  import { TolgeeProvider } from "@tolgee/svelte";
 
   interface Props {
     theme: ComponentProps<typeof DesignSystemComponent>["theme"];
@@ -15,8 +18,9 @@
   let { children, locale, theme }: Props = $props();
 </script>
 
-<DesignSystemComponent {theme}>
-  <LocaleSyncComponent {locale}>
+<TolgeeProvider tolgee={TolgeeConfig}>
+  <LocaleSyncComponent {locale} />
+  <DesignSystemComponent {theme}>
     {@render children?.()}
-  </LocaleSyncComponent>
-</DesignSystemComponent>
+  </DesignSystemComponent>
+</TolgeeProvider>
