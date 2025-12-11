@@ -2,15 +2,15 @@
   import agoraLogoDark from "$lib/assets/logos/integrated/agora (dark).png";
   import agoraLogoLight from "$lib/assets/logos/integrated/agora (light).png";
   import { NavBar, type NavItem, Section } from "$lib/ui/components";
-  import { LangSelector as LangSelectorMeta } from "$lib/ui/components/nav";
+  import { NavSettings as NavSettingsMeta } from "$lib/ui/components/nav";
   import { LOREM_IPSUM } from "$lib/utils";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: "Components/Nav/LangSelector",
-    component: LangSelectorMeta,
+    title: "Components/Nav/Settings",
+    component: NavSettingsMeta,
     tags: ["autodocs"],
     argTypes: {},
     args: {},
@@ -44,7 +44,7 @@
 <script>
   // Import in a separate script because the `context="module"` prevents the context functions from working properly.
   import { Image } from "$lib/ui/components";
-  import { LangSelector } from "$lib/ui/components/nav";
+  import { NavSettings } from "$lib/ui/components/nav";
 </script>
 
 {#snippet dummyPage()}
@@ -73,21 +73,10 @@
     {/snippet}
 
     {#snippet actionsDesktop()}
-      <LangSelector />
+      <NavSettings />
     {/snippet}
     {#snippet actionsMobile()}
-      <h6>Settings</h6>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          gap: var(--spacing-s);
-          padding: 0 var(--spacing-m);
-          "
-      >
-        <LangSelector fullWidth />
-      </div>
+      <NavSettings mobile />
     {/snippet}
   </NavBar>
 
