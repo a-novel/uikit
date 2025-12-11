@@ -4,6 +4,7 @@
   import type { HTMLAttributes } from "svelte/elements";
 
   import Icon from "@iconify/svelte";
+  import { getTranslate } from "@tolgee/svelte";
 
   type Props = Omit<HTMLAttributes<HTMLElement>, "title" | "children"> & {
     error?: unknown;
@@ -12,6 +13,8 @@
   let { error, ...props }: Props = $props();
 
   let showDetails = $state(false);
+
+  const { t } = getTranslate("common");
 </script>
 
 <StatusPage {...props} color="accent">
@@ -19,17 +22,24 @@
     <Icon icon="material-symbols:destruction-outline-rounded" />
   {/snippet}
   {#snippet title()}
-    Oops! An unexpected error occurred.
+    {$t("statusPages.5xx.title", "Oops! An unexpected error occurred.")}
   {/snippet}
-  <span>An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible.</span>
+  <span>
+    {$t(
+      "statusPages.5xx.message",
+      "An error that shouldn't happen occurred on our server. We are working to fix it as soon as possible."
+    )}
+  </span>
   <br />
-  <span style="color: var(--color-gray-600)">You may retry later or clear your browser cache.</span>
+  <span style="color: var(--color-gray-600)">
+    {$t("statusPages.5xx.messageSub", "You may retry later or clear your browser cache.")}
+  </span>
 
   {#if error}
     <div class="details">
       <button
         aria-expanded={showDetails}
-        aria-label="Toggle error details"
+        aria-label={$t("statusPages.5xx.aria.toggleDetails", "Toggle error details")}
         type="button"
         class="title"
         onclick={() => (showDetails = !showDetails)}
@@ -43,15 +53,16 @@
         </span>
         <span class="text">
           {#if showDetails}
-            Hide error details
+            {$t("statusPages.5xx.toggleDetails.hide", "Hide error details")}
           {:else}
-            Show error details
+            {$t("statusPages.5xx.toggleDetails.show", "Show error details")}
           {/if}
         </span>
       </button>
       <pre
         class="content"
-        aria-label={showDetails ? "Error details (visible)" : "Error details (hidden)"}
+        aria-label={$t("statusPages.5xx.aria.details", "Error details")}
+        aria-hidden={!showDetails}
         data-display={showDetails}>{error.toString().trim()}</pre
       >
     </div>

@@ -79,13 +79,11 @@ You should also import your application locales and sync them with the design sy
 <!-- Load this as early as possible. -->
 <!-- You can do this in the same component where you load the theme. -->
 <script lang="ts">
-  // If you also use wuchale, register them.
   import type { Snippet } from "svelte";
 
-  import { LocaleSyncComponent } from "@a-novel/uikit";
-  import "@a-novel/uikit/locales/client";
+  import { TolgeeConfig } from "@a-novel/uikit/locales";
 
-  import "[WUCHALE_LOCALES_DIR]/main.loader.svelte.js";
+  import { TolgeeProvider } from "@tolgee/svelte";
 
   interface Props {
     // ...
@@ -93,29 +91,15 @@ You should also import your application locales and sync them with the design sy
   }
 
   let { children }: Props = $props();
+
+  // You may add your own namespaces.
+  TolgeeConfig.addStaticData({
+    "en:customNs": () => import("[PATH_TO_LOCALES]/customNs/en.json"),
+    "r:customNs": () => import("[PATH_TO_LOCALES]/customNs/fr.json"),
+  });
 </script>
 
-<LocaleSyncComponent>
+<TolgeeProvider tolgee={TolgeeConfig}>
   {@render children()}
-</LocaleSyncComponent>
-```
-
-If you have SSR components, you can also setup a hook loader.
-
-```ts
-// hooks.server.ts
-import { localeHandler } from "@a-novel/uikit";
-import * as kit from "@a-novel/uikit/locales/server";
-
-import type { Handle } from "@sveltejs/kit";
-import * as main from "[WUCHALE_LOCALES_DIR]/main.loader.server.svelte.js";
-import { loadLocales } from "wuchale/load-utils/server";
-
-await loadLocales(main.key, main.loadIDs, main.loadCatalog, locales);
-await loadLocales(main.key, kit.loadIDs, kit.loadCatalog, locales);
-
-export const handle: Handle = async (input) => {
-  // ...
-  localeHandler();
-};
+</TolgeeProvider>
 ```

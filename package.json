@@ -11,11 +11,6 @@
   ],
   "type": "module",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "svelte": "./dist/index.js"
-    },
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js",
@@ -26,17 +21,15 @@
       "import": "./dist/const/index.js",
       "svelte": "./dist/const/index.js"
     },
-    "./locales/client": "./dist/locales/kit.loader.svelte.js",
-    "./locales/server": "./dist/locales/kit.loader.server.svelte.js",
+    "./locales": {
+      "types": "./dist/locales/index.d.ts",
+      "import": "./dist/locales/index.js",
+      "svelte": "./dist/locales/index.js"
+    },
     "./ui": {
       "types": "./dist/ui/index.d.ts",
       "import": "./dist/ui/index.js",
       "svelte": "./dist/ui/index.js"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "import": "./dist/server/index.js",
-      "svelte": "./dist/server/index.js"
     },
     "./ui/components": {
       "types": "./dist/ui/components/index.d.ts",
@@ -66,15 +59,15 @@
     "build": "vite build && npm run prepack",
     "build:storybook": "storybook build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:ci": "pnpm generate && pnpm check",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "vite dev",
     "format": "prettier --write . --config prettier.config.ts",
     "generate": "pnpm generate:translations",
-    "generate:translations": "npx wuchale -c --config wuchale.config.ts",
+    "generate:translations": "pnpm generate:translations:sync && pnpm generate:translations:pull",
+    "generate:translations:pull": "pnpm tolgee pull --api-key ${TOLGEE_API_KEY}",
+    "generate:translations:sync": "pnpm tolgee sync --yes --api-key ${TOLGEE_API_KEY}",
     "preinstall": "npx only-allow pnpm",
     "lint": "prettier --check . --config prettier.config.ts && eslint .",
-    "lint:ci": "pnpm generate && pnpm lint",
     "prepack": "svelte-kit sync && svelte-package && publint",
     "prepare": "svelte-kit sync || echo ''",
     "preview": "vite preview",
@@ -83,7 +76,6 @@
     "publish:patch": "pnpm version patch && git push --follow-tags",
     "storybook": "storybook dev -p 6006",
     "test": "pnpm run test:unit",
-    "test:ci": "pnpm generate && pnpm test",
     "test:unit": "vitest run"
   },
   "devDependencies": {
@@ -104,13 +96,15 @@
     "@sveltejs/package": "^2.5.7",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@testing-library/svelte": "^5.2.9",
+    "@tolgee/cli": "^2.14.0",
+    "@tolgee/format-icu": "^6.2.7",
+    "@tolgee/svelte": "^6.2.7",
+    "@tolgee/web": "^6.2.7",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.10.1",
     "@vitest/browser": "^4.0.15",
     "@vitest/coverage-v8": "^4.0.15",
-    "@wuchale/svelte": "^0.17.5",
-    "@wuchale/vite-plugin": "^0.15.3",
     "chalk": "^5.6.2",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
@@ -133,17 +127,16 @@
     "vite": "^7.2.6",
     "vitest": "^4.0.15",
     "vitest-browser-svelte": "^2.0.1",
-    "wuchale": "^0.18.6",
     "zod": "^4.1.12"
   },
   "peerDependencies": {
     "@a-novel-kit/nodelib-browser": "^1.3.1",
     "@iconify/svelte": "^5.1.0",
     "@sveltejs/kit": "^2.49.1",
-    "@wuchale/svelte": "^0.17.5",
-    "@wuchale/vite-plugin": "^0.15.3",
+    "@tolgee/format-icu": "^6.2.7",
+    "@tolgee/svelte": "^6.2.7",
+    "@tolgee/web": "^6.2.7",
     "svelte": "^5.0.0",
-    "wuchale": "^0.18.6",
     "zod": "^4.1.12"
   },
   "packageManager": "pnpm@10.25.0",
@@ -158,5 +151,33 @@
     "ignoredBuiltDependencies": [
       "msw"
     ]
+  },
+  "tolgee": {
+    "$schema": "https://docs.tolgee.io/cli-schema.json",
+    "projectId": 25969,
+    "format": "JSON_ICU",
+    "defaultNamespace": "common",
+    "patterns": [
+      "./src/**/*.ts",
+      "./src/**/*.svelte"
+    ],
+    "push": {
+      "filesTemplate": "./src/lib/locales/tr/{languageTag}.{namespace}.{extension}",
+      "language": [
+        "en",
+        "fr"
+      ],
+      "forceMode": "OVERRIDE",
+      "removeOtherKeys": true
+    },
+    "pull": {
+      "path": "./src/lib/locales/tr/",
+      "filesTemplate": "{languageTag}.{namespace}.{extension}",
+      "emptyDir": true,
+      "delimiter": ""
+    },
+    "sync": {
+      "removeUnused": true
+    }
   }
 }

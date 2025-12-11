@@ -7,24 +7,23 @@ import { defineConfig } from "vitest/config";
 
 import { sveltekit } from "@sveltejs/kit/vite";
 import { svelteTesting } from "@testing-library/svelte/vite";
-import { wuchale } from "@wuchale/vite-plugin";
 import { CookieJar } from "jsdom";
 
 const baseResolve = process.env.VITEST
   ? {
       conditions: ["browser"],
     }
-  : undefined;
+  : {};
 
 export default defineConfig({
-  plugins: [wuchale(path.join(import.meta.dirname, "wuchale.config.ts")), sveltekit(), svelteTesting()],
+  plugins: [sveltekit(), svelteTesting()],
   build: {
     sourcemap: true,
     rollupOptions: {
       external: Object.keys(peerDependencies),
     },
   },
-  resolve: baseResolve,
+  resolve: { ...baseResolve, dedupe: ["svelte"] },
   test: {
     expect: { requireAssertions: true },
     environmentOptions: {

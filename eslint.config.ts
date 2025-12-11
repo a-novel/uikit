@@ -8,7 +8,7 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig(
   ...Eslint({
-    ignores: ["**/locales/*.{js,ts}", "**/locales/.wuchale"],
+    ignores: ["**/locales/*.{js,ts}"],
     gitIgnorePath: path.join(import.meta.dirname, ".gitignore"),
     svelte: svelteConfig,
     isLib: true,

@@ -8,6 +8,7 @@
   import { Debounce } from "@a-novel-kit/nodelib-browser/utils";
 
   import Icon from "@iconify/svelte";
+  import { getTranslate } from "@tolgee/svelte";
 
   interface Props extends Omit<HTMLAttributes<HTMLElement>, "title"> {
     homeButton: Snippet;
@@ -83,6 +84,8 @@
       postReflow();
     });
   }
+
+  const { t } = getTranslate("common");
 </script>
 
 <!-- Main navigation -->
@@ -110,7 +113,9 @@
         color="invert"
         class="popover-button"
         onclick={togglePopoverOpen}
-        aria-label={popoverOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-label={popoverOpen
+          ? $t("navBar.menu.toggle.close", "Close navigation menu")
+          : $t("navBar.menu.toggle.open", "Open navigation menu")}
       >
         {#if popoverOpen}
           <Icon icon="material-symbols:close" />
@@ -125,8 +130,9 @@
         bind:this={binding.getRef, binding.setRef}
         data-popover={popoverOpen}
         role={popoverOpen ? "dialog" : undefined}
-        aria-modal={popoverOpen ? "true" : undefined}
-        aria-label={popoverOpen ? "Navigation menu" : undefined}
+        aria-modal="true"
+        aria-hidden={!popoverOpen}
+        aria-label={$t("navBar.menu", "Navigation menu")}
       >
         <nav class="main" data-keep-popover="true">
           {#each nav as navItem, i (`${i}:${navItem.content}`)}
