@@ -82,8 +82,10 @@
       <div class="cancel" data-show={fullWidth}>
         <Button
           aria-label={$t("langSelector.aria.closeMenu", "Close language selection menu")}
-          onclick={togglePopoverOpen}>{$t("langSelector.closeMenu", "Close language selection menu")}</Button
+          onclick={togglePopoverOpen}
         >
+          {$t("langSelector.closeMenu", "Cancel")}
+        </Button>
       </div>
     </div>
   {/snippet}

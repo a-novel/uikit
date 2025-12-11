@@ -8,7 +8,7 @@
   "langSelector.aria.closeMenu": "Close language selection menu",
   "langSelector.aria.selectionMenu": "Lang selection menu",
   "langSelector.aria.selectLanguage": "Select language",
-  "langSelector.closeMenu": "Close language selection menu",
+  "langSelector.closeMenu": "Cancel",
   "navBar.menu": "Navigation menu",
   "navBar.menu.toggle.close": "Close navigation menu",
   "navBar.menu.toggle.open": "Open navigation menu",
