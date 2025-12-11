@@ -1,6 +1,6 @@
 import { DEFAULT_LNG, LNG } from "../src/lib/const";
+import { DecoratorComponent } from "../src/lib/storybook";
 import "../src/lib/ui/designSystem.css";
-import { DecoratorComponent } from "../src/storybook";
 import "./preview.css";
 
 import { withThemeByDataAttribute } from "@storybook/addon-themes";

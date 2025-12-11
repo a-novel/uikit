@@ -31,6 +31,11 @@
       "import": "./dist/ui/index.js",
       "svelte": "./dist/ui/index.js"
     },
+    "./storybook": {
+      "types": "./dist/storybook/index.d.ts",
+      "import": "./dist/storybook/index.js",
+      "svelte": "./dist/storybook/index.js"
+    },
     "./ui/components": {
       "types": "./dist/ui/components/index.d.ts",
       "import": "./dist/ui/components/index.js",
