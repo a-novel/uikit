@@ -198,7 +198,7 @@
     box-shadow: oklch(from var(--background) l c h / 80%) 0 0 var(--spacing-s) 0;
 
     background-color: var(--background);
-    padding: 0;
+    padding: 0 var(--spacing-s);
     max-width: 100%;
     overflow: auto;
 

@@ -2,6 +2,7 @@
   import agoraLogoDark from "$lib/assets/logos/integrated/agora (dark).png";
   import agoraLogoLight from "$lib/assets/logos/integrated/agora (light).png";
   import { Button, NavBar, type NavItem, Section } from "$lib/ui/components";
+  import { ActionSection } from "$lib/ui/components/nav";
   import { LOREM_IPSUM } from "$lib/utils";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";
@@ -90,20 +91,11 @@
     {/snippet}
 
     {#snippet actionsMobile()}
-      <h6>Authenticate</h6>
-      <div
-        style="
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--spacing-s);
-        padding: 0;
-        "
-      >
+      <ActionSection mobile title="Authenticate">
         <Button color="default">Login</Button>
         <Button color="primary">Register</Button>
         <Button color="secondary">Subscribe</Button>
-      </div>
+      </ActionSection>
     {/snippet}
   </NavBar>
 

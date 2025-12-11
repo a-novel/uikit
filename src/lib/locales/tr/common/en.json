@@ -12,6 +12,7 @@
   "navBar.menu": "Navigation menu",
   "navBar.menu.toggle.close": "Close navigation menu",
   "navBar.menu.toggle.open": "Open navigation menu",
+  "settings": "Settings",
   "statusPages.404.message": "This page either does not exist or has been removed.",
   "statusPages.404.messageSub": "Please check your browser URL.",
   "statusPages.404.title": "Page not found.",
