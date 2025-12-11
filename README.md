@@ -94,8 +94,8 @@ You should also import your application locales and sync them with the design sy
 
   // You may add your own namespaces.
   TolgeeConfig.addStaticData({
-    "en:customNs": () => import("[PATH_TO_LOCALES]/customNs/en.json"),
-    "r:customNs": () => import("[PATH_TO_LOCALES]/customNs/fr.json"),
+    "en:customNs": () => import("[PATH_TO_LOCALES]/customNs/en.json").then(m => m.default),
+    "fr:customNs": () => import("[PATH_TO_LOCALES]/customNs/fr.json").then(m => m.default),
   });
 </script>
 
