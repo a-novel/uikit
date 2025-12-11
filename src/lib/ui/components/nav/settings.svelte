@@ -10,7 +10,7 @@
   const { t } = getTranslate("common");
 </script>
 
-<ActionSection {...props} title={$t("settings", "Settings")}>
+<ActionSection {...props} title={$t("nav.settings", "Settings")}>
   <LangSelector fullWidth={props.mobile} />
   {@render children?.()}
 </ActionSection>
