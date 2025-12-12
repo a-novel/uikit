@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { ComponentColor } from "$lib/ui/index.js";
+  import { ComponentColor, RenderAny } from "$lib/ui";
 
-  import type { Snippet } from "svelte";
+  import type { Component, Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
 
   import { z } from "zod";
 
   interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
     color?: z.infer<typeof ComponentColor>;
-    title?: Snippet;
-    icon?: Snippet;
+    //eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    title?: Snippet | string | Component<{}, {}, "">;
+    //eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    icon?: Snippet | Component<{}, {}, "">;
   }
 
   const { children, color = "default", icon, title, ...props }: Props = $props();
@@ -20,12 +22,14 @@
     <div class="title">
       {#if icon}
         <span class="icon">
-          {@render icon()}
+          <RenderAny component={icon} />
         </span>
       {/if}
-      <span class="text">
-        {@render title?.()}
-      </span>
+      {#if title}
+        <span class="text">
+          <RenderAny component={title} />
+        </span>
+      {/if}
     </div>
   {/if}
 
