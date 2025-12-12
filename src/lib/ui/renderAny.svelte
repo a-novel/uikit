@@ -20,22 +20,22 @@
 
   let { component, ...props }: Props = $props();
 
-  function isStringProps(baseComponent: any): baseComponent is string {
-    return typeof baseComponent.component === "string";
+  function isString(baseComponent: any): baseComponent is string {
+    return typeof baseComponent === "string";
   }
 
   const EmptySnippetKey = Object.getOwnPropertyNames(EmptySnippet).join("");
 
-  export function isSnippetProps(t: any): t is Snippet {
-    return Object.getOwnPropertyNames(t).join("") == EmptySnippetKey;
+  function isSnippet(baseComponent: any): baseComponent is Snippet {
+    return Object.getOwnPropertyNames(baseComponent).join("") == EmptySnippetKey;
   }
 </script>
 
 {#snippet EmptySnippet()}{/snippet}
 
-{#if isStringProps(component)}
+{#if isString(component)}
   {component}
-{:else if isSnippetProps(component)}
+{:else if isSnippet(component)}
   {@render component()}
 {:else}
   <component {...props}></component>
