@@ -386,7 +386,8 @@ html {
 }
 
 .icon > svg,
-[data-icon="true"] > svg {
+[data-icon="true"] > svg,
+svg[data-icon="true"] {
   display: block;
   flex-shrink: 0;
   width: auto;
