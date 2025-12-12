@@ -26,6 +26,11 @@
       "import": "./dist/locales/index.js",
       "svelte": "./dist/locales/index.js"
     },
+    "./ui/icons": {
+      "types": "./dist/ui/icons/index.d.ts",
+      "import": "./dist/ui/icons/index.js",
+      "svelte": "./dist/ui/icons/index.js"
+    },
     "./ui": {
       "types": "./dist/ui/index.d.ts",
       "import": "./dist/ui/index.js",
