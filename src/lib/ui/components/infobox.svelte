@@ -6,19 +6,30 @@
 
   import { z } from "zod";
 
-  interface Props extends HTMLAttributes<HTMLDivElement> {
+  interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
     color?: z.infer<typeof ComponentColor>;
+    title?: Snippet;
     icon?: Snippet;
   }
 
-  const { children, color = "default", icon, ...props }: Props = $props();
+  const { children, color = "default", icon, title, ...props }: Props = $props();
 </script>
 
 <div {...props} class={["box", props.class]} data-color={color}>
+  {#if title || icon}
+    <div class="title">
+      {#if icon}
+        <span class="icon">
+          {@render icon()}
+        </span>
+      {/if}
+      <span class="text">
+        {@render title?.()}
+      </span>
+    </div>
+  {/if}
+
   {@render children?.()}
-  <div class="icon">
-    {@render icon?.()}
-  </div>
 </div>
 
 <style>
@@ -35,20 +46,22 @@
     font-size: var(--font-size-p);
   }
 
-  .icon {
+  .title {
     display: flex;
-    position: absolute;
-    top: 50%;
-    right: var(--spacing-s);
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     align-items: center;
-    transform: translateY(-50%);
-    transform-origin: center;
-    opacity: 0.3;
-    z-index: 0;
-    color: inherit;
-    font-size: 4em;
-    line-height: 4em;
-    user-select: none;
+    gap: var(--spacing-s);
+    font-weight: bold;
+    font-size: var(--font-size-h5);
+
+    & > .icon {
+      font-size: 1.2em;
+    }
+
+    & > .text {
+      white-space: pre;
+    }
   }
 </style>
