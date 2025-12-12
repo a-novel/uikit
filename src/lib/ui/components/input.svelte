@@ -13,12 +13,12 @@
     endAdornment?: Snippet;
   }
 
-  let { color, wrapperProps, startAdornment, endAdornment, ...props }: Props = $props();
+  let { color, wrapperProps, startAdornment, endAdornment, value = $bindable(), ...props }: Props = $props();
 </script>
 
 <div data-color={color ?? ""} {...wrapperProps}>
   {@render startAdornment?.()}
-  <input {...props} />
+  <input bind:value {...props} />
   {@render endAdornment?.()}
 </div>
 
