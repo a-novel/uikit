@@ -71,12 +71,18 @@
     {#snippet icon()}
       <Icon icon="material-symbols:info-outline" />
     {/snippet}
+    {#snippet title()}
+      Hello world!
+    {/snippet}
   </InfoBox>
   <br /><br />
   <InfoBox color="primary">
     {LOREM_IPSUM.MEDIUM}
     {#snippet icon()}
       <Icon icon="material-symbols:info-outline" />
+    {/snippet}
+    {#snippet title()}
+      Hello world!
     {/snippet}
   </InfoBox>
   <br /><br />
@@ -85,12 +91,18 @@
     {#snippet icon()}
       <Icon icon="material-symbols:info-outline" />
     {/snippet}
+    {#snippet title()}
+      Hello world!
+    {/snippet}
   </InfoBox>
   <br /><br />
   <InfoBox color="accent">
     {LOREM_IPSUM.MEDIUM}
     {#snippet icon()}
       <Icon icon="material-symbols:info-outline" />
+    {/snippet}
+    {#snippet title()}
+      Hello world!
     {/snippet}
   </InfoBox>
 {/snippet}

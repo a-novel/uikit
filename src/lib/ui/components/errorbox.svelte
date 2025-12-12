@@ -1,18 +1,16 @@
 <script lang="ts">
   import { InfoBox } from "$lib/ui/components/index";
 
-  import type { ComponentProps, Snippet } from "svelte";
+  import type { ComponentProps } from "svelte";
 
   import Icon from "@iconify/svelte";
   import { getTranslate } from "@tolgee/svelte";
 
-  interface Props extends Omit<ComponentProps<typeof InfoBox>, "color" | "icon" | "title"> {
-    icon?: Snippet;
-    title?: Snippet;
+  interface Props extends Omit<ComponentProps<typeof InfoBox>, "color"> {
     error?: unknown | unknown[];
   }
 
-  const { children, title, error, icon, ...props }: Props = $props();
+  const { children, error, ...props }: Props = $props();
 
   let showDetails = $state(false);
 
@@ -21,19 +19,6 @@
 
 <span data-scope hidden></span>
 <InfoBox {...props} color="accent">
-  {#if title || icon}
-    <div class="title">
-      {#if icon}
-        <span class="icon">
-          {@render icon()}
-        </span>
-      {/if}
-      <span class="text">
-        {@render title?.()}
-      </span>
-    </div>
-  {/if}
-
   <span>{@render children?.()}</span>
 
   {#if error}
@@ -80,25 +65,6 @@
     align-items: stretch;
     gap: var(--spacing-s);
     height: fit-content;
-  }
-
-  .title {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: var(--spacing-s);
-    font-weight: bold;
-    font-size: var(--font-size-h5);
-
-    & > .icon {
-      font-size: 1.2em;
-    }
-
-    & > .text {
-      white-space: pre;
-    }
   }
 
   .details {
