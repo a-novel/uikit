@@ -1,4 +1,7 @@
 {
+  "applications.aria.selectionMenu": "Applications selection menu",
+  "applications.toggle.close": "Close applications menu",
+  "applications.toggle.open": "Open applications menu",
   "errorbox.aria.details": "Error details",
   "errorbox.aria.toggleDetails": "Toggle error details",
   "errorbox.toggleDetails.hide": "Hide error details",
@@ -9,6 +12,7 @@
   "langSelector.aria.selectionMenu": "Lang selection menu",
   "langSelector.aria.selectLanguage": "Select language",
   "langSelector.closeMenu": "Cancel",
+  "nav.applications": "Applications",
   "navBar.menu": "Navigation menu",
   "navBar.menu.toggle.close": "Close navigation menu",
   "navBar.menu.toggle.open": "Open navigation menu",
