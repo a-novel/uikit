@@ -1,4 +1,7 @@
 {
+  "applications.aria.selectionMenu": "Menu de sélection d'applications",
+  "applications.toggle.close": "Fermer le menu de sélection d'applications",
+  "applications.toggle.open": "Ouvrir le menu de sélection d'applications",
   "errorbox.aria.details": "Détail de l'erreur",
   "errorbox.aria.toggleDetails": "Afficher / Masquer le détail de l'erreur",
   "errorbox.toggleDetails.hide": "Masquer le détail de l'erreur",
@@ -9,6 +12,7 @@
   "langSelector.aria.selectionMenu": "Menu de sélection de la langue",
   "langSelector.aria.selectLanguage": "Sélectionner la langue",
   "langSelector.closeMenu": "Annuler",
+  "nav.applications": "Applications",
   "navBar.menu": "Menu de navigation",
   "navBar.menu.toggle.close": "Fermer le menu de navigation",
   "navBar.menu.toggle.open": "Ouvrir le menu de navigation",
