@@ -87,7 +87,7 @@
       background: none;
       padding: 0 var(--spacing-s);
       color: inherit;
-      font-size: var(--font-size-h6);
+      font-size: var(--font-size-p);
 
       & > .text {
         white-space: pre;

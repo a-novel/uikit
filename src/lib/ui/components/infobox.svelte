@@ -58,7 +58,7 @@
     align-items: center;
     gap: var(--spacing-s);
     font-weight: bold;
-    font-size: var(--font-size-h5);
+    font-size: var(--font-size-h6);
 
     & > .icon {
       font-size: 1.2em;
