@@ -34,7 +34,8 @@
     border-color: var(--color-400);
     border-radius: var(--spacing-s);
     background-color: var(--color-100);
-    padding: var(--spacing-xs) var(--spacing-s);
+    padding: var(--spacing-xxs) var(--spacing-s);
+    height: 1.4lh;
   }
 
   div[data-color=""] {

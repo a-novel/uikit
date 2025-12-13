@@ -60,8 +60,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1.5lh;
-    height: 1.5lh;
+    width: 1.2lh;
+    height: 1.2lh;
   }
 
   button[data-gradient="true"]:not(:disabled) {
