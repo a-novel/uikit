@@ -10,7 +10,7 @@
   import Icon from "@iconify/svelte";
   import { getTranslate } from "@tolgee/svelte";
 
-  interface Props extends Omit<HTMLAttributes<HTMLElement>, "title"> {
+  interface Props extends Omit<HTMLAttributes<HTMLElement>, "title" | "children"> {
     homeButton: Snippet;
     homeLink: string;
 
